@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Test
-parent: Music Compositions
+parent: Compositions
 grand_parent: Music
 nav_order: 1
 ---

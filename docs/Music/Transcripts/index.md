@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Music Transcripts
+title: Transcripts
 parent: Music
 nav_order: 
 has_children: true
