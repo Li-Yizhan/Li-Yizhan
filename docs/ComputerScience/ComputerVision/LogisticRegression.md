@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Test
+title: Logistic Regression
 parent: Computer Vision
 grand_parent: Computer Science
 nav_order: 1
