@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Test
+title: A Brief Introduction to E6B Calculator
 parent: Aviation
 nav_order: 1-00-01
 ---
