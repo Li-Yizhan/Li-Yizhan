@@ -1,7 +1,7 @@
 ---
-title: Computer Science
+title: Science
 layout: default
 nav_order: 1-01
 has_children: true
-permalink: /docs/ComputerScience
+permalink: /docs/Science
 ---
