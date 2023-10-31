@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Construct ReLU Neural Network Which Efficiently Approximate Polynomials (Part 2)
+title: A Parallel Study of Back Propagation and Feedback Alignment
 parent: Neural Network Theories
 grand_parent: Science
 nav_order: 
