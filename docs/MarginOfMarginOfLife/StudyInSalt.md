@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Test
+title: A Study In Salt
 parent: Margin of Margin of Life
 nav_order: 1-06-01
 ---
