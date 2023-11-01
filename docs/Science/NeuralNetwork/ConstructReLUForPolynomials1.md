@@ -51,23 +51,42 @@ As for now, we proceed to proving the following result:
 
 **Theorem 1.** There exist constants $C>0$ and $D \in ℕ_{+}$ such that for all $	ε \in (0, 1/2)$, there is a ReLU network $\Phi_{ε}$ of depth $L(\Phi_{ε}) \leq C \log (ε^{-1})$ and width $W(\Phi_{ε}) \leq D$, such that 
 
+<br/>
+
 $$
-\lVert \Phi_{ε}(x) - x^{2} \rVert_{L^{∞}([0,1])} \leq ε 
+\lVert \Phi_{ε}(x) - x^{2} \rVert_{L^{∞}([0,1])} \leq ε \text{ and } \Phi_{ε}(0) = 0, \lVert \Phi_{ε}(x) \rVert_{L^{∞}([0,1])} \leq 1, \lVert \Phi_{ε}(x) \rVert_{L^{∞}([0,1/2])} \leq 1/4
 $$
 
-and $\Phi_{ε}(0) = 0$, $\lVert \Phi_{ε}(x) \rVert_{L^{∞}([0,1])} \leq 1$, $\lVert \Phi_{ε}(x) \rVert_{L^{∞}([0,1/2])} \leq 1/4$.
+<br/>
 
-We start by demonstrating that every ReLU network realizes a continuous piecewise linear function. Consider a general function
+We start by demonstrating that every ReLU network realizes a continuous piecewise linear function. Such a function can be generalized in the following way
 
 $$
 \tag{2}
 \sum_{j=1}^{N} α_{j} \rho (y_{j}^{T}x + \theta_{j}), x \in \mathbb{R}^{n}
 $$
 
-Consider a concrete example of the form above: $\Phi(x) = 2 \rho(x) - \rho(x-1/2) - \rho(x-1)$, which is a piecewise-linear function with break points $\{0, 1/2, 1\}$
+Consider a concrete example $\Phi(x) := 2 \rho(x) - \rho(x-1/2) - \rho(x-1)$. Since the definition of the ReLU activation function $\rho$ is given by $\rho(x) := max(x, 0)$, $\Phi(x)$ has three different expressions in intervals $[0, 1/2), [1/2, 1),$ and $[1, +∞]$. When $x \in [0, 1/2)$:
 
-![Figure 1](assets/images/F_1_GraphOfPhi.png)
+$$
+\begin{align*}
+   x-1/2 < 0 \\
+   \rho(x-1/2) = 0 \\
+   \\
+   x - 1 < 0 \\
+   \rho(x-1) = 0 \\
+   \\
+   \Phi(x) = 2 \rho(x) = 2x
+\end{align*}   
+$$
 
+By following a similar procedure, we can easily see that $\Phi(x)$ is a piecewise linear function with break points $\{0, 1/2, 1\}$. 
+
+Our example $\Phi(x)$, a function of form (2), is a 2-layer (or single-hidden-layer) ReLU network according to **Definition 1** and can be written as 
+
+$$
+W_{2} \circ \rho \circ W_{1}
+$$
 
 we start with the approximation of $x^{2}$ through continuous piecewise linear functions. 
 
