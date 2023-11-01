@@ -40,6 +40,6 @@ where, for $l \in \{ 1, 2, \ldots, L\}$, $W_{l}: \mathbb{R}^{N_{l-1}} \rightarro
 
 * width $W(\Phi) := max_{l=0,\ldots,L}N_{l}$
 
-* weight manitude $B(\Phi) := max_{l=1, \ldots, L} max\{\lVert A_{l} \rVert_{∞}, \lVert b_{l} \rVert_{∞}\}$
+* weight manitude $B(\Phi) := max_{l=1, \ldots, L} max \{\lVert A_{l} \rVert_{∞}, \lVert b_{l} \rVert_{∞}\}$
 
 Let's dissect **Definition 1** and examine the important concepts. A neural network is composed of the *input layer*, *hidden layers*, and the *output layer*. $N_{0}$ is the *dimension of the input layer* indexed as the 0-th layer; $N_{1}, \ldots, N_{L-1}$ are the *dimensions of the $L-1$ hidden layers*, and $N_{L}$ is the *dimension of the output layer*. 
