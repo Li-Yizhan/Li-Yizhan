@@ -9,7 +9,9 @@ header-includes:
    - \usepackage{amssymb}
 ---
 
-### Construct ReLU Neural Network Which Efficiently Approximate Polynomials (Part 1)
+## Construct ReLU Neural Network Which Efficiently Approximate Polynomials (Part 1)
+
+---
 
 In this and the following article, the goal is to construct **ReLU neural networks** which efficiently approximate polynomials and establish **approximation rates**, which quantify the size of the approximating neural networks relative to the approximation error. 
 
