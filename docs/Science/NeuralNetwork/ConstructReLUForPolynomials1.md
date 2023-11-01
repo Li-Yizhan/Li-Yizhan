@@ -105,4 +105,16 @@ We can verify by conducting the matrix composition $W_{2} \circ \rho \circ W_{1}
 
 Thus far, we demonstrated how a *continuous piecewise linear function* can be realized by a ReLU network. This conclusion is meaningful because <ins>we can now approximate a polynomial with ReLU network if we manage to find a piecewise linear interpolation of such polynomial</ins>.  
 
-With the foundation previously proven, we can start with the approximation of $x^{2}$ through continuous piecewise linear functions. Specifically, for $m \in ℕ_{0}$
+With the foundation previously proven, we can start with the approximation of $x^{2}$ through continuous piecewise linear functions. Specifically, for $m \in ℕ_{0}$, let $f_{m}$ be the piecewise linear function of $x^{2}$ with $2^{m}+1$ uniformly spaced "knots" according to 
+
+$$
+\tag{3}
+f_{m}(\dfrac{k}{2^{m}}) = (\dfrac{k}{2^{m}})^{2}, k = 0, \ldots, 2^{m}
+$$
+
+We want to establish that
+
+$$
+\lVert f_{m}(x) - x^{2}\rVert_{L^{∞}[0,1]} \leq 2^{-2m-2}
+$$
+
