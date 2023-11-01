@@ -13,7 +13,7 @@ In this and the following article, the goal is to construct **ReLU neural networ
 
 We start by recalling the definition of ReLU neural network. 
 
-**Definition 1.** Let $ L \in \mathbb{N} $ and $ N_{0}, N_{1}, \ldots, N_{L} \in \mathbb{N} $ given by
+**Definition 1.** Let $L \in \mathbb{N} $ and $ N_{0}, N_{1}, \ldots, N_{L} \in \mathbb{N}$ given by
 
 $$  
     \Phi = 
@@ -24,7 +24,7 @@ $$
    \end{cases}
 $$
 
-where, for $l \in \left\{ 1, 2, \ldots, L\right\}$, 
+where, for $l \in \{ 1, 2, \ldots, L\}$, 
 
 
 
