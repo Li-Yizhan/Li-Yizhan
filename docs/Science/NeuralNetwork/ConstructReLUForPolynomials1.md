@@ -43,9 +43,7 @@ where, for $l \in \{ 1, 2, \ldots, L\}$, $W_{l}: \mathbb{R}^{N_{l-1}} \rightarro
 
 The neural network defined in the equation (1) is essentially a sequence of [matrix compositions](https://www.youtube.com/watch?v=XkY2DOUCWMU). By rule, matrix composition is read from right to left. That is why $W_1$ appears at far right of the equation, followed by $W_{2}, W_{3}, \ldots$ on its left side. Geometrically, we can imagine neural networks as applying multiple *affine transformations* $W_{l}(x) := A_{l}x + b_{l}$ with activation functions $\rho$ sequentially. There is a [fascinating visualization](https://www.youtube.com/watch?v=UOvPeC8WOt8) that explains how the data input is manipulated through multiple layers of affine transformations and activation functions to generate the desired outcome. 
 
----
-
-The goal of this article is to prove the following result: 
+The goal of this article (part 1) is to prove the following result. Instead of directly construct a neural network and approximate polynomials quantitatively, we pick a particular polynomial, $x^{2}$, as a starter. 
 
 >**Theorem 1.** There exist constants $C>0$ and $D \in ℕ_{+}$ such that for all $	ε \in (0, 1/2)$, there is a ReLU network $\Phi_{ε}$ of depth $L(\Phi_{ε}) \leq C \log (ε^{-1})$ and width $W(\Phi_{ε}) \leq D$, such that 
 >
@@ -53,7 +51,7 @@ The goal of this article is to prove the following result:
 \lVert \Phi_{ε}(x) - x^{2} \rVert_{L^{∞}([0,1])} \leq ε \text{ and } \Phi_{ε}(0) = 0, \lVert \Phi_{ε}(x) \rVert_{L^{∞}([0,1])} \leq 1, \lVert \Phi_{ε}(x) \rVert_{L^{∞}([0,1/2])} \leq 1/4
 $$
 
-We start by demonstrating that <ins>every ReLU network realizes a *continuous piecewise linear function*</ins>. Such a function can be represented in the following way
+We begin the proof by by demonstrating that <ins>every ReLU network realizes a *continuous piecewise linear function*</ins>, a function that can be represented in the following way
 
 $$
 \tag{2}
@@ -85,7 +83,7 @@ $$
    \end{cases}
 $$
 
-Our example $\Phi(x)$, or any function of form (2), is a 2-layer (or *single-hidden-layer*) ReLU network according to **Definition 1** and can be written as 
+According to definition 1, A function of form (2), a piecewise linear function, is also a 2-layer ReLU network and can be writte as 
 
 $$
 W_{2} \circ \rho \circ W_{1}
@@ -103,9 +101,8 @@ $$
 W_{1}(x) =  \begin{pmatrix} 1\\ 1\\ 1 \end{pmatrix} x - \begin{pmatrix} 0 \\ 1/2 \\ 1\\ \end{pmatrix}, W_{2}(x) = \begin{pmatrix} 2 & -1 & -1 \\ \end{pmatrix} x
 $$
 
-Thus far, we demonstrated how a *continuous piecewise linear function* can be realized by a ReLU network. This conclusion is meaningful because we can now approximate a polynomial with ReLU network if we manage to find a piecewise linear interpolation of such polynomial.  
+We can verify by conducting the matrix composition $W_{2} \circ \rho \circ W_{1}$ and the result would indeed be $2 \rho(x) - \rho(x-1/2) - \rho(x-1)$.
 
----
+Thus far, we demonstrated how a *continuous piecewise linear function* can be realized by a ReLU network. This conclusion is meaningful because <ins>we can now approximate a polynomial with ReLU network if we manage to find a piecewise linear interpolation of such polynomial</ins>.  
 
-Before considering a general scenario with all sorts of polynomials, let's start with the approximation of $x^{2}$ through continuous piecewise linear functions. 
-
+With the foundation previously proven, we can start with the approximation of $x^{2}$ through continuous piecewise linear functions. Specifically, for $m \in ℕ_{0}$
