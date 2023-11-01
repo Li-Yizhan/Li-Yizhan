@@ -13,7 +13,7 @@ header-includes:
 
 ---
 
-In this and the following article, the goal is to construct **ReLU neural networks** which efficiently approximate polynomials and establish **approximation rates**, which quantify the size of the approximating neural networks relative to the approximation error. 
+In this (Part 1) and the following article (Part 2), the goal is to construct **ReLU neural networks** which efficiently approximate polynomials and establish **approximation rates**, which quantify the size of the approximating neural networks relative to the approximation error. 
 
 We start by recalling the definition of ReLU neural network. 
 
@@ -40,4 +40,6 @@ where, for $l \in \{ 1, 2, \ldots, L\}$, $W_{l}: \mathbb{R}^{N_{l-1}} \rightarro
 
 * width $W(\Phi) := max_{l=0,\ldots,L}N_{l}$
 
-* weight manitude $B(\Phi) := max_{l=1, \ldots, L} max\{\| A_{l}\|_{∞},\|b_{l}\|_{∞}\}$
+* weight manitude $B(\Phi) := max_{l=1, \ldots, L} max\{|| A_{l}||_{∞}, ||b_{l}||_{∞}\}$
+
+Let's dissect **Definition 1.** and examine the important concepts. A neural network is composed of multiple layers. The input layer is indexed as 
