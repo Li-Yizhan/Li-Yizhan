@@ -4,6 +4,7 @@ title: Construct ReLU Neural Network Which Efficiently Approximate Polynomials (
 parent: Neural Network
 grand_parent: Science
 nav_order: 
+extra_dependencies: ["amsmath", "amssymb"]
 ---
 
 ### Construct ReLU Neural Network Which Efficiently Approximate Polynomials (Part 1)
