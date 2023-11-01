@@ -24,7 +24,7 @@ $$
    \end{cases}
 $$
 
-where, for $l \in \left\{ 1, 2, \ldots, L\right\}$, 
+$ where, for l \in \left\{ 1, 2, \ldots, L\right\}$, 
 
 
 
