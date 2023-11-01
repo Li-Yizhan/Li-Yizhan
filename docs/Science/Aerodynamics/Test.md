@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Test
+title: • Test
 parent: Aerodynamics
 grand_parent: Science
 nav_order: 1

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Logistic Regression
+title: • Logistic Regression
 parent: Computer Vision
 grand_parent: Science
 nav_order: 1
