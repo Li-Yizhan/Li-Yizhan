@@ -17,11 +17,9 @@ In this (Part 1) and the following article (Part 2), the goal is to construct **
 
 We start by recalling the definition of ReLU neural network. 
 
-**Definition 1.** Let $L \in \mathbb{N} $ and $ N_{0}, N_{1}, \ldots, N_{L} \in \mathbb{N}$ given by
-
-<br/>
-
-$$  
+>**Definition 1.** Let $L \in \mathbb{N} $ and $ N_{0}, N_{1}, \ldots, N_{L} \in \mathbb{N}$ given by
+>
+>$$  
     \Phi = 
     \tag{1}
     \begin{cases} 
@@ -30,8 +28,6 @@ $$
       W_{L} \circ \rho \circ W_{L-1} \circ \rho \ldots \circ \rho \circ W_{1} & L \geq 3
    \end{cases}
 $$
-
-<br/>
 
 where, for $l \in \{ 1, 2, \ldots, L\}$, $W_{l}: \mathbb{R}^{N_{l-1}} \rightarrow \mathbb{R}^{N_{l}}$, $W_{l}(x) := A_{l}x + b_{l}$ are the affine transformations with matrices $A_{l} \in \mathbb{R}^{N_{l} \times N_{l-1}}$ and (bias) vectors $b_{l} \in \mathbb{R}^{N_{l}} $, and the ReLU activation function $\rho: \mathbb{R} \rightarrow \mathbb{R}, \rho(x) := max(x, 0)$ acts component-wise. We denote by $N_{d,d'}$ the set of all ReLU networks with input dimension $N_{0} = d$ and output dimension $N_{L} = d'$. Moreover, we define the following quantities related to the notion of size of the ReLU network $\Phi$:
 
@@ -43,30 +39,28 @@ where, for $l \in \{ 1, 2, \ldots, L\}$, $W_{l}: \mathbb{R}^{N_{l-1}} \rightarro
 
 * weight manitude $B(\Phi) := max_{l=1, \ldots, L} max( \lVert A_{l} \rVert_{∞}, \lVert b_{l} \rVert_{∞} )$
 
-Let's dissect **Definition 1** and examine the important concepts. A neural network is composed of the *input layer*, *hidden layers*, and the *output layer*. $N_{0}$ is the *dimension of the input layer* indexed as the 0-th layer; $N_{1}, \ldots, N_{L-1}$ are the *dimensions of the $L-1$ hidden layers*, and $N_{L}$ is the *dimension of the output layer*. 
+**Remark.** A neural network is composed of the *input layer*, *hidden layers*, and the *output layer*. $N_{0}$ is the *dimension of the input layer* indexed as the 0-th layer; $N_{1}, \ldots, N_{L-1}$ are the *dimensions of the $L-1$ hidden layers*, and $N_{L}$ is the *dimension of the output layer*. 
 
 The neural network defined in the equation (1) is essentially a sequence of [matrix compositions](https://www.youtube.com/watch?v=XkY2DOUCWMU). By rule, matrix composition is read from right to left. That is why $W_1$ appears at far right of the equation, followed by $W_{2}, W_{3}, \ldots$ on its left side. Geometrically, we can imagine neural networks as applying multiple *affine transformations* $W_{l}(x) := A_{l}x + b_{l}$ with activation functions $\rho$ sequentially. There is a [fascinating visualization](https://www.youtube.com/watch?v=UOvPeC8WOt8) that explains how the data input is manipulated through multiple layers of affine transformations and activation functions to generate the desired outcome. 
 
-As for now, we proceed to proving the following result: 
+---
 
-**Theorem 1.** There exist constants $C>0$ and $D \in ℕ_{+}$ such that for all $	ε \in (0, 1/2)$, there is a ReLU network $\Phi_{ε}$ of depth $L(\Phi_{ε}) \leq C \log (ε^{-1})$ and width $W(\Phi_{ε}) \leq D$, such that 
+The goal of this article is to prove the following result: 
 
-<br/>
-
-$$
+>**Theorem 1.** There exist constants $C>0$ and $D \in ℕ_{+}$ such that for all $	ε \in (0, 1/2)$, there is a ReLU network $\Phi_{ε}$ of depth $L(\Phi_{ε}) \leq C \log (ε^{-1})$ and width $W(\Phi_{ε}) \leq D$, such that 
+>
+>$$
 \lVert \Phi_{ε}(x) - x^{2} \rVert_{L^{∞}([0,1])} \leq ε \text{ and } \Phi_{ε}(0) = 0, \lVert \Phi_{ε}(x) \rVert_{L^{∞}([0,1])} \leq 1, \lVert \Phi_{ε}(x) \rVert_{L^{∞}([0,1/2])} \leq 1/4
 $$
 
-<br/>
-
-We start by demonstrating that every ReLU network realizes a continuous piecewise linear function. Such a function can be generalized in the following way
+We start by demonstrating that <ins>every ReLU network realizes a *continuous piecewise linear function*</ins>. Such a function can be represented in the following way
 
 $$
 \tag{2}
 \sum_{j=1}^{N} α_{j} \rho (y_{j}^{T}x + \theta_{j}), x \in \mathbb{R}^{n}
 $$
 
-Consider a concrete example $\Phi(x) := 2 \rho(x) - \rho(x-1/2) - \rho(x-1)$. Since the definition of the ReLU activation function $\rho$ is given by $\rho(x) := max(x, 0)$, $\Phi(x)$ has three different expressions in intervals $[0, 1/2), [1/2, 1),$ and $[1, +∞]$. When $x \in [0, 1/2)$:
+It might be hard to visualize equation (2) as a piecewise function at a glance. So, we can illustrate with a concrete example $\Phi(x) := 2 \rho(x) - \rho(x-1/2) - \rho(x-1)$. The activation function $\rho$ plays a crucial role here, in that any negative input would be considered as 0. For instance, when $x \in [0, 1/2)$:
 
 $$
 \begin{align*}
@@ -80,13 +74,38 @@ $$
 \end{align*}   
 $$
 
-By following a similar procedure, we can easily see that $\Phi(x)$ is a piecewise linear function with break points $\{0, 1/2, 1\}$. 
+By following a similar procedure on the intervals $[1/2, 1)$ and $[1, +∞)$, we can easily see that $\Phi(x)$ is a piecewise linear function with break points $\{0, 1/2, 1\}$
 
-Our example $\Phi(x)$, a function of form (2), is a 2-layer (or single-hidden-layer) ReLU network according to **Definition 1** and can be written as 
+$$  
+    \Phi(x) = 
+    \begin{cases} 
+      2x & x \in [0, 1/2) \\
+      x + 1/2 & x \in [1/2, 1) \\
+      3/2 & x \in [1, +∞)
+   \end{cases}
+$$
+
+Our example $\Phi(x)$, or any function of form (2), is a 2-layer (or *single-hidden-layer*) ReLU network according to **Definition 1** and can be written as 
 
 $$
 W_{2} \circ \rho \circ W_{1}
 $$
 
-we start with the approximation of $x^{2}$ through continuous piecewise linear functions. 
+with 
+
+$$
+W_{1}(x) =  \begin{pmatrix} y_{1}^{T}\\ y_{2}^{T}\\ \ldots \\ y_{N}^{T}\\ \end{pmatrix} x + \begin{pmatrix} \theta_{1} \\ \theta_{2} \\ \ldots \\ \theta_{N}\\ \end{pmatrix}, W_{2}(x) = \begin{pmatrix} \alpha_{1} & \alpha_{2} & \ldots & \alpha_{N} \\ \end{pmatrix} x
+$$
+
+In the previous example of $\Phi(x) := 2 \rho(x) - \rho(x-1/2) - \rho(x-1)$, we can find such $W_{1}$ and $W_{2}$ to be
+
+$$
+W_{1}(x) =  \begin{pmatrix} 1\\ 1\\ 1 \end{pmatrix} x - \begin{pmatrix} 0 \\ 1/2 \\ 1\\ \end{pmatrix}, W_{2}(x) = \begin{pmatrix} 2 & -1 & -1 \\ \end{pmatrix} x
+$$
+
+Thus far, we demonstrated how a *continuous piecewise linear function* can be realized by a ReLU network. This conclusion is meaningful because we can now approximate a polynomial with ReLU network if we manage to find a piecewise linear interpolation of such polynomial.  
+
+---
+
+Before considering a general scenario with all sorts of polynomials, let's start with the approximation of $x^{2}$ through continuous piecewise linear functions. 
 
