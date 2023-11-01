@@ -66,6 +66,7 @@ $$
 
 Consider a concrete example of the form above: $\Phi(x) = 2 \rho(x) - \rho(x-1/2) - \rho(x-1)$, which is a piecewise-linear function with break points $\{0, 1/2, 1\}$
 
+![Figure 1](assets/images/F_1_GraphOfPhi.png)
 
 
 we start with the approximation of $x^{2}$ through continuous piecewise linear functions. 
