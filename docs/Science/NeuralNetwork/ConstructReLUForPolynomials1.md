@@ -69,3 +69,4 @@ Consider a concrete example of the form above: $\Phi(x) = 2 \rho(x) - \rho(x-1/2
 
 
 we start with the approximation of $x^{2}$ through continuous piecewise linear functions. 
+
