@@ -196,4 +196,4 @@ $$
 
 for $x = (x_1, x_2, \ldots, x_n) \in ℝ^{\sum_{i=1}^{n}d_i}$ with $x_i \in \{1, 2, \ldots, n\}$.
 
-*Proof.* The proof is effected by taking the construction in **Lemma 2.5**, replacing $A_L$ by $(a_1A_L^1, a_2A_L^2, \ldots, a_nA_L^n)$ and b_L by $\sum_{i=1}^{n}a_ib_L^i$, and observing the following. 
+*Proof.* The proof is effected by taking the construction in **Lemma 2.5**, replacing $A_L$ by $(a_1A_L^1, a_2A_L^2, \ldots, a_nA_L^n)$ and $b_L$ by $\sum_{i=1}^{n}a_ib_L^i$, and observing the following. For all $l \in \{1, \ldots, L-1\}$, we have $\lVert A_l \rVert_∞ \leq max_iB(\Phi_i)$ and $\lVert b_l \rVert_∞ \leq max_iB(\Phi_i)$. In addition, we note that $\lVert A_L \rVert_∞ \leq max_i(\lvert a_i \rvert B(\Phi_i))$ and $\lVert b_L \rVert_∞ \leq \sum_{i=1}^{n} \lvert a_i \rvert B(\Phi_i)$. The remaining claimed properties follow directly. 
