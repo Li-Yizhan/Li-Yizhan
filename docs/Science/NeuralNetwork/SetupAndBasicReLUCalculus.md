@@ -125,6 +125,41 @@ $$
 \Phi_i = W_L^i \circ \rho \circ W_{L-1}^i \circ \rho \circ \ldots \circ \rho \circ W_1^i
 $$
 
+with $W_l^i(x) = A_l^i x + B_l^i$. Furthermore, we denote the layer dimensions of $\Phi_i$ by $N_0^i, \ldots, N_L^i$ and set $N_l := \sum_{i = 1}^n N_l^i$, for $l \in \{0, 1, \ldots, L\}$ Next, define, for $l \in \{0, 1, \ldots, L\}$, the block-diagonal matrices $A_l := diag(A_l^1, A_l^2,...,A_l^n)$, the vectors $b_l = (b_l^1, b_l^2, \ldots, b_l^n)$, and the affine transformations $W_l(x) := A_l(x) + b_l$. For each layer, we can write the $W_l$ as
+
+$$\begin{align*}
+W_l(x) &= 
+\begin{bmatrix} 
+    A_l^1 & \dots &0 \\
+    \vdots& \ddots & \vdots\\
+    0 & \dots & A_l^n 
+\end{bmatrix} 
+\begin{bmatrix} 
+x_1 \\
+\vdots \\
+x_n
+\end{bmatrix} + 
+\begin{bmatrix} 
+b_1 \\
+\vdots \\
+b_n
+\end{bmatrix} \\
+&= 
+\begin{bmatrix} 
+A_l^1 x_1 + b_1 \\
+\vdots \\
+A_l^n x_n + b_n
+\end{bmatrix} \\
+\end{align*}$$
+
+The proof is concluded by noting that 
+
+$$
+\Psi := W_L \circ \rho \circ W_{L-1} \circ \rho \ldots \circ \rho \circ W_1
+$$
+
+satisfies the claimed properties. 
+
 ---
 **Lemma 2.6** 
 
