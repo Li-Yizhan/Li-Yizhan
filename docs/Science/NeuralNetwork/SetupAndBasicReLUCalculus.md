@@ -52,4 +52,8 @@ $$
 
 If we compose $\Phi_2$ with $\Phi_1$ directly, the outcome $ W_{L2}^{2} \circ \rho \circ \ldots \circ \rho \circ W_{1}^{2} \circ W_{L1}^{1} \circ \rho \circ W_{L1-1}^{1} \circ \ldots \circ \rho \circ W_{1}^{1}$ does not match the general architecture of the neural network defined earlier, because the section $W_{1}^{2} \circ W_{L1}^{1}$ does not have an activation function $\rho$ in between. Therefore, our goal is to replace the section $W_{1}^{2} \circ W_{L1}^{1}$ with something equivalent but in the form of $W \circ \rho \circ W$.
 
-Let $N_{L1-1}^1$ denote the width of layer $L_1-1$ in $\Phi_1$ and let $N_1^2$ denote the width of layer 1 in $\Phi_2$. We define the affine transformations $\tilde{W}_{L1}^1: $
+Let $N_{L1-1}^1$ denote the width of layer $L_1-1$ in $\Phi_1$ and let $N_1^2$ denote the width of layer 1 in $\Phi_2$. We define the affine transformations $\tilde{W}_{L1}^1: \mathbb{R}^{N_{L_1-1}^1} \rightarrow \mathbb{R}^{2d_2}$ and $\tilde{W}_{1}^2: \mathbb{R}^{2d_2} \rightarrow \mathbb{R}^{N_1^2}$
+
+$$
+\tilde{W}_{L1}^1:= \begin{pmatrix} I_{d_2}\\ -I_{d_2}\end{pmatrix} W_{L1}^1 (x)
+$$ 
