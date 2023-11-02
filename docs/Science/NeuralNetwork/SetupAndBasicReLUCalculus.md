@@ -3,7 +3,8 @@ layout: default
 title: Construct ReLU Neural Network Which Efficiently Approximate Polynomials (Part 2)
 parent: Neural Network
 grand_parent: Science
-nav_order: 3
+nav_order: 1
 ---
 
-# This is a test page
+## Setup and Basic ReLU Calculus
+
