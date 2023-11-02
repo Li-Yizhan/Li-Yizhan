@@ -134,9 +134,9 @@ $$
 r_{m}(x) \geq min\{r_{m}(\frac{k-1}{2^{m}}), r_{m}(\frac{k}{2^{m}})\} = 0, x \in [\frac{k-1}{2^{m}}, \frac{k}{2^{m}}]
 $$
 
-Therefore, the maximum of $|r_{m}|$ on $[\frac{k-1}{2^{m}}, \frac{k}{2^{m}}]$ is achieved when the maximum of $r_{m}$ on $[\frac{k-1}{2^{m}}, \frac{k}{2^{m}}]$ is achieved. 
+Therefore, the maximum of $|r_{m}|$ on $[\frac{k-1}{2^{m}}, \frac{k}{2^{m}}]$ is achieved when the maximum of $r_{m}$ on [$\frac{k-1}{2^{m}}, \frac{k}{2^{m}}$] is achieved. 
 
-Since $r_{m}$ is concave, setting the derivative of $r_{m}$ to be zero establishes that the maximum of $r_{m}$ iis achieved at $\frac{2k-1}{2^{m+1}}$
+Since $r_{m}$ is concave, setting the derivative of $r_{m}$ to be zero establishes that the maximum of $r_{m}$ is achieved at $\frac{2k-1}{2^{m+1}}$
 
 $$
 \lVert f_{m}(x) - x^{2}\rVert_{L^{∞}[0,1]} \leq 2^{-2m-2} 
