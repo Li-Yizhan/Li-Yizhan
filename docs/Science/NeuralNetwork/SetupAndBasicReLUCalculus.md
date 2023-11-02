@@ -55,5 +55,8 @@ If we compose $\Phi_2$ with $\Phi_1$ directly, the outcome $ W_{L2}^{2} \circ \r
 Let $N_{L1-1}^1$ denote the width of layer $L_1-1$ in $\Phi_1$ and let $N_1^2$ denote the width of layer 1 in $\Phi_2$. We define the affine transformations $\~W_{L_1}^1: ℝ^{N_{L_1-1}^1} \rightarrow ℝ^{2d_2}$ and $\~W_1^2: ℝ^{2d_2} \rightarrow ℝ^{N_1^2}$ according to
 
 $$
-\~W_{L1}^1(x):= \begin{pmatrix} I_{d_2}\\ -I_{d_2}\end{pmatrix} W_{L1}^1 (x) \quad \text{and} \quad \~W_1^2(y):= W_1^2 (\begin{pmatrix} I_{d_2} -I_{d_2}\end{pmatrix} y)  (x)
+\tilde{W}_{L1}^1(x):= \begin{pmatrix} I_{d_2}\\ -I_{d_2}\end{pmatrix} W_{L1}^1 (x) \quad \text{and} \quad \tilde{W}_1^2(y):= W_1^2 (\begin{pmatrix} I_{d_2} -I_{d_2}\end{pmatrix} y)  (x)
 $$ 
+
+Now we can show that, step by step, why $\~W_1^2 \circ \rho \circ \~W_{L_1}^1 $ is the same as $W_{1}^{2} \circ W_{L1}^{1}$
+
