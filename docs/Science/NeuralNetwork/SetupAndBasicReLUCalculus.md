@@ -77,7 +77,7 @@ Therefore, the network $\Psi = W_{L2}^{2} \circ \rho \circ \ldots \circ \rho \ci
 **Lemma 2.4** Let $d_1, d_2, K \in \mathbb{N}$ and $\Phi \in N_{d_1, d_2}$ with $L(\Phi) < K$. Then, there exists a network $\Psi \in N_{d_1, d_2}$ with $L(\Psi) = K, M(\Psi) \leq M(\Psi) + d_2 W(\Psi) + 2d_2(K-L(\Phi)), W(\Psi) = \max(2d_2, W(\Phi)), B(\Psi) = \max(1, B(\Phi))$
 and satisfying $\Psi (x) = \Phi (x), \text{ for all } x \in ℝ^{d_1}$
 
-*Proof.* Let $\~W_j(x) := diag \begin{pmatrix} I_{d_2} -I_{d_2}\end{pmatrix} x$, for $j \in \{L(\Phi) + 1, \ldots, K-1\}$
+*Proof.* Let $\~W_j(x) := diag \begin{pmatrix} I_{d_2} \quad I_{d_2}\end{pmatrix} x$, for $j \in \{L(\Phi) + 1, \ldots, K-1\}$
 
 $$
 \tilde{W}_{K}(x) := \begin{pmatrix} I_{d_2} -I_{d_2}\end{pmatrix}x
@@ -92,6 +92,20 @@ $$
 we can construct a new network
 
 $$
-\Psi := \tilde{W}_K \circ \rho \circ \tilde{W}_{K-1} \circ \rho \circ \ldots \circ \rho \tilde{W}_{L(\Phi)+1} \circ \rho \circ \begin{pmatrix} W_{L(\Phi)} \\ -W_{L(\Phi)}\end{pmatrix} \circ \rho \circ W_{L(\Phi)-1} \circ \rho \circ \ldots \circ \rho \circ W_1
+\Psi := \tilde{W}_K \circ \rho \circ \tilde{W}_{K-1} \circ \rho \circ \ldots \circ \rho \circ \tilde{W}_{L(\Phi)+1} \circ \rho \circ \begin{pmatrix} W_{L(\Phi)} \\ -W_{L(\Phi)}\end{pmatrix} \circ \rho \circ W_{L(\Phi)-1} \circ \rho \circ \ldots \circ \rho \circ W_1
 $$
 
+It can be shown that the network $\Psi$ defined above is generates the same outcome as the network $\Phi$
+
+$$\begin{align*}
+\Psi &= \tilde{W}_K \circ \rho \circ \tilde{W}_{K-1} \circ \rho \circ \ldots \circ \rho \circ \tilde{W}_{L(\Phi)+1} \circ \rho \circ \begin{pmatrix} W_{L(\Phi)} \\ -W_{L(\Phi)}\end{pmatrix} \circ \rho \circ W_{L(\Phi)-1} \circ \rho \circ \ldots \circ \rho \circ W_1 \\
+&= \tilde{W}_K \circ \rho \circ \begin{pmatrix} W_{L(\Phi)} \\ -W_{L(\Phi)}\end{pmatrix} \circ \rho \circ W_{L(\Phi)-1} \circ \rho \circ \ldots \circ \rho \circ W_1 \\
+&= \begin{pmatrix} I_{d_2} -I_{d_2}\end{pmatrix}(\rho \circ \begin{pmatrix} W_{L(\Phi)} \\ -W_{L(\Phi)}\end{pmatrix} \circ \rho \circ W_{L(\Phi)-1} \circ \rho \circ \ldots \circ \rho \circ W_1) \\
+&= \begin{pmatrix} I_{d_2} -I_{d_2}\end{pmatrix} \circ \rho \circ \begin{pmatrix} W_{L(\Phi)} \\ -W_{L(\Phi)}\end{pmatrix} \circ \rho \circ W_{L(\Phi)-1} \circ \rho \circ \ldots \circ \rho \circ W_1 \\
+&= \begin{pmatrix} I_{d_2} -I_{d_2}\end{pmatrix} \circ \begin{pmatrix} \rho(W_{L(\Phi)}) \\ \rho(-W_{L(\Phi)})\end{pmatrix} \circ \rho \circ W_{L(\Phi)-1} \circ \rho \circ \ldots \circ \rho \circ W_1 \\
+&= (\rho(W_{L(\Phi)}) - \rho(-W_{L(\Phi)})) \circ \rho \circ W_{L(\Phi)-1} \circ \rho \circ \ldots \circ \rho \circ W_1 \\
+&= W_{L(\Phi)} \circ \rho \circ W_{L(\Phi)-1} \circ \rho \circ \ldots \circ \rho \circ W_1 \\
+&= \Phi 
+\end{align*}$$
+
+Next, we can check the new architecture of network $\Psi(x)$ and see if the claimed properties are all satisfied. 
