@@ -92,5 +92,5 @@ $
 \Psi (x) = \Phi (x) \text{ for all } x \in ℝ^{d_1}
 $$
 
-*Proof.* 
+*Proof.* Let $\~W_j(x) := diag \begin{pmatrix} I_{d_2} -I_{d_2}\end{pmatrix} x$, for $j \in \{L(\Phi) + 1, \ldots, K-1\}$
 
