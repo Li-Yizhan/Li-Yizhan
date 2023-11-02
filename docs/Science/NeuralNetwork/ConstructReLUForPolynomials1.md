@@ -131,7 +131,7 @@ We want to quantify the error, in other words, the difference between the functi
 To achieve our goal, let $m \in ℕ_{0}$ and define $r_{m}(x) = f_{m}(x) - x^{2}$, for $x \in [0, 1]$. Suppose that $k \in \{1, 2, \ldots, 2^{m}\}$. By definition of $f_{m}$, we have $f_{m}(x) = x^{2}$ and $r_{m}(x) = 0$ for $x=\frac{k-1}{2^{m}}$, $\frac{k}{2^{m}}$. We know that the linearly interpolation of $x^{2}$, $f_{m}(x)$, was structured to have $2^{m} + 1$ uniformly spaced "knots" and thus $2^{m}$ intervals. We want to find one formula to represent the error $r_{m}$ on each interval. It follows from the linearity of $f_{m}(x)$ on $[\frac{k-1}{2^{m}}, \frac{k}{2^{m}}]$ that $f_{m}(x) = \frac{2k-1}{2^{m}}x + \frac{k(k-1)}{2^{2m}}$ and $r_{m}(x) = -x^{2} + \frac{2k-1}{2^{m}}x + \frac{k(k-1)}{2^{2m}}$, for $x \in [\frac{k-1}{2^{m}}, \frac{k}{2^{m}}]$, a downward parabola on each interval with $r_{m}(x) = 0$ at both ends. Formally, we say that using concaveness of $r_{m}$ yields
 
 $$
-r_{m}(x) \geq min\{r_{m}(\frac{k-1}{2^{m}}), r_{m}(\frac{k}{2^{m}})\} = 0, x \in [\frac{k-1}{2^{m}}, \frac{k}{2^{m}}]
+r_{m}(x) \geq min\{r_{m}(\frac{k-1}{2^{m}}), r_{m}\left(\frac{k}{2^{m}}\right)\} = 0, x \in [\frac{k-1}{2^{m}}, \frac{k}{2^{m}}]
 $$
 
 Therefore, the maximum of $\lvert r_{m}\rvert$ on $[\frac{k-1}{2^{m}}, \frac{k}{2^{m}}]$ is achieved when the maximum of $r_{m}$ on $[\frac{k-1}{2^{m}}, \frac{k}{2^{m}}]$ is achieved. 
