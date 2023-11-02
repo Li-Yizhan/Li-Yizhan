@@ -37,7 +37,13 @@ where, for $l \in \{ 1, 2, \ldots, L\}$, $W_{l}: \mathbb{R}^{N_{l-1}} \rightarro
 The neural network defined in the equation (1) is essentially a sequence of [matrix compositions](https://www.youtube.com/watch?v=XkY2DOUCWMU). By rule, matrix composition is read from right to left. That is why $W_1$ appears at far right of the equation, followed by $W_{2}, W_{3}, \ldots$ on its left side. Geometrically, we can imagine neural networks as applying multiple *affine transformations* $W_{l}(x) := A_{l}x + b_{l}$ with activation functions $\rho$ sequentially. There is a [fascinating visualization](https://www.youtube.com/watch?v=UOvPeC8WOt8) that explains how the data input is manipulated through multiple layers of affine transformations and activation functions to generate the desired outcome. 
 
 ---
-**Lemma 2.3** Let $d_{1}, d_{2}, d_{3} \in ℕ, \Phi_{1} \in N_{d1, d2}$, and $\Phi_{2} \in N_{d2, d3}$. Then, there exists a network $\Psi \in N_{d1, d2}$ with $ L(\Psi) = L(\Phi_{1}) + L(\Phi_{2}), M(\Psi) = 2M(\Phi_{1}) + 2M(\Phi_{2}), W(\Psi) \leq \max(2d_{2}, W(\Phi_{1}), W(\Phi_{2})), B(\Psi) = \max(B(\Phi_{1}), B(\Phi_{2}))$ and satisfying $\Psi(x) = (\Phi_{2} \circ \Phi_{1})(x) = \Phi_{2}(\Phi_{1}(x)), \text{for all } x \in \mathbb{R}^{d_1}$
+**Lemma 2.3** Let $d_{1}, d_{2}, d_{3} \in ℕ, \Phi_{1} \in N_{d1, d2}$, and $\Phi_{2} \in N_{d2, d3}$. Then, there exists a network $\Psi \in N_{d1, d2}$ with 
+* $ L(\Psi) = L(\Phi_{1}) + L(\Phi_{2})$, 
+* $M(\Psi) = 2M(\Phi_{1}) + 2M(\Phi_{2})$, 
+* $W(\Psi) \leq \max(2d_{2}, W(\Phi_{1}), W(\Phi_{2}))$, 
+* $B(\Psi) = \max(B(\Phi_{1}), B(\Phi_{2}))$ 
+
+and satisfying $\Psi(x) = (\Phi_{2} \circ \Phi_{1})(x) = \Phi_{2}(\Phi_{1}(x)), \text{for all } x \in \mathbb{R}^{d_1}$
 
 *Proof.* The proof is based on the identity $x = \rho(x) - \rho(-x)$ for ReLU activation function. First, note that by **Definition 1**, we can write 
 
@@ -70,7 +76,12 @@ $$\begin{align*}
 Therefore, the network $\Psi = W_{L_2}^{2} \circ \rho \circ \ldots \circ \rho \circ \~W_{1}^{2} \circ \rho \circ W_{L_1}^{1} \circ \rho \circ W_{L_1-1}^{1} \circ \ldots \circ \rho \circ W_{1}^{1}$ is equivalent to $(\Phi_2 \circ \Phi_1)(x)$. And by examine the architecture of $\Psi(x)$, we notice that the claimed properties are all satisfied. 
 
 ---
-**Lemma 2.4** Let $d_1, d_2, K \in \mathbb{N}$ and $\Phi \in N_{d_1, d_2}$ with $L(\Phi) < K$. Then, there exists a network $\Psi \in N_{d_1, d_2}$ with $L(\Psi) = K, M(\Psi) \leq M(\Psi) + d_2 W(\Psi) + 2d_2(K-L(\Phi)), W(\Psi) = \max(2d_2, W(\Phi)), B(\Psi) = \max(1, B(\Phi))$
+**Lemma 2.4** Let $d_1, d_2, K \in \mathbb{N}$ and $\Phi \in N_{d_1, d_2}$ with $L(\Phi) < K$. Then, there exists a network $\Psi \in N_{d_1, d_2}$ with
+* $L(\Psi) = K$, 
+* $M(\Psi) \leq M(\Psi) + d_2 W(\Psi) + 2d_2(K-L(\Phi))$, 
+* $W(\Psi) = \max(2d_2, W(\Phi))$, 
+* $B(\Psi) = \max(1, B(\Phi))$
+
 and satisfying $\Psi (x) = \Phi (x), \text{ for all } x \in ℝ^{d_1}$
 
 *Proof.* Let $\~W_j(x) := diag \begin{pmatrix} I_{d_2} \quad I_{d_2}\end{pmatrix} x$, for $j \in \{L(\Phi) + 1, \ldots, K-1\}$
@@ -109,7 +120,13 @@ Next, we can check the new architecture of network $\Psi(x)$ and see that the cl
 For the sake of simplicity of expositioin, <ins>we state the following two lemmas only for networks of the same depth</ins>, the extension to the general case follows by straightforward application of **Lemma 2.4**.
 
 ---
-**Lemma 2.5** Let $n, L \in ℕ$ and, for $i \in \{1, 2, \ldots, n\}$, let $d_i, d_i' \in ℕ$ and $\Phi_i \in N_{d_i,d_i'}$ with $L(\Phi_i) = L$. Then, there exists a network $\Psi \in N_{\sum_{i=1}^{n}d_i, \sum_{i=1}^{n}d_i'}$ with $L(\Psi) = L, M(\Psi) = \sum_{i=1}^{n} M(\Phi_i), W(\Psi) = \sum_{i=1}^{n} W(\Phi_i), B(\Psi) = max_i B(\Phi_i)$, and satisfying
+**Lemma 2.5** Let $n, L \in ℕ$ and, for $i \in \{1, 2, \ldots, n\}$, let $d_i, d_i' \in ℕ$ and $\Phi_i \in N_{d_i,d_i'}$ with $L(\Phi_i) = L$. Then, there exists a network $\Psi \in N_{\sum_{i=1}^{n}d_i, \sum_{i=1}^{n}d_i'}$ with 
+* $L(\Psi) = L$, 
+* $M(\Psi) = \sum_{i=1}^{n} M(\Phi_i)$, 
+* $W(\Psi) = \sum_{i=1}^{n} W(\Phi_i)$, 
+* $B(\Psi) = max_i B(\Phi_i)$, 
+
+and satisfying
 
 $$
 \Psi(x) = (\Phi_1(x_1), \Phi_2(x_2), \ldots, \Phi_n(x_n)) \in ℝ^{\sum_{i=1}^{n}d_i'}
