@@ -108,4 +108,14 @@ $$\begin{align*}
 &= \Phi 
 \end{align*}$$
 
-Next, we can check the new architecture of network $\Psi(x)$ and see if the claimed properties are all satisfied. 
+Next, we can check the new architecture of network $\Psi(x)$ and see that the claimed properties are indeed all satisfied.
+
+For the sake of simplicity of expositioin, <ins>we state the following two lemmas only for networks of the same depth</ins>, the extension to the general case follows by straightforward application of **Lemma 2.4**.
+
+---
+
+
+
+
+
+
