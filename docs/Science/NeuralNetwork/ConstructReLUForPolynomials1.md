@@ -148,5 +148,9 @@ $$
 \lvert f_{m}(x) - x^{2}\rvert = \lvert r_{m}(x) \rvert \leq 2^{-2m-2} \quad \forall x \in [0, 1]
 $$
 
+Now, we construct a ReLU network that realize $f_{m}$. To this end, let 
 
+$$
+\Psi_{m}(x) := \frac{1}{2^{m}} \rho (x) + \sum_{i=1}^{2^{m}-1} \frac{1}{2^{m+1}} \rho \left( x - \frac{i}{2^{m}} \right)
+$$
 
