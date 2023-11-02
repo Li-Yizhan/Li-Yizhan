@@ -72,7 +72,7 @@ $$\begin{align*}
 \\
 -W_{L1}^1 (x)\end{pmatrix} &= \begin{pmatrix} \rho (W_{L1}^1 (x))\\ \rho(-W_{L1}^1 (x))\end{pmatrix} \\
 \\
-\~W_1^2 \circ \rho \circ \~W_{L_1}^1 &= W_1^2 (\begin{pmatrix} I_{d_2} -I_{d_2}\end{pmatrix} \begin{pmatrix} \rho (W_{L1}^1 (x))\\ \rho(-W_{L1}^1 (x))\end{pmatrix}) \\
+\tilde{W_1}^2 \circ \rho \circ \tilde{W}_{L_1}^1 &= W_1^2 (\begin{pmatrix} I_{d_2} -I_{d_2}\end{pmatrix} \begin{pmatrix} \rho (W_{L1}^1 (x))\\ \rho(-W_{L1}^1 (x))\end{pmatrix}) \\
 &= W_1^2 \circ \begin{pmatrix} I_{d_2} -I_{d_2}\end{pmatrix} \begin{pmatrix} \rho (W_{L1}^1 (x))\\ \rho(-W_{L1}^1 (x))\end{pmatrix}\\
 &= W_1^2 \circ (\rho (W_{L1}^1 (x)) - \rho (-W_{L1}^1 (x))) \\
 &= W_1^2 \circ W_{L1}^1
