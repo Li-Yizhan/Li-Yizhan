@@ -117,8 +117,6 @@ $$
 W_{1}(x) =  \begin{pmatrix} y_{1}^{T}\\ y_{2}^{T}\\ \ldots \\ y_{N}^{T}\\ \end{pmatrix} x + \begin{pmatrix} \theta_{1} \\ \theta_{2} \\ \ldots \\ \theta_{N}\\ \end{pmatrix}, W_{2}(x) = \begin{pmatrix} \alpha_{1} & \alpha_{2} & \ldots & \alpha_{N} \\ \end{pmatrix} x
 $$
 
-</br>
-
 Thus far, we demonstrated how a *continuous piecewise linear function* can be realized by a ReLU network. This conclusion is meaningful because <ins>we can now approximate a polynomial with ReLU network if we manage to find a piecewise linear interpolation of such polynomial</ins>.  
 
 Now consider the approximation of $x^{2}$, a particular case of polynomial, through continuous piecewise linear functions. Specifically, for $m \in ℕ_{0}$, let $f_{m}$ be the piecewise linear function of $x^{2}$ with $2^{m}+1$ uniformly spaced "knots" according to 
@@ -130,10 +128,18 @@ $$
 
 We want to quantify the error, in other words, the difference between the function $x^{2}$ and its linear interpolation $f_{m}(x)$.
 
-To achieve our goal, let $m \in ℕ_{0}$ and define $r_{m}(x) = f_{m}(x) - x^{2}$, for $x \in [0, 1]$. Suppose that $k \in \{1, 2, \ldots, 2^{m}\}$. By definition of $f_{m}$, we have $f_{m}(x) = x^{2}$ and $r_{m}(x) = 0$ for $x=\frac{k-1}{2^{m}}$ 
+To achieve our goal, let $m \in ℕ_{0}$ and define $r_{m}(x) = f_{m}(x) - x^{2}$, for $x \in [0, 1]$. Suppose that $k \in \{1, 2, \ldots, 2^{m}\}$. By definition of $f_{m}$, we have $f_{m}(x) = x^{2}$ and $r_{m}(x) = 0$ for $x=\frac{k-1}{2^{m}}$, $\frac{k}{2^{m}}$. We know that the linearly interpolation of $x^{2}$, $f_{m}(x)$, was structured to have $2^{m} + 1$ uniformly spaced "knots" and thus $2^{m}$ intervals. We want to find one formula to represent the error $r_{m}$ on each interval. It follows from the linearity of $f_{m}(x)$ on $[\frac{k-1}{2^{m}}, \frac{k}{2^{m}}]$ that $f_{m}(x) = \frac{2k-1}{2^{m}}x + \frac{k(k-1)}{2^{2m}}$ and $r_{m}(x) = -x^{2} + \frac{2k-1}{2^{m}}x + \frac{k(k-1)}{2^{2m}}$, for $x \in [\frac{k-1}{2^{m}}, \frac{k}{2^{m}}]$, a downward parabola on each interval with $r_{m}(x) = 0$ at both ends. Formally, we say that using concaveness of $r_{m}$ yields
 
 $$
-\lVert f_{m}(x) - x^{2}\rVert_{L^{∞}[0,1]} \leq 2^{-2m-2}
+r_{m}(x) \geq min\{r_{m}(\frac{k-1}{2^{m}}), r_{m}(\frac{k}{2^{m}})\} = 0, x \in [\frac{k-1}{2^{m}}, \frac{k}{2^{m}}]
+$$
+
+Therefore, the maximum of $|r_{m}|$ on $[\frac{k-1}{2^{m}}, \frac{k}{2^{m}}]$ is achieved when the maximum of $r_{m}$ on $[\frac{k-1}{2^{m}}, \frac{k}{2^{m}}]$ is achieved. 
+
+Since $r_{m}$ is concave, setting the derivative of $r_{m}$ to be zero establishes that the maximum of $r_{m}$ iis achieved at $\frac{2k-1}{2^{m+1}}$
+
+$$
+\lVert f_{m}(x) - x^{2}\rVert_{L^{∞}[0,1]} \leq 2^{-2m-2} 
 $$
 
 
