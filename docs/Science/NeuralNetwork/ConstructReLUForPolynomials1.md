@@ -136,7 +136,7 @@ $$
 
 Therefore, the maximum of $\lvert r_{m}\rvert$ on $\left[\frac{k-1}{2^{m}}, \frac{k}{2^{m}}\right]$ is achieved when the maximum of $r_{m}$ on $\left[\frac{k-1}{2^{m}}, \frac{k}{2^{m}}\right]$ is achieved. 
 
-Since $r_{m}$ is concave, setting the derivative of $r_{m}$ to be zero establishes that the maximum of $r_{m}$ is achieved at $\frac{k-1/2}{2^{m}}$, the middle of the interval, with $r_{m}\left(\frac{2k-1}{2^{m+1}}\right) = 2^{-2m-2}$, which implies
+Since $r_{m}$ is concave down, setting the derivative of $r_{m}$ to be zero establishes that the maximum of $r_{m}$ is achieved at $\frac{k-1/2}{2^{m}}$, the middle of the interval, with $r_{m}\left(\frac{2k-1}{2^{m+1}}\right) = 2^{-2m-2}$, which implies
 
 $$
 \lvert r_{m}(x) \rvert = r_{m}(x) \leq 2^{-2m-2}, \quad x \in \left[\frac{k-1}{2^{m}}, \frac{k}{2^{m}}\right]
@@ -161,7 +161,7 @@ $$\begin{align*}
    \Psi_{2}(x) = \frac{1}{4} \rho(x) + \frac{1}{2} \rho \left(x - \frac{1}{4}\right) + \frac{1}{2} \rho \left(x - \frac{2}{4}\right) + \frac{1}{2} \rho \left(x - \frac{3}{4}\right)
 \end{align*}$$
 
-Similar to what we have done earlier, for $x \in [0, 1]$, we can rewrite the ReLU network as a continuous piecewise linear function
+For the above ReLU network, we have 4 $(2^{m-1} + 1 = 2^{m} = 2^{2})$ non-zero entries with activation function $\rho$ in the hidden layer. Similar to what we have done earlier, we can rewrite the ReLU network as a continuous piecewise linear function for $x \in [0, 1]$
 
 $$  
     \Psi_{2}(x) = 
@@ -173,4 +173,16 @@ $$
    \end{cases}
 $$
 
-Which is indeed idential to the 4 "knot" linear interpolation $f_{2}$. However, This construction is not optimal as the corresponding approximation error $2^{-2m-2}$ scales only polynomially with respect to (the reciprocal of) the connectivity, which is at least $2^{m}$, while **Theorem 1** requires an exponential scaling. Therefore, we need to use a different construction to improve the scaling. 
+Which is indeed idential to the 4 "knot" linear interpolation $f_{2}$. <ins>However, This construction is not optimal as the corresponding approximation error $2^{-2m-2}$ scales only polynomially with respect to (the reciprocal of) the connectivity, which is at least $2^{m}$, while **Theorem 1** requires an exponential scaling</ins>. The polynomial scaling is undesirable in that we do not want the non-zero entries of the hidden layer to expand exponentially as we decrease the error by increasing the value of m. Therefore, <ins>we need to use a different construction to improve the scaling</ins>. 
+
+To represent the functions $f_{m}$ more economically, a better understanding of their structure is needed. For $m \in ℕ_{+}$, define
+
+$$
+h_{m}(x) := f_{m-1}(x) - f_{m}(x), \quad x \in [0, 1]
+$$
+
+Consider the function $g: [0, 1] \rightarrow [0, 1]$
+
+$$
+
+$$
