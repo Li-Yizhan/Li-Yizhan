@@ -128,7 +128,9 @@ $$
 f_{m}(\dfrac{k}{2^{m}}) = (\dfrac{k}{2^{m}})^{2}, k = 0, \ldots, 2^{m}
 $$
 
-We want to find out the quantify the difference between the function $x^{2}$ and its linear interpolation $f_{m}(x)$.
+We want to quantify the error, in other words, the difference between the function $x^{2}$ and its linear interpolation $f_{m}(x)$.
+
+To achieve our goal, let $m \in ℕ_{0}$ and define $r_{m}(x) = f_{m}(x) - x^{2}$, for $x \in [0, 1]$. Suppose that $k \in \{1, 2, \ldots, 2^{m}\}$. By definition of $f_{m}$, we have $f_{m}(x) = x^{2}$ and $r_{m}(x) = 0$ for $x=\frac{k-1}{2^{m}}$ 
 
 $$
 \lVert f_{m}(x) - x^{2}\rVert_{L^{∞}[0,1]} \leq 2^{-2m-2}
