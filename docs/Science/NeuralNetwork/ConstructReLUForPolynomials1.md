@@ -142,8 +142,10 @@ $$
 \lvert r_{m}(x) \rvert = r_{m}(x) \leq 2^{-2m-2}, \quad x \in \left[\frac{k-1}{2^{m}}, \frac{k}{2^{m}}\right]
 $$
 
+The same analysis holds for any $k \in \{1, 2, \ldots, 2^{m}\}$, and therefore
+
 $$
-\lVert f_{m}(x) - x^{2}\rVert_{L^{∞}[0,1]} \leq 2^{-2m-2} 
+\lvert f_{m}(x) - x^{2}\rvert = \lvert r_{m}(x) \rvert \leq 2^{-2m-2} \quad \forall x \in [0, 1]
 $$
 
 
