@@ -151,6 +151,26 @@ $$
 Now, we construct a ReLU network that realize $f_{m}$. To this end, let 
 
 $$
-\Psi_{m}(x) := \frac{1}{2^{m}} \rho (x) + \sum_{i=1}^{2^{m}-1} \frac{1}{2^{m+1}} \rho \left( x - \frac{i}{2^{m}} \right)
+\tag{4}
+\Psi_{m}(x) := \frac{1}{2^{m}} \rho (x) + \sum_{i=1}^{2^{m}-1} \frac{1}{2^{m-1}} \rho \left( x - \frac{i}{2^{m}} \right)
 $$
 
+which can be considered as a 2-layer ReLU network. It is easy to check that $\Psi_{m}(0) = 0$, and that $\Psi_{m}$ and $f_{m}$ are both piecewise-linear with the same break points and slopes on each of their linear regions on [0, 1], which implies $\Psi_{m}(0) = f_{m}$, for $x \in [0, 1]$. To convince ourselves fully, let's verify with a concrete example $\Psi_{2}(x)$
+
+$$\begin{align*}
+   \Psi_{2}(x) = \frac{1}{4} \rho(x) + \frac{1}{2} \rho \left(x - \frac{1}{4}\right) + \frac{1}{2} \rho \left(x - \frac{2}{4}\right) + \frac{1}{2} \rho \left(x - \frac{3}{4}\right)
+\end{align*}$$
+
+Similar to what we have done earlier, for $x \in [0, 1]$, we can rewrite the ReLU network as a continuous piecewise linear function
+
+$$  
+    \Psi_{2}(x) = 
+    \begin{cases} 
+      \frac{1}{4}x & x \in \left[0, \frac{1}{4}\right) \\
+      \frac{3}{4}x - \frac{1}{8} & x \in \left[\frac{1}{4}, \frac{1}{2}\right) \\
+      \frac{5}{4}x - \frac{3}{8} & x \in  \left[\frac{1}{2}, \frac{3}{4}\right) \\
+      \frac{7}{4}x - \frac{3}{4} & x \in \left[\frac{3}{4}, 1\right] \\
+   \end{cases}
+$$
+
+Which is indeed idential to the 4 "knot" linear interpolation $f_{2}$. However, This construction is not optimal as the corresponding approximation error $2^{-2m-2}$ scales only polynomially with respect to (the reciprocal of) the connectivity, which is at least $2^{m}$, while **Theorem 1** requires an exponential scaling. Therefore, we need to use a different construction to improve the scaling. 
