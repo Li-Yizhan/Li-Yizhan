@@ -40,7 +40,7 @@ The neural network defined in the equation (1) is essentially a sequence of [mat
 
 ---
 
-**Lemma 2.3** Let $d_{1}, d_{2}, d_{3} \in ℕ, \Phi_{1} \in N_{d1, d2}$, and $\Phi_{2} \in N_{d2, d3}$. Then, there exists a network $\Psi \in N_{d1, d2}$ with $ L(\Psi) = L(\Phi_{1}) + L(\Phi_{2}), M(\Psi) = 2M(\Phi_{1}) + 2M(\Phi_{2}), W(\Psi) \leq max(2d_{2}, W(\Phi_{1}), W(\Phi_{2})), B(\Psi) = max(B(\Phi_{1}), B(\Phi_{2}))$
+**Lemma 2.3** Let $d_{1}, d_{2}, d_{3} \in ℕ, \Phi_{1} \in N_{d1, d2}$, and $\Phi_{2} \in N_{d2, d3}$. Then, there exists a network $\Psi \in N_{d1, d2}$ with $ L(\Psi) = L(\Phi_{1}) + L(\Phi_{2}), M(\Psi) = 2M(\Phi_{1}) + 2M(\Phi_{2}), W(\Psi) \leq \max(2d_{2}, W(\Phi_{1}), W(\Phi_{2})), B(\Psi) = \max(B(\Phi_{1}), B(\Phi_{2}))$
 and satisfying
 $$
 \Psi(x) = (\Phi_{2} \circ \Phi_{1})(x) = \Phi_{2}(\Phi_{1}(x)), \quad \text{for all } x \in \mathbb{R}^{d_1}
