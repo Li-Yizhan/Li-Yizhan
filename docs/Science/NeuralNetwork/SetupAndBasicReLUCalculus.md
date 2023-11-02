@@ -11,11 +11,11 @@ nav_order: 1
 ---
 
 ### Table of Contents
-1. [Definition of the general ReLU Neural Network](#defReLU)
-2. [Lemma 2.3](#L23)
-3. [Lemma 2.4](#L24)
-4. [Lemma 2.5](#L25)
-5. [Lemma 2.6](#L26)
+1. [Definition of the General ReLU Neural Network](#defReLU)
+2. [Lemma 2.3 and Proof](#L23)
+3. [Lemma 2.4 and Proof](#L24)
+4. [Lemma 2.5 and Proof](#L25)
+5. [Lemma 2.6 and Proof](#L26)
 
 ---
 
@@ -131,10 +131,22 @@ For the sake of simplicity of expositioin, <ins>we state the following two lemma
 **Lemma 2.5** Let $n, L \in ℕ$ and, for $i \in \{1, 2, \ldots, n\}$, let $d_i, d_i' \in ℕ$ and $\Phi_i \in N_{d_i,d_i'}$ with $L(\Phi_i) = L$. Then, there exists a network $\Psi \in N_{\sum_{i=1}^{n}d_i, \sum_{i=1}^{n}d_i'}$ with $L(\Psi) = L, M(\Psi) = \sum_{i=1}^{n} M(\Phi_i), W(\Psi) = \sum_{i=1}^{n} W(\Phi_i), B(\Psi) = max_i B(\Phi_i)$, and satisfying
 
 $$
-\Psi(x) = (\Phi_1(x_1), \Phi_2(x_2), \ldots, \Phi_n(x_n))
+\Psi(x) = (\Phi_1(x_1), \Phi_2(x_2), \ldots, \Phi_n(x_n)) \in ℝ^{\sum_{i=1}^{n}d_i'}
+$$
+
+for tuple $x = (x_1, x_2, \ldots, x_n) \in ℝ^{\sum_{i=1}^{n}d_i}$ with $x_i \in ℝ^{d_i}, i \in ℕ$.
+
+*Proof.*
+
+We write the networks $\Phi_i$ as
+
+$$
+\Phi_i = W_L^i \circ \rho \circ W_{L-1}^i \circ \rho \circ \ldots \circ \rho \circ W_1^i
 $$
 
 ---
 <a id="L26"></a>
+
+**Lemma 2.6** 
 
 
