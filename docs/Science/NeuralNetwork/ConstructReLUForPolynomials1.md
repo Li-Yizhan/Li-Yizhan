@@ -62,17 +62,18 @@ It might be hard to visualize equation (2) as a piecewise function at a glance. 
 
 $$
 \begin{align*}
-   x-1/2 < 0 \\
-   \rho(x-1/2) = 0 \\
+   x-1/2 &< 0 \\
+   \rho(x-1/2) &= 0 \\
    \\
-   x - 1 < 0 \\
-   \rho(x-1) = 0 \\
+   x - 1 &< 0 \\
+   \rho(x-1) &= 0 \\
    \\
-   \Phi(x) = 2 \rho(x) = 2x
+   \Phi(x) &= 2 \rho(x) \\
+   &= 2x
 \end{align*}   
 $$
 
-By following a similar procedure on the intervals $[1/2, 1)$ and $[1, +∞)$, we can easily see that $\Phi(x)$ is a piecewise linear function with break points $\{0, 1/2, 1\}$
+By following a similar procedure on the intervals $[1/2, 1)$ and $[1, +∞)$, we can rewrite $\Phi(x)$ as a piecewise linear function in the conventional form
 
 $$  
     \Phi(x) = 
@@ -83,7 +84,28 @@ $$
    \end{cases}
 $$
 
-According to definition 1, A function of form (2), a piecewise linear function, is also a 2-layer ReLU network and can be writte as 
+Meanwhile, we observe that $\Phi(x) := 2 \rho(x) - \rho(x-1/2) - \rho(x-1)$ can also be written in the form we have seen in **definition 1**
+
+$$
+W_{2} \circ \rho \circ W_{1}
+$$
+
+with $W_{1}$ and $W_{2}$ to be
+
+$$
+W_{1}(x) =  \begin{pmatrix} 1\\ 1\\ 1 \end{pmatrix} x - \begin{pmatrix} 0 \\ 1/2 \\ 1\\ \end{pmatrix}, W_{2}(x) = \begin{pmatrix} 2 & -1 & -1 \\ \end{pmatrix} x
+$$
+
+We can verify by conducting the matrix composition $W_{2} \circ \rho \circ W_{1}$
+
+$$\begin{align*}
+   W_{1}(x) &= \begin{pmatrix} x \\ x - 1/2 \\ x - 1 \end{pmatrix} \\
+   \rho \circ W_{1}(x) &= \begin{pmatrix} \rho (x) \\ \rho (x - 1/2) \\ \rho (x - 1) \end{pmatrix} \\
+   W_{2}(x) \circ \rho \circ W_{1}(x) &= \begin{pmatrix} 2 & -1 & -1 \\ \end{pmatrix}\begin{pmatrix} \rho (x) \\ \rho (x - 1/2) \\ \rho (x - 1) \end{pmatrix} \\
+   &= 2\rho(x)-\rho(x-1/2)-\rho(x-1)
+\end{align*}$$
+
+In general, a function of form (2), a piecewise linear function, can be achieved by a 2-layer ReLU network 
 
 $$
 W_{2} \circ \rho \circ W_{1}
@@ -95,26 +117,22 @@ $$
 W_{1}(x) =  \begin{pmatrix} y_{1}^{T}\\ y_{2}^{T}\\ \ldots \\ y_{N}^{T}\\ \end{pmatrix} x + \begin{pmatrix} \theta_{1} \\ \theta_{2} \\ \ldots \\ \theta_{N}\\ \end{pmatrix}, W_{2}(x) = \begin{pmatrix} \alpha_{1} & \alpha_{2} & \ldots & \alpha_{N} \\ \end{pmatrix} x
 $$
 
-In the previous example of $\Phi(x) := 2 \rho(x) - \rho(x-1/2) - \rho(x-1)$, we can find such $W_{1}$ and $W_{2}$ to be
-
-$$
-W_{1}(x) =  \begin{pmatrix} 1\\ 1\\ 1 \end{pmatrix} x - \begin{pmatrix} 0 \\ 1/2 \\ 1\\ \end{pmatrix}, W_{2}(x) = \begin{pmatrix} 2 & -1 & -1 \\ \end{pmatrix} x
-$$
-
-We can verify by conducting the matrix composition $W_{2} \circ \rho \circ W_{1}$ and the result would indeed be $2 \rho(x) - \rho(x-1/2) - \rho(x-1)$.
+</br>
 
 Thus far, we demonstrated how a *continuous piecewise linear function* can be realized by a ReLU network. This conclusion is meaningful because <ins>we can now approximate a polynomial with ReLU network if we manage to find a piecewise linear interpolation of such polynomial</ins>.  
 
-With the foundation previously proven, we can start with the approximation of $x^{2}$ through continuous piecewise linear functions. Specifically, for $m \in ℕ_{0}$, let $f_{m}$ be the piecewise linear function of $x^{2}$ with $2^{m}+1$ uniformly spaced "knots" according to 
+Now consider the approximation of $x^{2}$, a particular case of polynomial, through continuous piecewise linear functions. Specifically, for $m \in ℕ_{0}$, let $f_{m}$ be the piecewise linear function of $x^{2}$ with $2^{m}+1$ uniformly spaced "knots" according to 
 
 $$
 \tag{3}
 f_{m}(\dfrac{k}{2^{m}}) = (\dfrac{k}{2^{m}})^{2}, k = 0, \ldots, 2^{m}
 $$
 
-We want to establish that
+We want to find out the quantify the difference between the function $x^{2}$ and its linear interpolation $f_{m}(x)$.
 
 $$
 \lVert f_{m}(x) - x^{2}\rVert_{L^{∞}[0,1]} \leq 2^{-2m-2}
 $$
+
+
 
