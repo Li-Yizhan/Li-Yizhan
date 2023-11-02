@@ -17,6 +17,8 @@ nav_order: 1
 4. [Lemma 2.5](#L25)
 5. [Lemma 2.6](#L26)
 
+---
+
 <a id="defReLU"></a>
 
 There is a plethora of neural network architectures and activation functions in the literature. Here, we restrict to the ReLU activation function and consider the following general network architecture.
@@ -132,6 +134,7 @@ $$
 \Psi(x) = (\Phi_1(x_1), \Phi_2(x_2), \ldots, \Phi_n(x_n))
 $$
 
-
+---
+<a id="L26"></a>
 
 
