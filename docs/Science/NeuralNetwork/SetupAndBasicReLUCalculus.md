@@ -79,3 +79,19 @@ and satisfying $\Psi (x) = \Phi (x), \text{ for all } x \in ℝ^{d_1}$
 
 *Proof.* Let $\~W_j(x) := diag \begin{pmatrix} I_{d_2} -I_{d_2}\end{pmatrix} x$, for $j \in \{L(\Phi) + 1, \ldots, K-1\}$
 
+$$
+\tilde{W}_{K}(x) := \begin{pmatrix} I_{d_2} -I_{d_2}\end{pmatrix}x
+$$
+
+and note that with
+
+$$
+\Phi = W_{L(\Phi)} \circ \rho \circ W_{L(\Phi)-1} \circ \rho \ldots \circ \rho \circ W_1
+$$
+
+we can construct a new network
+
+$$
+\Psi := \tilde{W}_K \circ \rho \circ \tilde{W}_{K-1} \circ \rho \circ \ldots \circ \rho \tilde{W}_{L(\Phi)+1} \circ \rho \circ \begin{pmatrix} W_{L(\Phi)} \\ -W_{L(\Phi)}\end{pmatrix} \circ \rho \circ W_{L(\Phi)-1} \circ \rho \circ \ldots \circ \rho \circ W_1
+$$
+
