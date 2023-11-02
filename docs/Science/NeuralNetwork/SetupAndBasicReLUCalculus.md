@@ -85,8 +85,8 @@ $L(\Psi) = K, \\
 M(\Psi) \leq M(\Psi) + d_2 W(\Psi) + 2d_2(K-L(\Phi)), \\
 W(\Psi) = max\{2d_2, W(\Phi)\}, \\
 B(\Psi) = max\{1, B(\Phi)\}$ 
-and satisfying
+>and satisfying
 >$$
-\Psi(x) = \Phi(x) \text{ for all } x \in ℝ^{d_1}
+\Psi (x) = \Phi (x) \text{ for all } x \in ℝ^{d_1}
 $$
 
