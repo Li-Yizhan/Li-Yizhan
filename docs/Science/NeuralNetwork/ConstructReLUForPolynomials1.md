@@ -48,14 +48,14 @@ The goal of this article (part 1) is to prove the following result. Instead of d
 >**Theorem 1.** There exist constants $C>0$ and $D \in ℕ_{+}$ such that for all $	ε \in (0, 1/2)$, there is a ReLU network $\Phi_{ε}$ of depth $L(\Phi_{ε}) \leq C \log (ε^{-1})$ and width $W(\Phi_{ε}) \leq D$, such that 
 >
 >$$
-\lVert \Phi_{ε}(x) - x^{2} \rVert_{L^{∞}([0,1])} \leq ε \text{ and } \Phi_{ε}(0) = 0, \lVert \Phi_{ε}(x) \rVert_{L^{∞}([0,1])} \leq 1, \lVert \Phi_{ε}(x) \rVert_{L^{∞}([0,1/2])} \leq 1/4
+\lVert \Phi_{ε}(x) - x^{2} \rVert_{L^{∞}([0,1])} \leq ε \text{ and } \Phi_{ε}(0) = 0, \quad \lVert \Phi_{ε}(x) \rVert_{L^{∞}([0,1])} \leq 1, \quad \lVert \Phi_{ε}(x) \rVert_{L^{∞}([0,1/2])} \leq 1/4
 $$
 
 We begin the proof by by demonstrating that <ins>every ReLU network realizes a *continuous piecewise linear function*</ins>, a function that can be represented in the following way
 
 $$
 \tag{2}
-\sum_{j=1}^{N} α_{j} \rho (y_{j}^{T}x + \theta_{j}), x \in \mathbb{R}^{n}
+\sum_{j=1}^{N} α_{j} \rho (y_{j}^{T}x + \theta_{j}),\quad  x \in \mathbb{R}^{n}
 $$
 
 It might be hard to visualize equation (2) as a piecewise function at a glance. So, we can illustrate with a concrete example $\Phi(x) := 2 \rho(x) - \rho(x-1/2) - \rho(x-1)$. The activation function $\rho$ plays a crucial role here, in that any negative input would be considered as 0. For instance, when $x \in [0, 1/2)$:
@@ -93,7 +93,7 @@ $$
 with $W_{1}$ and $W_{2}$ to be
 
 $$
-W_{1}(x) =  \begin{pmatrix} 1\\ 1\\ 1 \end{pmatrix} x - \begin{pmatrix} 0 \\ 1/2 \\ 1\\ \end{pmatrix}, W_{2}(x) = \begin{pmatrix} 2 & -1 & -1 \\ \end{pmatrix} x
+W_{1}(x) =  \begin{pmatrix} 1\\ 1\\ 1 \end{pmatrix} x - \begin{pmatrix} 0 \\ 1/2 \\ 1\\ \end{pmatrix}, \quad W_{2}(x) = \begin{pmatrix} 2 & -1 & -1 \\ \end{pmatrix} x
 $$
 
 We can verify by conducting the matrix composition $W_{2} \circ \rho \circ W_{1}$
@@ -114,7 +114,7 @@ $$
 with 
 
 $$
-W_{1}(x) =  \begin{pmatrix} y_{1}^{T}\\ y_{2}^{T}\\ \ldots \\ y_{N}^{T}\\ \end{pmatrix} x + \begin{pmatrix} \theta_{1} \\ \theta_{2} \\ \ldots \\ \theta_{N}\\ \end{pmatrix}, W_{2}(x) = \begin{pmatrix} \alpha_{1} & \alpha_{2} & \ldots & \alpha_{N} \\ \end{pmatrix} x
+W_{1}(x) =  \begin{pmatrix} y_{1}^{T}\\ y_{2}^{T}\\ \ldots \\ y_{N}^{T}\\ \end{pmatrix} x + \begin{pmatrix} \theta_{1} \\ \theta_{2} \\ \ldots \\ \theta_{N}\\ \end{pmatrix}, \quad W_{2}(x) = \begin{pmatrix} \alpha_{1} & \alpha_{2} & \ldots & \alpha_{N} \\ \end{pmatrix} x
 $$
 
 Thus far, we demonstrated how a *continuous piecewise linear function* can be realized by a ReLU network. This conclusion is meaningful because <ins>we can now approximate a polynomial with ReLU network if we manage to find a piecewise linear interpolation of such polynomial</ins>.  
@@ -123,7 +123,7 @@ Now consider the approximation of $x^{2}$, a particular case of polynomial, thro
 
 $$
 \tag{3}
-f_{m}\left(\dfrac{k}{2^{m}}\right) = \left(\dfrac{k}{2^{m}}\right)^{2}, k = 0, \ldots, 2^{m}
+f_{m}\left(\dfrac{k}{2^{m}}\right) = \left(\dfrac{k}{2^{m}}\right)^{2}, \quad k = 0, \ldots, 2^{m}
 $$
 
 We want to quantify the error, in other words, the difference between the function $x^{2}$ and its linear interpolation $f_{m}(x)$.
@@ -131,12 +131,16 @@ We want to quantify the error, in other words, the difference between the functi
 To achieve our goal, let $m \in ℕ_{0}$ and define $r_{m}(x) = f_{m}(x) - x^{2}$, for $x \in [0, 1]$. Suppose that $k \in \{1, 2, \ldots, 2^{m}\}$. By definition of $f_{m}$, we have $f_{m}(x) = x^{2}$ and $r_{m}(x) = 0$ for $x=\frac{k-1}{2^{m}}$, $\frac{k}{2^{m}}$. We know that the linearly interpolation of $x^{2}$, $f_{m}(x)$, was structured to have $2^{m} + 1$ uniformly spaced "knots" and thus $2^{m}$ intervals. We want to find one formula to represent the error $r_{m}$ on each interval. It follows from the linearity of $f_{m}(x)$ on $[\frac{k-1}{2^{m}}, \frac{k}{2^{m}}]$ that $f_{m}(x) = \frac{2k-1}{2^{m}}x + \frac{k(k-1)}{2^{2m}}$ and $r_{m}(x) = -x^{2} + \frac{2k-1}{2^{m}}x + \frac{k(k-1)}{2^{2m}}$, for $x \in [\frac{k-1}{2^{m}}, \frac{k}{2^{m}}]$, a downward parabola on each interval with $r_{m}(x) = 0$ at both ends. Formally, we say that using concaveness of $r_{m}$ yields
 
 $$
-r_{m}(x) \geq min\{r_{m}\left(\frac{k-1}{2^{m}}\right), r_{m}\left(\frac{k}{2^{m}}\right)\} = 0, x \in \left[\frac{k-1}{2^{m}}, \frac{k}{2^{m}}\right]
+r_{m}(x) \geq min\{r_{m}\left(\frac{k-1}{2^{m}}\right), r_{m}\left(\frac{k}{2^{m}}\right)\} = 0, \quad x \in \left[\frac{k-1}{2^{m}}, \frac{k}{2^{m}}\right]
 $$
 
 Therefore, the maximum of $\lvert r_{m}\rvert$ on $\left[\frac{k-1}{2^{m}}, \frac{k}{2^{m}}\right]$ is achieved when the maximum of $r_{m}$ on $\left[\frac{k-1}{2^{m}}, \frac{k}{2^{m}}\right]$ is achieved. 
 
-Since $r_{m}$ is concave, setting the derivative of $r_{m}$ to be zero establishes that the maximum of $r_{m}$ is achieved at $\frac{2k-1}{2^{m+1}}$
+Since $r_{m}$ is concave, setting the derivative of $r_{m}$ to be zero establishes that the maximum of $r_{m}$ is achieved at $\frac{k-1/2}{2^{m}}$, the middle of the interval, with $r_{m}\left(\frac{2k-1}{2^{m+1}}\right) = 2^{-2m-2}$, which implies
+
+$$
+\lvert r_{m}(x) \rvert = r_{m}(x) \leq 2^{-2m-2}, \quad x \in \left[\frac{k-1}{2^{m}}, \frac{k}{2^{m}}\right]
+$$
 
 $$
 \lVert f_{m}(x) - x^{2}\rVert_{L^{∞}[0,1]} \leq 2^{-2m-2} 
