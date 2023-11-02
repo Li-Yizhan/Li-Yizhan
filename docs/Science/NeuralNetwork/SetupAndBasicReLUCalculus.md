@@ -166,10 +166,11 @@ We are now ready to <ins>formalize the concept of a linear combination of neural
 **Lemma 2.6** 
 
 Let $n, L, d' \in ℕ$ and for $i \in \{1, 2, \ldots, n\}$, let $d_i \in ℕ, a_i \in ℝ$, and $\Phi_i \in N_{d_i, d_i'}$ with $L(\Phi_i) = L$. Then, there exists a network $\Psi \in N_{\sum_{i=1}^{n}d_i,d'}$ with 
-$L(\Psi) = L$,
-$M(\Psi) \leq \sum_{i=1}^{n}M(\Phi_i)$,
-$W(\Psi) \leq \sum_{i=1}^{n} W(\Phi_i)$, 
-$B(\Psi) \leq max(\sum_{i=1}^{n}\lvert a_i \rvert B(\Phi_i), max_{i \in \{1, \ldots, n\}}\lvert a_i \rvert B(\Phi_i))$ 
+* $L(\Psi) = L$,
+* $M(\Psi) \leq \sum_{i=1}^{n}M(\Phi_i)$,
+* $W(\Psi) \leq \sum_{i=1}^{n} W(\Phi_i)$, 
+* $B(\Psi) \leq max(\sum_{i=1}^{n}\lvert a_i \rvert B(\Phi_i), max_{i \in \{1, \ldots, n\}}\lvert a_i \rvert B(\Phi_i))$ 
+
 and satisfying 
 
 $$
