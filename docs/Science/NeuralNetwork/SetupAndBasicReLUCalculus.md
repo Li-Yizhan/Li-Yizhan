@@ -78,10 +78,11 @@ Therefore, the network $\Psi = W_{L2}^{2} \circ \rho \circ \ldots \circ \rho \ci
 
 ---
 
-**Lemma 2.4** Let $d_1, d_2, K \in \mathbb{N}$ and $\Phi \in N_{d_1, d_2}$ with $L(\Phi) < K$. Then, there exists a network $\Psi \in N_{d_1, d_2}$ with $L(\Psi) = K, M(\Psi) \leq M(\Psi) + d_2 W(\Psi) + 2d_2(K-L(\Phi)), W(\Psi) = \max \left\{ 2d_2, W(\Phi) \right\}, B(\Psi) = \max \{ 1, B(\Phi) \}$
+**Lemma 2.4** Let $d_1, d_2, K \in \mathbb{N}$ and $\Phi \in N_{d_1, d_2}$ with $L(\Phi) < K$. Then, there exists a network $\Psi \in N_{d_1, d_2}$ with $L(\Psi) = K, M(\Psi) \leq M(\Psi) + d_2 W(\Psi) + 2d_2(K-L(\Phi)), W(\Psi) = \max(2d_2, W(\Phi) \right), B(\Psi) = \max(1, B(\Phi))$
 and satisfying
+
 $$
-\Psi (x) = \Phi (x) 
+\Psi (x) = \Phi (x) \text{ for all } x \in ℝ^{d_1}
 $$
 
 *Proof.* Let $\~W_j(x) := diag \begin{pmatrix} I_{d_2} -I_{d_2}\end{pmatrix} x$, for $j \in \{L(\Phi) + 1, \ldots, K-1\}$
