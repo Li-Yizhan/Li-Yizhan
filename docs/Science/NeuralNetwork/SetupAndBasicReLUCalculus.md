@@ -61,8 +61,31 @@ If we compose $\Phi_2$ with $\Phi_1$ directly, the outcome $ W_{L2}^{2} \circ \r
 Let $N_{L1-1}^1$ denote the width of layer $L_1-1$ in $\Phi_1$ and let $N_1^2$ denote the width of layer 1 in $\Phi_2$. We define the affine transformations $\~W_{L_1}^1: ℝ^{N_{L_1-1}^1} \rightarrow ℝ^{2d_2}$ and $\~W_1^2: ℝ^{2d_2} \rightarrow ℝ^{N_1^2}$ according to
 
 $$
-\tilde{W}_{L1}^1(x):= \begin{pmatrix} I_{d_2}\\ -I_{d_2}\end{pmatrix} W_{L1}^1 (x) \quad \text{and} \quad \tilde{W}_1^2(y):= W_1^2 (\begin{pmatrix} I_{d_2} -I_{d_2}\end{pmatrix} y)  (x)
+\tilde{W}_{L1}^1(x):= \begin{pmatrix} I_{d_2}\\ -I_{d_2}\end{pmatrix} W_{L1}^1 (x) \quad \text{and} \quad \tilde{W}_1^2(y):= W_1^2 (\begin{pmatrix} I_{d_2} -I_{d_2}\end{pmatrix} y)
 $$ 
 
 Now we can show that, step by step, why $\~W_1^2 \circ \rho \circ \~W_{L_1}^1 $ is the same as $W_{1}^{2} \circ W_{L1}^{1}$
 
+$$\begin{align*}
+\tilde{W}_{L1}^1(x)&= \begin{pmatrix} I_{d_2}\\ -I_{d_2}\end{pmatrix} W_{L1}^1 (x) \\ &= \begin{pmatrix} W_{L1}^1 (x)\\ -W_{L1}^1 (x)\end{pmatrix} \\
+\rho \circ \begin{pmatrix} W_{L1}^1 (x)\\ 
+\\
+-W_{L1}^1 (x)\end{pmatrix} &= \begin{pmatrix} \rho (W_{L1}^1 (x))\\ \rho(-W_{L1}^1 (x))\end{pmatrix} \\
+\\
+\~W_1^2 \circ \rho \circ \~W_{L_1}^1 &= W_1^2 (\begin{pmatrix} I_{d_2} -I_{d_2}\end{pmatrix} \begin{pmatrix} \rho (W_{L1}^1 (x))\\ \rho(-W_{L1}^1 (x))\end{pmatrix}) \\
+&= W_1^2 \circ \begin{pmatrix} I_{d_2} -I_{d_2}\end{pmatrix} \begin{pmatrix} \rho (W_{L1}^1 (x))\\ \rho(-W_{L1}^1 (x))\end{pmatrix}\\
+&= W_1^2 \circ (\rho (W_{L1}^1 (x)) - \rho (-W_{L1}^1 (x))) \\
+&= W_1^2 \circ W_{L1}^1
+\end{align*}$$
+
+Therefore, the network $\Psi = W_{L2}^{2} \circ \rho \circ \ldots \circ \rho \circ \~W_{1}^{2} \circ \rho \circ W_{L1}^{1} \circ \rho \circ W_{L1-1}^{1} \circ \ldots \circ \rho \circ W_{1}^{1}$ is equivalent to $(\Phi_2 \circ \Phi_1)(x)$. And by examine the architecture of $\Psi(x)$, we notice that the claimed properties are all satisfied. 
+
+>**Lemma 2.4** Let $d_1, d_2, K \in \mathbb{N}$ and $\Phi \in N_{d_1, d_2}$ with $L(\Phi) < K$. Then, there exists a network $\Psi \in N_{d_1, d_2}$ with 
+$L(\Psi) = K, \\
+M(\Psi) \leq M(\Psi) + d_2 W(\Psi) + 2d_2(K-L(\Phi)), \\
+W(\Psi) = max\{2d_2, W(\Phi)\}, \\
+B(\Psi) = max\{1, B(\Phi)\}$ 
+and satisfying
+>$$
+\Psi(x) = \Phi(x) for all x \in \mathbb{R}^{d_1}
+$$
