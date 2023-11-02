@@ -43,6 +43,9 @@ $$
 *Proof.* The proof is based on the identity $x = \rho(x) - \rho(-x)$ for ReLU activation function. First, note that by **Definition 1**, we can write 
 
 $$
-\Phi_{1} = W_{L1}^{1} \circ W_{L1-1}^{1} \circ \ldots \circ \rho \circ W_{1}^{1} \quad \text{and} \quad \Phi_{2} = W_{L2}^{2} \circ W_{L2-1}^{2} \circ \ldots \circ \rho \circ W_{1}^{2}
+\Phi_{1} = W_{L1}^{1} \circ \rho \circ W_{L1-1}^{1} \circ \ldots \circ \rho \circ W_{1}^{1} \quad \text{and} \quad \Phi_{2} = W_{L2}^{2} \circ \rho \circ \ldots \circ \rho \circ W_{1}^{2}
 $$
 
+If we compose $\Phi_2$ with $\Phi_1$ directly, the outcome $ W_{L2}^{2} \circ \rho \circ \ldots \circ \rho \circ W_{1}^{2} \circ W_{L1}^{1} \circ \rho \circ W_{L1-1}^{1} \circ \ldots \circ \rho \circ W_{1}^{1}$ does not match the general architecture of the neural network defined earlier, because the section $W_{1}^{2} \circ W_{L1}^{1}$ does not have an activation function $\rho$ in between. Therefore, our goal is to replace the section $W_{1}^{2} \circ W_{L1}^{1}$ with something equivalent but in the form of $W \circ \rho \circ W$.
+
+Let $N_{L1-1}^1$ denote the width of layer $L_1-1$ in $\Phi_1$ and let $N_1^2$ denote the width of layer 1 in $\Phi_2$. We define the affine transformations $\tilde{W}_{L1}^1$
