@@ -124,7 +124,6 @@ It can be shown that the network $\Psi$ defined above generates the same outcome
 $$\begin{align*}
 \Psi &= \tilde{W}_K \circ \rho \circ \tilde{W}_{K-1} \circ \rho \circ \ldots \circ \rho \circ \tilde{W}_{L(\Phi)+1} \circ \rho \circ \begin{pmatrix} W_{L(\Phi)} \\ -W_{L(\Phi)}\end{pmatrix} \circ \rho \circ W_{L(\Phi)-1} \circ \rho \circ \ldots \circ \rho \circ W_1 \\
 &= \tilde{W}_K \circ \rho \circ \begin{pmatrix} W_{L(\Phi)} \\ -W_{L(\Phi)}\end{pmatrix} \circ \rho \circ W_{L(\Phi)-1} \circ \rho \circ \ldots \circ \rho \circ W_1 \\
-&= \begin{pmatrix} I_{d_2} -I_{d_2}\end{pmatrix}(\rho \circ \begin{pmatrix} W_{L(\Phi)} \\ -W_{L(\Phi)}\end{pmatrix} \circ \rho \circ W_{L(\Phi)-1} \circ \rho \circ \ldots \circ \rho \circ W_1) \\
 &= \begin{pmatrix} I_{d_2} -I_{d_2}\end{pmatrix} \circ \rho \circ \begin{pmatrix} W_{L(\Phi)} \\ -W_{L(\Phi)}\end{pmatrix} \circ \rho \circ W_{L(\Phi)-1} \circ \rho \circ \ldots \circ \rho \circ W_1 \\
 &= \begin{pmatrix} I_{d_2} -I_{d_2}\end{pmatrix} \circ \begin{pmatrix} \rho(W_{L(\Phi)}) \\ \rho(-W_{L(\Phi)})\end{pmatrix} \circ \rho \circ W_{L(\Phi)-1} \circ \rho \circ \ldots \circ \rho \circ W_1 \\
 &= (\rho(W_{L(\Phi)}) - \rho(-W_{L(\Phi)})) \circ \rho \circ W_{L(\Phi)-1} \circ \rho \circ \ldots \circ \rho \circ W_1 \\
