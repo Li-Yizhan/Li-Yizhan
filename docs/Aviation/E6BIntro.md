@@ -7,4 +7,7 @@ nav_order: 1-00-01
 
 ## A Brief Introduction to E6B Flight Computer
 
-![E6B](/Users/yili/Documents/li-yizhan.github.io/assets/images/StudentE6BFlightComputer.jpg)
+<p align="center">
+<img src="/Images/StudentE6BFlightComputer.jpg" width="500" height="">
+</p>
+
