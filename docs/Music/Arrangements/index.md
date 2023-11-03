@@ -2,6 +2,6 @@
 layout: default
 title: Arrangements
 parent: Music
-nav_order: 1-02
+nav_order: 2
 has_children: true
 ---
