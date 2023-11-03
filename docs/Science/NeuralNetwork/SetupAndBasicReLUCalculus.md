@@ -119,7 +119,12 @@ $$
 \Psi := \tilde{W}_K \circ \rho \circ \tilde{W}_{K-1} \circ \rho \circ \ldots \circ \rho \circ \tilde{W}_{L(\Phi)+1} \circ \rho \circ \begin{pmatrix} W_{L(\Phi)} \\ -W_{L(\Phi)}\end{pmatrix} \circ \rho \circ W_{L(\Phi)-1} \circ \rho \circ \ldots \circ \rho \circ W_1
 $$
 
-By observing that $\~W_j\begin{pmatrix} \rho(W_{L(\Phi)}) \\ \rho(-W_{L(\Phi)})\end{pmatrix} = \begin{pmatrix} \rho(W_{L(\Phi)}) \\ \rho(-W_{L(\Phi)})\end{pmatrix}$ and $\rho(\rho(x)) = \rho(x)$ for ReLU activation function, it can be shown that the network $\Psi$ defined above generates the same outcome as the network $\Phi$
+By observing that 
+
+$$
+\~W_j\begin{pmatrix} \rho(W_{L(\Phi)}) \\ \rho(-W_{L(\Phi)})\end{pmatrix} = \begin{pmatrix} \rho(W_{L(\Phi)}) \\ \rho(-W_{L(\Phi)})\end{pmatrix} \text{and } \rho(\rho(x)) = \rho(x)$$
+
+for ReLU activation function, it can be shown that the network $\Psi$ defined above generates the same outcome as the network $\Phi$
 
 $$\begin{align*}
 \Psi &= \tilde{W}_K \circ \rho \circ \tilde{W}_{K-1} \circ \rho \circ \ldots \circ \rho \circ \tilde{W}_{L(\Phi)+1} \circ \rho \circ \begin{pmatrix} W_{L(\Phi)} \\ -W_{L(\Phi)}\end{pmatrix} \circ \rho \circ W_{L(\Phi)-1} \circ \rho \circ \ldots \circ \rho \circ W_1 \\
