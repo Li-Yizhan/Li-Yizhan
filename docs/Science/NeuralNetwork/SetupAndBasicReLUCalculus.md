@@ -101,7 +101,7 @@ Therefore, the network $\Psi = W_{L_2}^{2} \circ \rho \circ \ldots \circ \rho \c
 
 and satisfying $\Psi (x) = \Phi (x), \text{ for all } x \in ℝ^{d_1}$
 
-*Proof.* Let $\~W_j(x) := diag \begin{pmatrix} I_{d_2} \quad I_{d_2}\end{pmatrix} x$, for $j \in \{L(\Phi) + 1, \ldots, K-1\}$. The purpose of defining $\~W_j(x)$ is that $\~W_j\begin{pmatrix} W_{L(\Phi)} \\ -W_{L(\Phi)}\end{pmatrix} = \begin{pmatrix} W_{L(\Phi)} \\ -W_{L(\Phi)}\end{pmatrix}$. Essentially, we want to find a way to extend the original neural network without altering its outcome. Next, we define
+*Proof.* Let $\~W_j(x) := diag \begin{pmatrix} I_{d_2} \quad I_{d_2}\end{pmatrix} x$, for $j \in \{L(\Phi) + 1, \ldots, K-1\}$
 
 $$
 \tilde{W}_{K}(x) := \begin{pmatrix} I_{d_2} -I_{d_2}\end{pmatrix}x,
@@ -119,7 +119,7 @@ $$
 \Psi := \tilde{W}_K \circ \rho \circ \tilde{W}_{K-1} \circ \rho \circ \ldots \circ \rho \circ \tilde{W}_{L(\Phi)+1} \circ \rho \circ \begin{pmatrix} W_{L(\Phi)} \\ -W_{L(\Phi)}\end{pmatrix} \circ \rho \circ W_{L(\Phi)-1} \circ \rho \circ \ldots \circ \rho \circ W_1
 $$
 
-It can be shown that the network $\Psi$ defined above generates the same outcome as the network $\Phi$
+By observing that $\~W_j\begin{pmatrix} \rho(W_{L(\Phi)}) \\ \rho(-W_{L(\Phi)})\end{pmatrix} = \begin{pmatrix} \rho(W_{L(\Phi)}) \\ \rho(-W_{L(\Phi)})\end{pmatrix}$ and $\rho(\rho(x)) = \rho(x)$ for ReLU activation function, it can be shown that the network $\Psi$ defined above generates the same outcome as the network $\Phi$
 
 $$\begin{align*}
 \Psi &= \tilde{W}_K \circ \rho \circ \tilde{W}_{K-1} \circ \rho \circ \ldots \circ \rho \circ \tilde{W}_{L(\Phi)+1} \circ \rho \circ \begin{pmatrix} W_{L(\Phi)} \\ -W_{L(\Phi)}\end{pmatrix} \circ \rho \circ W_{L(\Phi)-1} \circ \rho \circ \ldots \circ \rho \circ W_1 \\
