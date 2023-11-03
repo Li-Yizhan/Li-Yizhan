@@ -1,9 +1,9 @@
 ---
 layout: default
-title: Test
+title: Airports
 parent: Ground School Lecture Notes
 grand_parent: Aviation
-nav_order: 1
+nav_order: 5
 ---
 
 # This is a test page
