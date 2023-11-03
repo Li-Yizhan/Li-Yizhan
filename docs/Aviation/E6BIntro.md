@@ -5,4 +5,6 @@ parent: Aviation
 nav_order: 1-00-01
 ---
 
-# This is a test file
+## A Brief Introduction to E6B Flight Computer
+
+![E6B](assets/images/StudentE6BFlightComputer.jpg)
