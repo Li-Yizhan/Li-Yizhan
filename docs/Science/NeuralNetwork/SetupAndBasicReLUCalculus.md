@@ -43,7 +43,8 @@ The neural network defined in the equation (1) is essentially a sequence of [mat
 
 ---
 
-### Test {#L23}
+<h3 id="L23"></h3>
+
 
 **Lemma 2.3** Let $d_{1}, d_{2}, d_{3} \in ℕ, \Phi_{1} \in N_{d1, d2}$, and $\Phi_{2} \in N_{d2, d3}$. Then, there exists a network $\Psi \in N_{d1, d2}$ with 
 * $ L(\Psi) = L(\Phi_{1}) + L(\Phi_{2})$, 
