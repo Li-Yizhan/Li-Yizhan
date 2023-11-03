@@ -8,7 +8,10 @@ nav_order: 1
 
 ## Setup and Basic ReLU Calculus
 
-[Lemma 2.3](#L23)
+**Table of Contents**
+* [Lemma 2.3](#L23)
+
+---
 
 There is a plethora of neural network architectures and activation functions in the literature. Here, we restrict to the ReLU activation function and consider the following general network architecture.
 
@@ -40,7 +43,7 @@ The neural network defined in the equation (1) is essentially a sequence of [mat
 
 ---
 
-### {#L23}
+### Test {#L23}
 
 **Lemma 2.3** Let $d_{1}, d_{2}, d_{3} \in ℕ, \Phi_{1} \in N_{d1, d2}$, and $\Phi_{2} \in N_{d2, d3}$. Then, there exists a network $\Psi \in N_{d1, d2}$ with 
 * $ L(\Psi) = L(\Phi_{1}) + L(\Phi_{2})$, 
