@@ -8,6 +8,8 @@ nav_order: 1
 
 ## Setup and Basic ReLU Calculus
 
+[Lemma 2.3](#L23)
+
 There is a plethora of neural network architectures and activation functions in the literature. Here, we restrict to the ReLU activation function and consider the following general network architecture.
 
 **Definition 1.** Let $L \in \mathbb{N} $ and $ N_{0}, N_{1}, \ldots, N_{L} \in \mathbb{N}$ given by
@@ -37,6 +39,9 @@ where, for $l \in \{ 1, 2, \ldots, L\}$, $W_{l}: \mathbb{R}^{N_{l-1}} \rightarro
 The neural network defined in the equation (1) is essentially a sequence of [matrix compositions](https://www.youtube.com/watch?v=XkY2DOUCWMU). By rule, matrix composition is read from right to left. That is why $W_1$ appears at far right of the equation, followed by $W_{2}, W_{3}, \ldots$ on its left side. Geometrically, we can imagine neural networks as applying multiple *affine transformations* $W_{l}(x) := A_{l}x + b_{l}$ with activation functions $\rho$ sequentially. There is a [fascinating visualization](https://www.youtube.com/watch?v=UOvPeC8WOt8) that explains how the data input is manipulated through multiple layers of affine transformations and activation functions to generate the desired outcome. 
 
 ---
+
+### {#L23}
+
 **Lemma 2.3** Let $d_{1}, d_{2}, d_{3} \in ℕ, \Phi_{1} \in N_{d1, d2}$, and $\Phi_{2} \in N_{d2, d3}$. Then, there exists a network $\Psi \in N_{d1, d2}$ with 
 * $ L(\Psi) = L(\Phi_{1}) + L(\Phi_{2})$, 
 * $M(\Psi) = 2M(\Phi_{1}) + 2M(\Phi_{2})$, 
