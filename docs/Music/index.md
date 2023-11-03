@@ -1,7 +1,7 @@
 ---
 title: Music
 layout: default
-nav_order: 1-02
+nav_order: 1-01
 has_children: true
 permalink: /docs/Music
 ---
