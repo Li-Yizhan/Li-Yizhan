@@ -8,12 +8,19 @@ nav_order: 1
 
 ## Setup and Basic ReLU Calculus
 
-**Table of Contents**
-* [Lemma 2.3](#L23)
+---
 
+**Table of Contents**
+* [General Definition](#GD)
+* [Lemma 2.3](#L23)
+* [Lemma 2.4](#L24)
+* [Lemma 2.5](#L25)
+* [Lemma 2.6](#L26)
 ---
 
 There is a plethora of neural network architectures and activation functions in the literature. Here, we restrict to the ReLU activation function and consider the following general network architecture.
+
+<h3 id="GD"></h3>
 
 **Definition 1.** Let $L \in \mathbb{N} $ and $ N_{0}, N_{1}, \ldots, N_{L} \in \mathbb{N}$ given by
 
@@ -42,9 +49,7 @@ where, for $l \in \{ 1, 2, \ldots, L\}$, $W_{l}: \mathbb{R}^{N_{l-1}} \rightarro
 The neural network defined in the equation (1) is essentially a sequence of [matrix compositions](https://www.youtube.com/watch?v=XkY2DOUCWMU). By rule, matrix composition is read from right to left. That is why $W_1$ appears at far right of the equation, followed by $W_{2}, W_{3}, \ldots$ on its left side. Geometrically, we can imagine neural networks as applying multiple *affine transformations* $W_{l}(x) := A_{l}x + b_{l}$ with activation functions $\rho$ sequentially. There is a [fascinating visualization](https://www.youtube.com/watch?v=UOvPeC8WOt8) that explains how the data input is manipulated through multiple layers of affine transformations and activation functions to generate the desired outcome. 
 
 ---
-
 <h3 id="L23"></h3>
-
 
 **Lemma 2.3** Let $d_{1}, d_{2}, d_{3} \in ℕ, \Phi_{1} \in N_{d1, d2}$, and $\Phi_{2} \in N_{d2, d3}$. Then, there exists a network $\Psi \in N_{d1, d2}$ with 
 * $ L(\Psi) = L(\Phi_{1}) + L(\Phi_{2})$, 
@@ -85,6 +90,8 @@ $$\begin{align*}
 Therefore, the network $\Psi = W_{L_2}^{2} \circ \rho \circ \ldots \circ \rho \circ \~W_{1}^{2} \circ \rho \circ W_{L_1}^{1} \circ \rho \circ W_{L_1-1}^{1} \circ \ldots \circ \rho \circ W_{1}^{1}$ is equivalent to $(\Phi_2 \circ \Phi_1)(x)$. And by examine the architecture of $\Psi(x)$, we notice that the claimed properties are all satisfied. 
 
 ---
+<h3 id="L24"></h3>
+
 **Lemma 2.4** Let $d_1, d_2, K \in \mathbb{N}$ and $\Phi \in N_{d_1, d_2}$ with $L(\Phi) < K$. Then, there exists a network $\Psi \in N_{d_1, d_2}$ with
 * $L(\Psi) = K$, 
 * $M(\Psi) \leq M(\Psi) + d_2 W(\Psi) + 2d_2(K-L(\Phi))$, 
@@ -129,6 +136,8 @@ Next, we can check the new architecture of network $\Psi(x)$ and see that the cl
 For the sake of simplicity of expositioin, <ins>we state the following two lemmas only for networks of the same depth</ins>, the extension to the general case follows by straightforward application of **Lemma 2.4**.
 
 ---
+<h3 id="L25"></h3>
+
 **Lemma 2.5** Let $n, L \in ℕ$ and, for $i \in \{1, 2, \ldots, n\}$, let $d_i, d_i' \in ℕ$ and $\Phi_i \in N_{d_i,d_i'}$ with $L(\Phi_i) = L$. Then, there exists a network $\Psi \in N_{\sum_{i=1}^{n}d_i, \sum_{i=1}^{n}d_i'}$ with 
 * $L(\Psi) = L$, 
 * $M(\Psi) = \sum_{i=1}^{n} M(\Phi_i)$, 
@@ -189,6 +198,8 @@ satisfies the claimed properties.
 We are now ready to <ins>formalize the concept of a linear combination of neural networks</ins>. 
 
 ---
+<h3 id="L26"></h3>
+
 **Lemma 2.6** 
 
 Let $n, L, d' \in ℕ$ and for $i \in \{1, 2, \ldots, n\}$, let $d_i \in ℕ, a_i \in ℝ$, and $\Phi_i \in N_{d_i, d_i'}$ with $L(\Phi_i) = L$. Then, there exists a network $\Psi \in N_{\sum_{i=1}^{n}d_i,d'}$ with 
