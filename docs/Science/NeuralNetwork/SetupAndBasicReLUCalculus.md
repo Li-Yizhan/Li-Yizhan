@@ -16,6 +16,7 @@ nav_order: 1
 * [Lemma 2.4](#L24)
 * [Lemma 2.5](#L25)
 * [Lemma 2.6](#L26)
+
 ---
 
 There is a plethora of neural network architectures and activation functions in the literature. Here, we restrict to the ReLU activation function and consider the following general network architecture.
