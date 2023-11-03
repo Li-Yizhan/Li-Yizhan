@@ -102,10 +102,12 @@ Therefore, the network $\Psi = W_{L_2}^{2} \circ \rho \circ \ldots \circ \rho \c
 and satisfying $\Psi (x) = \Phi (x), \text{ for all } x \in ℝ^{d_1}$
 
 *Proof.* Let 
-$$\begin{align*}
+$$
+\begin{align*}
 \tilde{W}_j(x) &:= diag \begin{pmatrix} I_{d_2} \quad I_{d_2}\end{pmatrix} x, \text{ for } j \in \{L(\Phi) + 1, \ldots, K-1\}\\
 \tilde{W}_{K}(x) &:= \begin{pmatrix} I_{d_2} -I_{d_2}\end{pmatrix}x,
-\end{align*}$$
+\end{align*}
+$$
 
 and note that with
 
