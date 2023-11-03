@@ -2,7 +2,7 @@
 layout: default
 title: A Brief Introduction to E6B Flight Computer
 parent: Aviation
-nav_order: 1-00-03
+nav_order: 1-00-04
 ---
 
 ## A Brief Introduction to E6B Flight Computer
