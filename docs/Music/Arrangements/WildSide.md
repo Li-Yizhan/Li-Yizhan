@@ -1,9 +1,9 @@
 ---
 layout: default
 title: Wild Side
-parent: Transcripts
+parent: Arrangements
 grand_parent: Music
-nav_order: 2
+nav_order: 1
 ---
 
 ![Music Sheet](/Images/Wild_Side_1.png)
