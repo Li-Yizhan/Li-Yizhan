@@ -12,14 +12,16 @@ nav_order: 1
 
 ### Lyrics
 
-Das gibt's nur einmal
-Das kommt nicht wieder
-Das ist vielleicht nur Träumerei
+<br>
 
-Das kann das Leben
-Nur einmal geben
-Vielleicht ist's morgen schon vorbei
-
-Das kann das Leben
-Nur einmal geben
-Denn jeder Frühling hat nur einen Mai
+Das gibt's nur einmal<br>
+Das kommt nicht wieder<br>
+Das ist vielleicht nur Träumerei<br>
+<br>
+Das kann das Leben<br>
+Nur einmal geben<br>
+Vielleicht ist's morgen schon vorbei<br>
+<br>
+Das kann das Leben<br>
+Nur einmal geben<br>
+Denn jeder Frühling hat nur einen Mai<br>
