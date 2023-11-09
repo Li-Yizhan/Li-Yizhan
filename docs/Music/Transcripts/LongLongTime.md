@@ -23,7 +23,7 @@ And time washes clean love's wounds unseen<br>
 That's what someone told me<br>
 But I don't know what it means<br>
 <br>
-'Cause I've done everything I know<br>
+Cause I've done everything I know<br>
 To try and make you mine<br>
 And I think I'm gonna love you<br>
 For a long long time<br>
