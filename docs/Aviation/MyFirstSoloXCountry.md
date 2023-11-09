@@ -17,7 +17,7 @@ nav_order: 1-00-03
   
   <!--aloow full screen add tag -->
   
-<iframe allowfullscreen="allowfullscreen" src="your_page_url/preview" ></iframe>
+<iframe allowfullscreen="allowfullscreen" src="https://drive.google.com/file/d/12S5TYaBrY6_Co5Jl2js2uj2rp4uGtE0-/preview" ></iframe>
 
 </body>
 </html>
