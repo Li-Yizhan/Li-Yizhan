@@ -12,16 +12,18 @@ nav_order:
 
 ### Lyrics
 
-Love will abide
-Take things in stride
-Sounds like good advice
-But there's no one at my side
+<br>
 
-And time washes clean love's wounds unseen
-That's what someone told me
-But I don't know what it means
-
-'Cause I've done everything I know
-To try and make you mine
-And I think I'm gonna love you
-For a long long time
+Love will abide<br>
+Take things in stride<br>
+Sounds like good advice<br>
+But there's no one at my side<br>
+<br>
+And time washes clean love's wounds unseen<br>
+That's what someone told me<br>
+But I don't know what it means<br>
+<br>
+'Cause I've done everything I know<br>
+To try and make you mine<br>
+And I think I'm gonna love you<br>
+For a long long time<br>
