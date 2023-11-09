@@ -9,7 +9,7 @@ nav_order: 1-00-03
 
 ---
 
-[<img src= /Images/MyFirstSoloTakeOff />](https://drive.google.com/file/d/12S5TYaBrY6_Co5Jl2js2uj2rp4uGtE0-/preview)
+[<img src= "/Images/MyFirstSoloTakeOff.jpg" />](https://drive.google.com/file/d/12S5TYaBrY6_Co5Jl2js2uj2rp4uGtE0-/preview)
   
 
 
