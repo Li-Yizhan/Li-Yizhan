@@ -27,6 +27,16 @@ nav_order:
 
 <br>
 
+>The new one is at the foot
+>
+><div style="text-align: right"> — Raymond Chandler's Epitaph </div>
+
+Excerpt From
+读客经典文库：漫长的告别（怪不得村上春树读了12遍！每每陷入困境，村上春树便打开《漫长的告别》！说一声再见，就是死去一点点。）
+雷蒙德·钱德勒
+https://itunes.apple.com/WebObjects/MZStore.woa/wa/viewBook?id=0
+This material may be protected by copyright.
+
 >Weak people never put an end to things themselves — they always wait for the end.
 >
 ><div style="text-align: right"> — The Torrents of Spring by Ivan Turgenev </div>
