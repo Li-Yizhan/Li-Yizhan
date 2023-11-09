@@ -7,6 +7,8 @@ nav_order:
 
 ## What Do I Think About When I Think About Running
 
+---
+
 There is an ancient Chinese fable, “three in the morning and four in the evening,” by Zhuang Zi: 
 
 A monkey trainer raised a great many monkeys. He loved them and knew their nature well. During a period when there was a food shortage, he wanted to curtail monkeys‘ share but feared their dissatisfaction and even rebellion. Thus, the monkey trainer came up with a way to delude them. “From now on, I’ll give you three chestnuts every morning and four every evening," he said. "Will that be enough?" All the monkeys rose with anger. “Then, what about four in the morning and three in the evening?" he proposed. After hearing that, the monkeys squatted down, happy and pliant again. 
