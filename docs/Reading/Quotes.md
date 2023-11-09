@@ -15,6 +15,12 @@ nav_order:
 
 <br>
 
+>It's kind of fun to do the impossible.
+>
+><div style="text-align: right"> — Walter Disney </div>
+
+<br>
+
 >I liked him better drunk, down and out, hungry and beaten and proud. Or did I? Maybe I just liked being top man. 
 >
 ><div style="text-align: right"> — The Long Goodbye by Raymond Chandler </div>
