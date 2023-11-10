@@ -3,7 +3,7 @@ layout: default
 title: Neural Network Theory - Approximation of Multiplication, Polynomials, Smooth Functions, and Sinusoidals
 parent: Neural Network
 grand_parent: Science
-nav_order: 1
+nav_order: 2
 ---
 
 ## Approximation of Multiplication, Polynomials, Smooth Functions, and Sinusoidals
