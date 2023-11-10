@@ -3,7 +3,7 @@ layout: default
 title: Setup and Basic ReLU Calculus
 parent: Neural Network
 grand_parent: Science
-nav_order: 1
+nav_order: 
 ---
 
 ## Setup and Basic ReLU Calculus
