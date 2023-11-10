@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Setup and Basic ReLU Calculus
+title: Neural Network Theory - Approximation of Multiplication, Polynomials, Smooth Functions, and Sinusoidals
 parent: Neural Network
 grand_parent: Science
 nav_order: 1
@@ -25,4 +25,6 @@ nav_order: 1
 * [Remark 2.17](#R217)
 
 ---
+
+<h3 id="Intro"></h3>
 
