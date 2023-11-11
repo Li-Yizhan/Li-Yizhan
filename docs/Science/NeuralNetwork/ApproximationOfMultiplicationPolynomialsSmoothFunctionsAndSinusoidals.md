@@ -55,3 +55,25 @@ with
 $$
 W_1(x) = \begin{pmatrix} 1\\ 1\\ 1\end{pmatrix}x - \begin{pmatrix} 0\\ 1/2\\ 1\end{pmatrix}, \qquad W_2(x) = (2 \quad -4 \quad 2)\begin{pmatrix} x_1\\ x_2\\x_3\end{pmatrix}
 $$
+
+<h3 id="L27"></h3>
+
+<h3 id="P28"></h3>
+
+<h3 id="R29"></h3>
+
+<h3 id="P210"></h3>
+
+<h3 id="R211"></h3>
+
+<h3 id="P212"></h3>
+
+<h3 id="T213"></h3>
+
+<h3 id="L214"></h3>
+
+<h3 id="T215"></h3>
+
+<h3 id="C216"></h3>
+
+<h3 id="R217"></h3>
