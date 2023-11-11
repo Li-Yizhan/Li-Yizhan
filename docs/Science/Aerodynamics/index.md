@@ -2,6 +2,6 @@
 layout: default
 title: Aerodynamics
 parent: Science
-nav_order: 
+nav_order: 3
 has_children: true
 ---
