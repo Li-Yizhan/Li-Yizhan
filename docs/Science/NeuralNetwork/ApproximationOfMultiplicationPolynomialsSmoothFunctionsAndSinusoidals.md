@@ -111,6 +111,8 @@ g_s\left(\frac{k}{s^{s-1}}+x
 \right) = g_s\left(\frac{k+1}{s^{s-1}}-x\right), \text{ for } x \in \left[0, \frac{1}{2^{s-1}}\right]
 $$
 
+We are now ready to proceed with the statement of the basic building block of our neural network agebra, namely the approximation of the squaring function through deep ReLU Network.
+
 <h3 id="P28"></h3>
 
 <h3 id="R29"></h3>
