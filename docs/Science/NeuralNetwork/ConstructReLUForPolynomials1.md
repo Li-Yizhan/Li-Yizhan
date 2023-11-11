@@ -1,12 +1,9 @@
 ---
 layout: default
-title: [Neural Network Theory] Construct ReLU Neural Network Which Efficiently Approximate Polynomials (Part 1)
+title: Construct ReLU Neural Network Which Efficiently Approximate Polynomials (Part 1)
 parent: Neural Network
 grand_parent: Science
 nav_order: 
-header-includes:
-   - \usepackage{amsmath}
-   - \usepackage{amssymb}
 ---
 
 ## Construct ReLU Neural Network Which Efficiently Approximate Polynomials (Part 1)

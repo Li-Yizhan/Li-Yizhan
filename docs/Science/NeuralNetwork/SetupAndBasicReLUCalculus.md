@@ -1,6 +1,6 @@
 ---
 layout: default
-title: [Neural Network Theory] Setup and Basic ReLU Calculus
+title: Setup and Basic ReLU Calculus
 parent: Neural Network
 grand_parent: Science
 nav_order: 1
