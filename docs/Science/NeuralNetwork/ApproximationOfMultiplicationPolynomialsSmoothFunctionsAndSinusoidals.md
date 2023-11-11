@@ -108,7 +108,7 @@ and
 
 $$
 g_s\left(\frac{k}{s^{s-1}}+x
-\right) = g_s\left(\frac{k+1}{s^{s-1}}-x\right), \text{ for } x \in [0, \frac{1}{2^{s-1}}]
+\right) = g_s\left(\frac{k+1}{s^{s-1}}-x\right), \text{ for } x \in \left[0, \frac{1}{2^{s-1}}\right]
 $$
 
 <h3 id="P28"></h3>
