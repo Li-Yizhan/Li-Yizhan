@@ -102,7 +102,11 @@ Lemma 2.7 summarizes the self-similarity and symmetry properties of $g_s(x)$ we 
 
 $$
 g_s(x) = \sum_{k=0}^{2^{s-1}-1} g(2^{s-1}x-k), \text{ for } x \in [0, 1]\\
-\text{and}\\
+$$
+
+and
+
+$$
 g_s\left(\frac{k}{s^{s-1}}+x
 \right) = g_s\left(\frac{k+1}{s^{s-1}}-x\right), \text{ for } x \in [0, \frac{1}{2^{s-1}}]
 $$
