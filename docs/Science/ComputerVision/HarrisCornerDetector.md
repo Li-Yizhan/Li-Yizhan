@@ -33,12 +33,31 @@ In general, we can find three types of pixel pattern within a patch:
 style="width:100%; height:auto;">
 </div>
 
-<center>Three Types of Region</center>
+<center>Three Types of pixel pattern</center>
 
 Now consider shifting the patch by $(u,v)$. We compare each pixel before and after by summing up the squared differences (SSD) and define that to be the SSD Error $E(u,v)$ with the equation
 
 $$\begin{align*}
 E(u,v) &= \sum_{(x,y) \in W}[I(x+u, y+v)-I(x,y)]^2\\
-&≈ \sum_{(x,y) \in W}\left[[I_x \quad I_y]\begin{bmatrix} u \\v \end{bmatrix} \right]^2
+&≈ \sum_{(x,y) \in W}\left[[I_x \quad I_y]\begin{bmatrix} u \\v \end{bmatrix} \right]^2 \\
+&= \sum_{(x,y) \in W} [u \quad v] \begin{bmatrix} I_x^2 \quad I_xI_y \\ I_yI_x \quad I_y^2 \end{bmatrix} \begin{bmatrix} u \\ v \end{bmatrix}
 \end{align*}$$ 
+
+To understand the above equation, let's have a quick review of [Taylor Series](https://www.youtube.com/watch?v=3d6DsjIBzJ4&t=156s), which is largely used to approximate non-polynomial functions with polynomials, because polynomials tend to be much easier to deal with. 
+
+Essentially, Taylor Series approximation takes the information of different order derivatives at a single point and translating that into information about the value of the function near that point. The number of the series determines the number of control terms we want for the approximation. 
+
+The generalization of taylor series  approximating functions at origin can be written as: 
+
+$$
+P(x) = f(0) + \frac{df}{dx}(0)\frac{x^1}{1!} + \frac{d^2f}{dx^2}(0)\frac{x^2}{2!}+\frac{d^3f}{dx^3}(0)\frac{x^3}{3!} \ldots
+$$
+
+The first term in the above equation, the constant term, ensures that the value of the polynomial approximation $P$ at origin matches that of the function $F$. The second term ensures the slope the the polynomial approximation $P$ at origin matches that of the function $F$ and so on so forth. 
+
+For approximation of the function at the point $a$, the formula becomes:
+
+$$
+P(x) = f(a) + \frac{df}{dx}(a)\frac{(x-a)^1}{1!}+\frac{d^2f}{dx^2}(a)\frac{(x-a)^2}{2!}+ \ldots
+$$
 
