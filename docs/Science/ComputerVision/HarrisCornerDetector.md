@@ -21,6 +21,8 @@ style="width:50%; height:auto;">
 
 <center>Image Derivatives</center>
 
+</p>
+
 In computer vision, a patch refers to a small, rectangular or square region extracted from an image. Patches allow for the capture of local information and details. In addition, patches provide a form of translation invariance. By analyzing local regions, the feature extraction process becomes less sensitive to the aobsolute position of objects withint the image. 
 
 In general, we can find three types of pixel pattern within a patch: 
@@ -34,6 +36,8 @@ style="width:100%; height:auto;">
 </div>
 
 <center>Three Types of pixel pattern</center>
+
+</p>
 
 Now consider shifting the patch by $(u,v)$. We compare each pixel before and after by summing up the squared differences (SSD) and define that to be the SSD Error $E(u,v)$ with the equation
 
