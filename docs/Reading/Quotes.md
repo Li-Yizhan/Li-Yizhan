@@ -61,5 +61,9 @@ nav_order:
 >
 ><div style="text-align: right"> — Thelonious Monk </div>
 
+>No way of thinking or doing, however ancient, can be trusted without proof.
+>
+><div style="text-align: right"> — Walden by Henry David Thoreau</div>
 
+<br>
  

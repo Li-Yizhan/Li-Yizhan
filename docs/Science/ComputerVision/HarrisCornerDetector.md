@@ -65,3 +65,54 @@ $$
 P(x) = f(a) + \frac{df}{dx}(a)\frac{(x-a)^1}{1!}+\frac{d^2f}{dx^2}(a)\frac{(x-a)^2}{2!}+ \ldots
 $$
 
+We can extend the idea to 2-D. The Taylor Series expansion of $F(x,y)$ about the point $(a,b)$ is given by:
+
+$$
+P(x,y) = f(a, b) + \frac{df}{dx}(x-a)^1 + \frac{df}{dy}(x-b) + \frac{1}{2!}\left[\frac{d^2f}{dx^2}(x-a)^2 + \frac{d^2f}{dxdy}2(x-a)(y-b)+\frac{d^2f}{dy^2}(y-b)^2\right]+\ldots
+$$
+
+For Harris Corner Detector algorithm, we use the first two terms of the Taylor Series explansion to approximate the function $I(x+u,y+v)$ at $(x,y)$. In this way, we can compare each pixel before and after the shift.  
+
+Let's rewrite the SSD Error function with Tayler Series approximation:
+
+$$\begin{align*}
+E(u,v) &= \sum_{(x,y) \in W}[I(x+u, y+v)-I(x,y)]^2\\
+&≈ \sum_{(x,y) \in W} [I(x,y) + [I_x \quad I_y] \begin{bmatrix} u \\v\end{bmatrix} - I(x,y)]^2 \\
+&≈ \sum_{(x,y) \in W}\left[[I_x \quad I_y]\begin{bmatrix} u \\v \end{bmatrix} \right]^2 \\
+&= \sum_{(x,y) \in W} [u \quad v] \begin{bmatrix} I_x^2 \quad I_xI_y \\ I_yI_x \quad I_y^2 \end{bmatrix} \begin{bmatrix} u \\ v \end{bmatrix}
+\end{align*}$$ 
+
+The surface of $E(u,v)$ is locally approximated by a quadratic form
+
+$$
+M = \sum \begin{bmatrix} I_x^2 \quad I_xI_y \\ I_xI_y \quad I_y^2 \end{bmatrix}
+$$
+
+<div style="text-align:center;">
+<img src="/Images/SurfaceM.png" alt="3TypesofRegion" 
+style="width:50%; height:auto;">
+</div>
+
+<center>Visualization of Surface E</center>
+
+</p>
+
+To gain a better understanding of error surface, let's start by visualizaing quadratics. 
+
+We know that the following equation will generate a paraboloid: (Imagine slicing it at $f(x,y) = 1, 2, \ldots$)
+
+$$
+f(x,y) = x^2 + y^2
+$$
+
+The above equation being sliced at $f(x,y) = 1$ can be written in matrix form like this: 
+
+$$
+f(x,y) = [x \quad y] \begin{bmatrix} 1 \quad 0 \\ 0 \quad 1 \end{bmatrix} \begin{bmatrix} x \\ y\end{bmatrix}
+$$
+
+Which has a similar structure as the SSD Error function:
+
+$$
+E(u,v) = \sum_{(x,y) \in W} [u \quad v] \begin{bmatrix} I_x^2 \quad I_xI_y \\ I_yI_x \quad I_y^2 \end{bmatrix} \begin{bmatrix} u \\ v \end{bmatrix}
+$$
