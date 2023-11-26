@@ -6,7 +6,7 @@ grand_parent: Science
 nav_order: 2
 ---
 
-## Approximation of Multiplication, Polynomials, Smooth Functions, and Sinusoidals
+## [Lecture Notes] Approximation of Multiplication, Polynomials, Smooth Functions, and Sinusoidals
 
 ---
 
@@ -111,9 +111,89 @@ g_s\left(\frac{k}{s^{s-1}}+x
 \right) = g_s\left(\frac{k+1}{s^{s-1}}-x\right), \text{ for } x \in \left[0, \frac{1}{2^{s-1}}\right]
 $$
 
-We are now ready to proceed with the statement of the basic building block of our neural network agebra, namely the approximation of the squaring function through deep ReLU Network.
+The first equation demonstrates the self-similarity property while the second equation shows the symmetry property. We are now ready to proceed with the statement of the basic building block of our neural network agebra, namely the approximation of the squaring function through deep ReLU Network.
 
 <h3 id="P28"></h3>
+
+**Proposition 2.8** There exists a constant $C>0$ such that for all $\epsilon \in (0, 1/2)$, there is a network $\Phi_\epsilon \in N_{1,1}$ with $L(\Phi_\epsilon) \leq C \log(\epsilon^-1), W(\Phi_\epsilon) = 3, B(\Phi_\epsilon) \leq1, \Phi_\epsilon(0) = 0$, satisfying
+
+$$
+\| \Phi_\epsilon(x) - x^2\|_{L^∞([0,1])} \leq \epsilon
+$$
+
+*Proof.* The proof builds on two rather elementary observations. 
+
+<div style="text-align:center;">
+<img src="/Images/NNT23_22.jpg" alt="3TypesofRegion" 
+style="width:100%; height:auto;">
+</div>
+
+>First Three Steps of Approximating $F(x) = x -x^2$ by an Equispaced Linear Interpolation $I_m$ at $2^m+1$ points
+
+The first one concerns the linear interpolation $I_m: [0, 1] \rightarrow \mathbb{R}, m \in \mathbb{N}$, of the function $F(x) := x - x^2$ at the points $j/2^m, j \in {0, 1, \ldots, 2^m}$, and in particular the self-similarity of the refinement step $I_m \rightarrow I_{m+1}.$ (Later, we will see why we want to approximate the function $x-x^2$ in stead of $x^2$ directly). For every $m \in \mathbb{N}$, the residual $F-I_m$ is identical on each interval between two points of interpolation. Concretely, let $f_m: [0, 2^{-m}] \rightarrow [0, 2^{-2m-2}]$ be defined as $f_m(x) = 2^{-m}x-x^2$ and consider its linear interpolation $h_m: [0, 2^{-m}] \rightarrow [0, 2^{-2m-2}]$ at the midpoint and the endpoints of the interval $[0, 2^{-m}]$ given by
+
+$$
+h_m(x) := \begin{cases} 
+2^{-m-1}x, &x\in [0, 2^{-m-1}]\\
+-2^{-m-1}x + 2^{-2m-1}, &x\in [2^{-m-1}, 2^{-m}]
+\end{cases}
+$$
+
+Direct calculation shows that 
+
+$$
+f_m(x) - h_m(x) = \begin{cases}
+f_{m+1}(x), &x\in [0, 2^{-m-1}]\\
+f_{m+1}(x-2^{-m-1}), &x\in [2^{-m-1}, 2^{-m}]
+\end{cases}
+$$
+
+As $F = f_0$ and $I_1 = h_0$ this implies that, for all $m\in\mathbb{N}$, 
+
+$$
+F(x) - I_m(x) = f_m(x-\frac{j}{2^m}), \quad \text{for }x \in [\frac{j}{2^m}, \frac{j+1}{2^m}], \quad j\in {0, 1, \ldots, 2^m-1}
+$$
+
+and $I_m = \sum_{k=0}^{m-1} H_k$, where $H_k : [0,1] \rightarrow \mathbb{R}$ is given by 
+
+$$
+H_k(x) = h_k(x-j/2^k), \quad \text{for } x \in [\frac{j}{2^k}, \frac{j+1}{2^k}], \quad j \in {0, 1, \ldots, 2^k-1}.
+$$
+
+In general, we define the sawtooth function in each schope (with different m values) as $H_k$, with $h_k$ representing each "spike". By summing $H_k$, we get the linear interpolation $I_m$ that approximates the function $F(x) = x-x^2$. 
+
+Since we have
+
+$$\begin{align*}
+f_0(x) - h_0(x) &= f_1(x)\\
+f_1(x) - h_1(x) &= f_2(x)\\
+f_2(x) - h_2(x) &= f_3(x)\\
+\ldots
+\end{align*}$$
+
+we can rewrite the above equations as:
+
+$$\begin{align*}
+f_0(x) - h_0(x) - h_1(x) - h_2(x) - \ldots -h_{m-1}(x) &= f_1(x) - h_1(x) - h_2(x) - \ldots -h_{m-1}(x) \\
+&= f_2(x) - h_2(x) - \ldots -h_{m-1}(x) \\
+&= f_m(x)
+\end{align*}$$
+
+Due to the self-similarity property of the function, we can write the general form for $x \in [\frac{j}{2^k}, \frac{j+1}{2^k}], j\in {0, 1, \ldots, 2^k-1} $. 
+
+$$\begin{align*}
+F(x) - H_0(x) - H_1(x) - \ldots - H_{m-1}(x) &= F(x) - \sum_{k=0}^{m-1} H_k(x) \\
+&= f_0(x) - \sum_{k=0}^{m-1}h_k(x-\frac{j}{2^k})\\
+&= f_m(x-\frac{j}{2^k})
+\end{align*}$$
+
+Thus we have
+
+$$
+\sup_{x\in[0,1]} |x^2 - (x - I_m(x))| = \sup_{x\in[0,1]}|F(x) - I_m(x)| = \sup_{x\in[0,1]}|f_m(x)| = 2^{-2m-2}
+$$
+
+
 
 <h3 id="R29"></h3>
 

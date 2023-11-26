@@ -6,7 +6,7 @@ grand_parent: Science
 nav_order: 
 ---
 
-## Construct ReLU Neural Network Which Efficiently Approximate Polynomials (Part 1)
+## [Assignment Solutions] Construct ReLU Neural Network Which Efficiently Approximate Polynomials (Part 1)
 
 ---
 
