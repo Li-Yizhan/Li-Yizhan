@@ -189,11 +189,17 @@ F(x) - H_0(x) - H_1(x) - \ldots - H_{m-1}(x) &= F(x) - \sum_{k=0}^{m-1} H_k(x) \
 
 Thus we have
 
-$$
-\sup_{x\in[0,1]} |x^2 - (x - I_m(x))| = \sup_{x\in[0,1]}|F(x) - I_m(x)| = \sup_{x\in[0,1]}|f_m(x)| = 2^{-2m-2}
-$$
+$$\begin{align*}
+\sup_{x\in[0,1]} |x^2 - (x - I_m(x))| &= \sup_{x\in[0,1]} |x^2 - x + I_m(x)|\\
+&= \sup_{x\in[0,1]} |(x-x^2) - I_m(x)|\\
+&=\sup_{x\in[0,1]}|F(x) - I_m(x)| \\
+&= \sup_{x\in[0,1]}|f_m(x)| \\
+&= 2^{-2m-2}
+\end{align*}$$
 
+Here we can see why we previously set $F(x)$ to be $x-x^2$ instead of $x^2$. We can find the approximation error easily in this way. It paves way for the neural network realization in the next step. 
 
+The second observation we build on is a manisfestation of the sawtooth construction described above and leads to economic realizations of the $H_k$ through k-layer networks with two neurons in each layer; a third neuron is used to realize the approximation $x-I_m$ to $x^2$
 
 <h3 id="R29"></h3>
 
