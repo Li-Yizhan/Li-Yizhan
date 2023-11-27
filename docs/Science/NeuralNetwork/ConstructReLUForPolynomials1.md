@@ -176,6 +176,3 @@ $$
 
 Consider the function $g: [0, 1] \rightarrow [0, 1]$
 
-$$
-
-$$

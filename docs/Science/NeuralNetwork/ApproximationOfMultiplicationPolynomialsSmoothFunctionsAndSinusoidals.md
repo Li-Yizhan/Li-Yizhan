@@ -199,7 +199,69 @@ $$\begin{align*}
 
 Here we can see why we previously set $F(x)$ to be $x-x^2$ instead of $x^2$. We can find the approximation error easily in this way. It paves way for the neural network realization in the next step. 
 
-The second observation we build on is a manisfestation of the sawtooth construction described above and leads to economic realizations of the $H_k$ through k-layer networks with two neurons in each layer; a third neuron is used to realize the approximation $x-I_m$ to $x^2$
+The second observation we build on is a manisfestation of the sawtooth construction described above and leads to economic realizations of the $H_k$ through k-layer networks with two neurons in each layer; a third neuron is used to realize the approximation $x-I_m$ to $x^2$. 
+
+Concretely, let $s_k(x) := 2^{-1} \rho(x) - \rho(x-2^{-2k-1})$, and note that, for $x \in [0,1]$, $H_0 = s_0$, we get $H_k = s_k \circ H_{k-1}$. We can thus construct a network realizing $x-I_m(x)$, for $x\in[0,1]$, as follows. Let $A_1 := (1,1,1)^T\in ℝ^{3\times1}, b_1 := (0, -2^{-1}, 0)^T \in ℝ^3$,
+
+$$
+A_l := \begin{pmatrix}
+2^{-1} \quad -1 \quad 0 \\
+2^{-1} \quad -1 \quad 0 \\
+-2^{-1} \quad 1 \quad 1
+\end{pmatrix} \in ℝ^{3 \times 3}, \quad b_l := \begin{pmatrix}
+0\\
+-2^{-2l+1}\\
+0
+\end{pmatrix}, \text{ for }l\in {2, \ldots, m} 
+$$
+
+and $A_{m+1} := (-2,1, 1) \in ℝ^{1 \times 3}, b_{m+1} = 0$. 
+
+Here is a brief explanation of the above construction. We can expand $A_1x+b_1$ in the following way:
+
+$$\begin{align*}
+A_1x + b_1 &= \begin{pmatrix} 1\\1\\1\end{pmatrix}x + \begin{pmatrix} 0\\-2^{-1}\\0\end{pmatrix} \\ &=\begin{pmatrix} x\\x-2^{-1}\\x\end{pmatrix}
+\end{align*}$$
+
+If we continue constructing the neural network with $A_2$ and $b_2$, we get:
+
+$$\begin{align*}
+A_2(\rho (A_1x + b_1)) + b_2 &= \begin{pmatrix}
+2^{-1} \quad -1 \quad 0 \\
+2^{-1} \quad -1 \quad 0 \\
+-2^{-1} \quad 1 \quad 1
+\end{pmatrix} \begin{pmatrix} \rho(x)\\\rho(x-2^{-1})\\\rho(x)\end{pmatrix}  + \begin{pmatrix} 0 \\ -2^{-3} \\0\end{pmatrix}\\
+&= \begin{pmatrix}2^{-1} \rho(x) - \rho(x-2^{-2k-1})\\
+2^{-1} \rho(x) - \rho(x-2^{-2k-1}) \\
+-(2^{-1} \rho(x) - \rho(x-2^{-2k-1} + \rho(x)))
+\end{pmatrix}+ \begin{pmatrix} 0 \\ -2^{-3} \\0\end{pmatrix}\\
+&= \begin{pmatrix}2^{-1} \rho(x) - \rho(x-2^{-2k-1})\\
+2^{-1} \rho(x) - \rho(x-2^{-2k-1}) -2^{-3}\\
+-(2^{-1} \rho(x) - \rho(x-2^{-2k-1}) + \rho(x)))
+\end{pmatrix}
+\end{align*}$$
+
+It is clear that the first rows realizes the sawtooth function $H_0$. If we consider $H_0$ as the new input $x$ for the next layer, then it is also clear that the second layer is calculating the new $x-2^{-2k-1}$. Therefore, the first two layers are indeed iteratively implementing the sawtooth function $H_k$. As for the third layer in the above equation, we find the value of $x - H_0$, which is also $x - I_1$ since $I_1 = H_0$. We can foresee that as we add more layers, the third row's value will become
+
+$$\begin{align*}
+((((x - H_0) - H_1) - H_2) - \ldots -H_{m-2}) = x - I_{m-1}
+\end{align*}$$
+
+Eventually, in the last layer, we apply $A_{m+1}$, the final outcome turns out to be
+
+$$\begin{align*}
+(-2,1, 1)\begin{pmatrix} \rho(H_{m-2})\\\rho(H_{m-2} - 2^{-2k-1}) \\ \rho(x - \sum_{k=0}^{m-2} H_k(x) )\end{pmatrix} &= x-\sum_{k=0}^{m-2} H_k(x) - H_{m-1}(x) \\
+&= x - \sum_{k=0}^{m-1} H_k(x) \\
+&= x - I_m
+\end{align*}$$
+
+Now, setting $W_l(x) := A_lx + b_l, l \in {1, 2, \ldots, m+1}$, we have
+
+$$
+\tilde{\Phi}_m := W_{m+1} \circ \rho \circ W_m \circ \rho \circ \ldots \circ \rho \circ W_1
+$$
+
+A direct calculation yields $\tilde{\Phi}_m(x) = x - \sum_{k=0}^{m-1} H_k(x)$, for $x \in [0,1]$. The proof is completed upon noting that the network $\Phi_\epsilon := \tilde{\Phi}_{\left\lceil \log(\epsilon^{-1})/2\right\rceil-1}$ satisfies the claimed properties.
 
 <h3 id="R29"></h3>
 
