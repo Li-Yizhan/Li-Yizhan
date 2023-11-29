@@ -19,7 +19,7 @@ If we consider an image as a 2-D matrix, and let the value of each matrix elemen
 style="width:50%; height:auto;">
 </div>
 
-<center>Image Derivatives</center>
+>Image Derivatives
 
 </p>
 
@@ -35,7 +35,7 @@ In general, we can find three types of pixel pattern within a patch:
 style="width:100%; height:auto;">
 </div>
 
-<center>Three Types of pixel pattern</center>
+>Three Types of pixel pattern
 
 </p>
 
@@ -93,7 +93,7 @@ $$
 style="width:50%; height:auto;">
 </div>
 
-<center>Visualization of Surface E</center>
+>Visualization of Surface E
 
 </p>
 
