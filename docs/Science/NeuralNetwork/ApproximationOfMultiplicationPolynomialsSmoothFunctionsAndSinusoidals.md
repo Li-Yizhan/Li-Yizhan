@@ -329,7 +329,7 @@ $$\begin{align*} \tag{2.7}
 &\leq 2 \sup_{z \in [0,1] } \lvert\tilde\Phi_m(z) - z^2\rvert \leq 2^{-2m-1}
 \end{align*}$$
 
-Given that $(x,y) \in [-D,D]^2$, we can set $(\frac{|x+y|}{2D})$ and $(\frac{|x-y|}{2D})$ to be $z$ with the new interval $z \in [0,1]$. Then, it utilized triangle inequality, $\lvert x + y \rvert \leq \lvert x \rvert + \lvert y \rvert $, to show that the approximation error for the constructed neural network $ \epsilon \leq 2 \times 2^{-2m-2} = 2^{-2m-1}$.
+Given that $(x,y) \in [-D,D]^2$, we can set $(\frac{\lvert x+y \rvert}{2D})$ and $(\frac{\lvert x-y\rvert}{2D})$ to be $z$ with the new interval $z \in [0,1]$. Then, it utilized triangle inequality, $\lvert x + y \rvert \leq \lvert x \rvert + \lvert y \rvert $, to show that the approximation error for the constructed neural network $ \epsilon \leq 2 \times 2^{-2m-2} = 2^{-2m-1}$.
 
 Next, let $\Psi_D(x) = D^2x$ be the scalar multiplication network and take $\Phi_{D,\epsilon} := \Psi_D \circ \Psi_{m(D,\epsilon)}$, where $m(D,\epsilon) := \lceil 2^{-1}(1+log(D^2\epsilon^{-1}))\rceil$. 
 
