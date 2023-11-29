@@ -148,9 +148,9 @@ For the sake of simplicity of expositioin, <ins>we state the following two lemma
 
 **Lemma 2.5** Let $n, L \in ℕ$ and, for $i \in \{1, 2, \ldots, n\}$, let $d_i, d_i' \in ℕ$ and $\Phi_i \in N_{d_i,d_i'}$ with $L(\Phi_i) = L$. Then, there exists a network $\Psi \in N_{\sum_{i=1}^{n}d_i, \sum_{i=1}^{n}d_i'}$ with 
 * $L(\Psi) = L$, 
-* $M(\Psi) = \sum_{i=1}^{n} M(\Phi_i)$, 
-* $W(\Psi) = \sum_{i=1}^{n} W(\Phi_i)$, 
-* $B(\Psi) = max_i B(\Phi_i)$, 
+* $M(\Psi) \leq \sum_{i=1}^{n} M(\Phi_i)$, 
+* $W(\Psi) \leq \sum_{i=1}^{n} W(\Phi_i)$, 
+* $B(\Psi) \leq max_i B(\Phi_i)$, 
 
 and satisfying
 

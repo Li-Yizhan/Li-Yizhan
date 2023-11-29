@@ -189,7 +189,7 @@ F(x) - H_0(x) - H_1(x) - \ldots - H_{m-1}(x) &= F(x) - \sum_{k=0}^{m-1} H_k(x) \
 
 Thus we have
 
-$$\begin{align*}
+$$\begin{align*} \tag{2.4}
 \sup_{x\in[0,1]} |x^2 - (x - I_m(x))| &= \sup_{x\in[0,1]} |x^2 - x + I_m(x)|\\
 &= \sup_{x\in[0,1]} |(x-x^2) - I_m(x)|\\
 &=\sup_{x\in[0,1]}|F(x) - I_m(x)| \\
@@ -287,7 +287,7 @@ i.e., $ρ(λx) = λρ(x), \text{ for all } λ ≥ 0, x ∈ ℝ$.
 
 **Proposition 2.10.** There exists a constant $C > 0$ such that, for all $D \in ℝ_+$ and $\epsilon \in (0, 1/2)$, there is a network $\Phi_{D, \epsilon} \in N_{2,1}$ with $L(\Phi_{D, \epsilon}) \leq C(log(\left\lceil D\right\rceil)) + log(\epsilon^{-1})$, $W(\Phi_{D, \epsilon}) \leq 5$, $B(\Phi_{D, \epsilon}) \leq 1$, satisfying $\Phi_{0, x} = (\Phi_{x, 0}) = 0$, for all $x \in ℝ$, and 
 
-$$
+$$ \tag{2.5}
 \lVert\Phi_{x, y} - xy \rVert _{L^\infty([-D,D]^2)} \leq \epsilon
 $$
 
@@ -313,11 +313,40 @@ $$
 
 and $A_{m+2} := (-2^{-1},1,1,2^{-1}) \in ℝ^{1 \times 5}, b_{m+2} := 0$. A direct calculation yields 
 
-$$
-\tilde\Psi_m(x,y) = \frac{|x+y}{2D} 
-$$
+$$\begin{align*} \tag{2.6}
+\tilde\Psi_m(x,y) &= \left(\frac{|x+y|}{2D} - \sum_{k=0}^{m-1}H_k \left( \frac{|x+y|}{2D}\right)\right) - \left(\frac{|x-y|}{2D} - \sum_{k=0}^{m-1}H_k \left( \frac{|x-y|}{2D}\right)\right) \\
+&= \tilde\Phi_m \left( \frac{|x+y|}{2D}\right) - \tilde\Phi_m \left( \frac{|x-y|}{2D}\right)
+\end{align*}$$
+
+Since $I_m = \sum_{k=0}^{m-1} H_k$, $\tilde\Psi_m(x,y)$ can be rewritten as two separate neural networks that approximate $(\frac{|x+y|}{2D})^2$ and $(\frac{|x-y|}{2D})^2$. 
+
+With (2.4) this implies
+
+$$\begin{align*} \tag{2.7}
+&\sup_{(x,y) \in [-D,D]^2} \lvert \tilde\Psi_m(x,y) - \frac{xy}{D^2} \rvert \\
+&= \sup_{(x,y) \in [-D,D]^2} \left\lvert \left( \tilde\Phi_m \left(\frac{|x+y|}{2D} \right) - \tilde\Phi_m \left(\frac{|x-y|}{2D} \right) \right) - \left( \left(\frac{|x+y|}{2D}\right)^2 - \left(\frac{|x-y|}{2D}\right)^2\right)
+\right\rvert \\
+&\leq 2 \sup_{z \in [0,1] } |\tilde\Phi_m(z) - z^2| \leq 2^{-2m-1}
+\end{align*}$$
+
+Given that $(x,y) \in [-D,D]^2$, we can set $(\frac{|x+y|}{2D})$ and $(\frac{|x-y|}{2D})$ to be $z$ with the new interval $z \in [0,1]$. Then, it utilized triangle inequality, $\lvert x + y \rvert \leq \lvert x \rvert + \lvert y \rvert $, to show that the approximation error for the constructed neural network $ \epsilon \leq 2 \times 2^{-2m-2} = 2^{-2m-1}$.
+
+Next, let $\Psi_D(x) = D^2x$ be the scalar multiplication network and take $\Phi_{D,\epsilon} := \Psi_D \circ \Psi_{m(D,\epsilon)}$, where $m(D,\epsilon) := \lceil 2^{-1}(1+log(D^2\epsilon^{-1}))\rceil$. 
+
+$$\begin{align*} 
+\epsilon &= D^2 \times 2^{-2m-1} \\
+\log_2(\epsilon) &= log_2(D^2) + (-2m-1) \\
+2m+1 &= \log_2 (D^2 \cdot \epsilon^{-1})\\
+m &= 2^{-1}(-1+log(D^2\epsilon^{-1}))
+\end{align*}$$
+
+In the lecture notes, they take $m$ to be slightly bigger than needed, together with the ceiling, to make it always a positive integer.
+
+Then, the error estimate 2.5 establishes the desired bounds on depth, width, and weight magnitude. Finally, $\Phi_{D, \epsilon}(0,x) = (\Phi_{D, \epsilon}(x,0) = 0$, for all $x \in ℝ$, follows directly from 2.6.
 
 <h3 id="P210"></h3>
+
+**Remark 2.11.** Note that the multiplication network just constructed has weights bounded by 1 irrespectively of the size D of the domain. This is accomplished by trading network depth for weight magnitude.
 
 <h3 id="R211"></h3>
 
