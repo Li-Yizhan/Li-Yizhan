@@ -326,7 +326,7 @@ $$\begin{align*} \tag{2.7}
 &\sup_{(x,y) \in [-D,D]^2} \lvert \tilde\Psi_m(x,y) - \frac{xy}{D^2} \rvert \\
 &= \sup_{(x,y) \in [-D,D]^2} \left\lvert \left( \tilde\Phi_m \left(\frac{|x+y|}{2D} \right) - \tilde\Phi_m \left(\frac{|x-y|}{2D} \right) \right) - \left( \left(\frac{|x+y|}{2D}\right)^2 - \left(\frac{|x-y|}{2D}\right)^2\right)
 \right\rvert \\
-&\leq 2 \sup_{z \in [0,1] } |\tilde\Phi_m(z) - z^2| \leq 2^{-2m-1}
+&\leq 2 \sup_{z \in [0,1] } \lvert\tilde\Phi_m(z) - z^2\rvert \leq 2^{-2m-1}
 \end{align*}$$
 
 Given that $(x,y) \in [-D,D]^2$, we can set $(\frac{|x+y|}{2D})$ and $(\frac{|x-y|}{2D})$ to be $z$ with the new interval $z \in [0,1]$. Then, it utilized triangle inequality, $\lvert x + y \rvert \leq \lvert x \rvert + \lvert y \rvert $, to show that the approximation error for the constructed neural network $ \epsilon \leq 2 \times 2^{-2m-2} = 2^{-2m-1}$.
@@ -349,6 +349,8 @@ Then, the error estimate 2.5 establishes the desired bounds on depth, width, and
 **Remark 2.11.** Note that the multiplication network just constructed has weights bounded by 1 irrespectively of the size D of the domain. This is accomplished by trading network depth for weight magnitude.
 
 <h3 id="R211"></h3>
+
+**Proposition 2.12.** There exists a constant $C > 0$
 
 <h3 id="P212"></h3>
 
