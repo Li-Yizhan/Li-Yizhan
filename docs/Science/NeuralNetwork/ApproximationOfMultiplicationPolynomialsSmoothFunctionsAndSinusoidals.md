@@ -291,8 +291,7 @@ $$
 \lVert\Phi_{x, y} - xy \rVert _{L^\infty([-D,D]^2)} \leq \epsilon
 $$
 
-
-*Proof.* We first note that, w.l.o.g., we can assume $D \geq 1$ in the following, as for $D < 1$, we can simply employ the network constructed for $D = 1$ to guarantee the claimed properties. The proof builds on the polarization identity and essentially constructs two squaring networks according to Proposition 2.8 which share the neuron responsible for summing up the $H_k$, preceded by a layer mapping $(x,y)$ to $(|x+y|/2D, |x-y|/2D)$ and followed by layers realizing the multiplication by $D^2$ through weights bounded by 1. Specifically, consider the network $\tilde\Psi_m$ with associated matrices $A_l$ and vectors $b_l$ given by 
+*Proof.* 
 
 $$
 A_1 := \frac{1}{2D} \begin{pmatrix}1 & 1 \\ -1 & -1 \\ 1 & -1 \\ -1 & 1\end{pmatrix} \in ℝ^{4 \times 2}, \quad b_1 := 0 \in ℝ^4 \\
