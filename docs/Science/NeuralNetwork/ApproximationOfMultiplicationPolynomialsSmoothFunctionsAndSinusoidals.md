@@ -288,7 +288,7 @@ i.e., $ρ(λx) = λρ(x), \text{ for all } λ ≥ 0, x ∈ ℝ$.
 **Proposition 2.10.** There exists a constant $C > 0$ such that, for all $D \in ℝ_+$ and $\epsilon \in (0, 1/2)$, there is a network $\Phi_{D, \epsilon} \in N_{2,1}$ with $L(\Phi_{D, \epsilon}) \leq C(log(\left\lceil D\right\rceil)) + log(\epsilon^{-1})$, $W(\Phi_{D, \epsilon}) \leq 5$, $B(\Phi_{D, \epsilon}) \leq 1$, satisfying $\Phi_{0, x} = (\Phi_{x, 0}) = 0$, for all $x \in ℝ$, and 
 
 $$
-\|\Phi_{x, y} - xy\|_{L^\infty([-D,D]^2)} \leq \epsilon
+\lVert\Phi_{x, y} - xy \rVert _{L^\infty([-D,D]^2)} \leq \epsilon
 $$
 
 *Proof.* We first note that, w.l.o.g., we can assume $D \geq 1$ in the following, as for $D < 1$, we can simply employ the network constructed for $D = 1$ to guarantee the claimed properties. The proof builds on the polarization identity and essentially constructs two squaring networks according to Proposition 2.8 which share the neuron responsible for summing up the $H_k$, preceded by a layer mapping $(x,y)$ to $(|x+y|/2D, |x-y|/2D)$ and followed by layers realizing the multiplication by $D^2$ through weights bounded by 1. Specifically, consider the network $\tilde\Psi_m$ with associated matrices $A_l$ and vectors $b_l$ given by 
