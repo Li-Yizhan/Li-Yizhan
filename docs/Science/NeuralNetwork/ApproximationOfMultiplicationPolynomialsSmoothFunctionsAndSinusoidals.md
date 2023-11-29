@@ -250,7 +250,9 @@ $$\begin{align*}
 Eventually, in the last layer, we apply $A_{m+1}$, the final outcome turns out to be
 
 $$\begin{align*}
-(-2,1, 1)\begin{pmatrix} \rho(H_{m-2})\\\rho(H_{m-2} - 2^{-2k-1}) \\ \rho(x - \sum_{k=0}^{m-2} H_k(x) )\end{pmatrix} &= x-\sum_{k=0}^{m-2} H_k(x) - H_{m-1}(x) \\
+(-2,1, 1)\begin{pmatrix} \rho(H_{m-2})\\\rho(H_{m-2} - 2^{-2(m-2)-1}) \\ \rho(x - \sum_{k=0}^{m-2} H_k(x) )\end{pmatrix} 
+&= \rho(x-\sum_{k=0}^{m-2} H_k(x)) - H_{m-1}(x) \\
+&= x-\sum_{k=0}^{m-2} H_k(x) - H_{m-1}(x) \\
 &= x - \sum_{k=0}^{m-1} H_k(x) \\
 &= x - I_m
 \end{align*}$$
@@ -263,7 +265,33 @@ $$
 
 A direct calculation yields $\tilde{\Phi}_m(x) = x - \sum_{k=0}^{m-1} H_k(x)$, for $x \in [0,1]$. The proof is completed upon noting that the network $\Phi_\epsilon := \tilde{\Phi}_{\left\lceil \log(\epsilon^{-1})/2\right\rceil-1}$ satisfies the claimed properties.
 
+$\log(\epsilon^{-1})/2 -1$ is derived from the equality $2^{-2m-2} = \epsilon$
+
+$$\begin{align*}
+\log_2(\epsilon) &= \log_2(2^{-2m-2}) \\
+\log_2(\epsilon) &= -2m-2 \\
+m &= -\log_2(\epsilon)/2 - 1 \\ 
+&= \log(\epsilon^{-1})/2 -1
+\end{align*}$$
+
+If we graph the function about $\epsilon$, we will see that it is monotonously decreasing within the range (0, 1/2). It is intuitive, because we need denser interpolations to achieve a smaller approximation error, resulting in having more layers in our neural network model. 
+
+The symmetry properties of $g_s(x)$ lead to the interpolation error in the proof of Proposition 2.8 to be identical in each interval, with the maximum error taken
+on at the center of the respective intervals. More importantly, however, the approximating neural networks realize linear interpolation at a number of points that grows exponentially in network depth. This is a manifestation of the fact that the number of linear regions in the sawtooth construction grows exponentially with depth, which is optimal. We emphasize that the theory developed in this paper hinges critically on this optimality property of the sawtooth construction, which, however, is brittle in the sense that networks with weights obtained through training will, in general, not exhibit exponential growth of the number of linear regions with network depth. 
+
+We proceed to the construction of networks that approximate the multiplication function over the interval $[−D, D]$. This will be effected by using the result on the approximation of $x^2$ just established combined with the polarization identity $xy =
+\frac{1}{4}((x+y)^2 −(x−y)^2)$, the fact that $ρ(x)+ ρ(−x) = |x|$, and a scaling argument exploiting that the ReLU function is positive homogeneous,
+i.e., $ρ(λx) = λρ(x), \text{ for all } λ ≥ 0, x ∈ ℝ$.
+
 <h3 id="R29"></h3>
+
+**Proposition 2.10.** There exists a constant $C > 0$ such that, for all $D \in ℝ_+$ and $\epsilon \in (0, 1/2)$, there is a network $\Phi_{D, \epsilon} \in N_{2,1}$ with $L(\Phi_{D, \epsilon}) \leq C(log(\left\lceil D\right\rceil)) + log(\epsilon^{-1})$, $W(\Phi_{D, \epsilon}) \leq 5$, $B(\Phi_{D, \epsilon}) \leq 1$, satisfying $\Phi_{0, x} = (\Phi_{x, 0}) = 0$, for all $x \in ℝ$, and 
+
+$$
+\|\Phi_{x, y} - xy\|_{L^\infty([-D,D]^2)} \leq \epsilon
+$$
+
+*Proof.* 
 
 <h3 id="P210"></h3>
 
