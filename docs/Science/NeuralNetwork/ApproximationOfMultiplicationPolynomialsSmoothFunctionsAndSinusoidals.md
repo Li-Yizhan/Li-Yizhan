@@ -318,7 +318,7 @@ $$\begin{align*} \tag{2.6}
 &= \tilde\Phi_m \left( \frac{|x+y|}{2D}\right) - \tilde\Phi_m \left( \frac{|x-y|}{2D}\right)
 \end{align*}$$
 
-Since $I_m = \sum_{k=0}^{m-1} H_k$, $\tilde\Psi_m(x,y)$ can be rewritten as two separate neural networks that approximate $(\frac{|x+y|}{2D})^2$ and $(\frac{|x-y|}{2D})^2$. 
+Since $I_m = \sum_{k=0}^{m-1} H_k$, $\tilde\Psi_m(x,y)$ can be rewritten as two separate neural networks that approximate $(\frac{\lvert x+y \rvert}{2D})^2$ and $(\frac{\lvert x-y \rvert}{2D})^2$. 
 
 With (2.4) this implies
 
@@ -350,7 +350,7 @@ Then, the error estimate 2.5 establishes the desired bounds on depth, width, and
 
 <h3 id="R211"></h3>
 
-**Proposition 2.12.** There exists a constant $C > 0$
+**Proposition 2.12.** There exists a constant $C > 0$ such that for all $m \in \mathbb{N}, a = (a_i)_{i=0}^m \in ℝ^{m+1}$
 
 <h3 id="P212"></h3>
 
