@@ -358,6 +358,18 @@ $$
 
 *Proof.* As in the proof of Proposition 2.10 and for the same reason, it suffices to consider the case $D \geq 1$. For $m=1$, we simply have an affine transformation. The proof for $m \geq 2$ will be effected by realizing the monomial $x^k, k \geq 2,$ through iterative composition of multiplication networks and combining this with a construction that uses the network realizing $x^k$ not only as a building block in the network implementing $x^{k+1}$ but also to approximate the partial sum $\sum_{i=0}^k a_ix^i$ in parallel.
 
+We start by setting $B_k = B_k(D, \eta) := \lceil D\rceil^k + \eta \sum_{s=0}^{k-2}\lceil D \rceil^s, k \in \mathbb{N}, \eta \in ℝ_+$ and take $\Phi_{B_k,\eta}$ to be the multiplication networks from Proposition 2.10. Next, we recursively define the functions
+
+$$
+f_{k,D,\eta}(x) = \Phi_{B_{k-1},\eta}(x, f_{k-1,D,\eta}(x)), \quad k \geq 2,
+$$
+
+with $f_{0,D,\eta}(x) = 1$ and $f_{1, D,\eta}(x) = x$. For notational simplicity, we use the abbreviation $f_k = f_{k,D,\eta}(x)$ in the following. First, we verify that the $f_{k,D,\eta}(x)$ approximate monomials sufficiently well. Specifically, we prove by induction that
+
+$$
+\lVert f_{k,D,\eta}(x) - x^k \rVert 
+$$
+
 <h3 id="P212"></h3>
 
 <h3 id="T213"></h3>
