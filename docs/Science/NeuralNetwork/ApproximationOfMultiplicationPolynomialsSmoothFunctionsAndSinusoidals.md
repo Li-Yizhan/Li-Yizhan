@@ -350,7 +350,13 @@ Then, the error estimate 2.5 establishes the desired bounds on depth, width, and
 
 <h3 id="R211"></h3>
 
-**Proposition 2.12.** There exists a constant $C > 0$ such that for all $m \in \mathbb{N}, a = (a_i)_{i=0}^m \in ℝ^{m+1}$
+**Proposition 2.12.** There exists a constant $C > 0$ such that for all $m \in \mathbb{N}, a = (a_i)_{i=0}^m \in ℝ^{m+1}, D \in ℝ_+$, and $\epsilon \in (0, 1/2)$, there is a network $\Phi_{a, D, \epsilon} \in N_{1,1}$ with $L(\Phi_{a,D,\epsilon}) \leq C_m(\log(\epsilon^{-1}) + m \log(\lceil D\rceil) + \log(m) + \log(\lceil \lVert a\rVert_\infty \rceil)), W(\Phi_{a,D,\epsilon}) \leq 1$, and satisfying 
+
+$$
+\lVert \Phi_{a,D,\epsilon}(x) - \sum_{i=0}^{m}a_ix^i\rVert_{L^\infty([-D,D])} \leq \epsilon
+$$
+
+*Proof.* As in the proof of Proposition 2.10 and for the same reason, it suffices to consider the case $D \geq 1$. For $m=1$, we simply have an affine transformation. The proof for $m \geq 2$ will be effected by realizing the monomial $x^k, k \geq 2,$ through iterative composition of multiplication networks and combining this with a construction that uses the network realizing $x^k$ not only as a building block in the network implementing $x^{k+1}$ but also to approximate the partial sum $\sum_{i=0}^k a_ix^i$ in parallel.
 
 <h3 id="P212"></h3>
 
