@@ -94,7 +94,7 @@ As mentioned earlier, norms are mathematical functions that measure the size or 
 There are also loss functions used in machine learning and optimization that do not directly correspond to any specific norm. These loss functions are designed to handle particular scenarios or requirements and provide flexibility beyond what norms can offer. 
 
 - Cross-Entropy Loss
-    - Binary Classification: $-(y \log{(\^y)}+(1-y)\log{(1-\^{y})}) $
+    - Binary Classification: $-(y \log{(\hat y)}+(1-y)\log{(1-\hat{y})}) $
 
 - Hinge Loss
 
