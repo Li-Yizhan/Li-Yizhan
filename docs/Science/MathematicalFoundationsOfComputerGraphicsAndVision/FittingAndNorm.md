@@ -105,8 +105,9 @@ There are also loss functions used in machine learning and optimization that do 
 When applied to fitting, the **L2 Norm (Euclidean Norm)** minimizes the sum of squared residuals. Here, the residual is the vertical distance between actual y value and the predicted y value $(ax+b)$: 
 
 $$
-\min_{a,b} \sum_{i=1}^{n} (y_i - (ax_i + b))^2
+\min _{a,b} \sum_{i=1}^{n} (y_i - (ax_i + b))^2
 $$
+
 >Fitting Cost Function for L2 Norm
 
 To minimize the function $R(a,b) = \sum_{i=1}^{n} (y_i - (ax_i + b))^2$, we use calculus, specifically the gradient. The gradient of a function points in the direction of the steepest ascent. By setting the gradient to zero, we find the critical points, which are potential minima, maxima, or saddle points. If we can prove that the objective function $R(a,b)$ is convex, the critical points would be corresponded to the minimum. 
@@ -219,4 +220,40 @@ The L2 norm offers following advantages:
 - Differentiability: the squared fitting cost function is smooth and differentiable, making it easier to work with mathematically, particularly for optimization using calculus. 
 
 ## Linear System
+
+A linear system is a collection of linear equations involving the same set of variables. It can be written in the matrix form $Ax = b$, where
+- $A$ is a $m \times n$ matrix of coefficients, 
+- $x$ is a $n \times 1$ column vector of variables, 
+- $b$ is a $m \times 1$ column vector of constants. 
+
+There are three cases based on the relationship between $m$ (number of equations) and $n$ (number of variables):
+
+1. **Critical Case $(m = n)$**: 
+    - The number of the equations equal the number of variables
+    - The system may have a unique solution of the determinant of the coefficient matrix $A$ is non-zero
+2. **Over-Determined $(m > n)$**:
+    - There are more equations than variables
+    - Usually such a system does not have a solution that satisfies all equations simultaneously. In practice, a least-squares solution can be used to find the best approximate solution. 
+3. **Under-Determined $(m < n)$**:
+    - There are fewer equations than variables
+    - Such systems have infinitely many solutions or a "family" of solutions because there are more degrees of freedom (variables) than constraints (equations)
+
+The example of **line fitting** is typically an over-determined case. For line fitting, we have n equations:
+
+$$
+\begin{cases}
+    y_1 = a x_1 + b \\
+    y_2 = a x_2 + b \\
+    \ldots \\
+    y_n = a x_n + b
+\end{cases}
+$$
+
+Meanwhile, there are only two variables $a$ and $b$. Therefore, it implies that there normally isn't an exact solution that will pass through all data points. Hence, the system is over-determined. 
+
+## Linear Programming
+
+Solving linear system with L2 norm is relatively easy. We know that by finding the gradient using calculus, we can compute the critical point on the error surface that represents the minimal residual. As for L1 norm, however, we can not compute the gradient since the function with absolute value might not be differentiable everywhere. 
+
+## Weighted Least Squares (WLS)
 
