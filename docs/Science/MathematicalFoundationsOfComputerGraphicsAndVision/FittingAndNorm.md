@@ -186,6 +186,7 @@ For the Hessian matrix we constructed, both conditions are satisfied:
 2. $\det(H) = n \sum_{i=1}^{n} x_i^2 - (\sum_{i=1}^{n} x_i)^2 \geq 0$ (Cauchy-Schwarz inequality)
 
 Therefore, we can conclude that the fitting cost function $R(a,b)$ is always convex. To find the critical point (minimum error), we need to solve the following two equations:
+
 $$
 \begin{align*}
 \frac{\partial R}{\partial a} &= -2 \sum_{i=1}^{n} (y_i - (ax_i + b)) x_i = 0 \\
@@ -193,9 +194,29 @@ $$
 \end{align*}
 $$
 
+*Numerical example:*
+
+| x | y |
+| - | - |
+| 1 | 2 |
+| 2 | 3 |
+| 3 | 5 |
+
+The visualization of these data points and the corresponding best fitting line are shown at the beginning of the page. 
+
+The visualization of sum of square error surface is shown below. We can verify that it indeed has a convex shape. 
+
+<div style="text-align:center;">
+<img src="/Images/SumOfSquareErrorSurface.png" alt="SumOfSquareErrorSurface" 
+style="width:50%; height:auto;">
+</div>
+
+>Sum of Squared Errors Surface
+
 The L2 norm offers following advantages:
 - Non-negativity: squaring ensures that all error contributions are positive, so errors don't cancel each other out.
 - Emphasizes Larger Errors: squaring disproportionately penalizes larger errors.
 - Differentiability: the squared fitting cost function is smooth and differentiable, making it easier to work with mathematically, particularly for optimization using calculus. 
 
 ## Linear System
+
