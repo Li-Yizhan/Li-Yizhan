@@ -38,8 +38,9 @@ style="width:50%; height:auto;">
 In mathematical terms, a **norm** is a function that assigns a non-negative length or size to vectors in a vector space. In the context of fitting, the choice of norm determines how the fitting cost is measured, leading to different optimization obectives and thus different fitting results. 
 
 $$
-||\mathbf{x}||_p = \left( \sum_{i=1}^{n} |x_i|^p \right)^{1/p}
+\lvert \lvert \mathbf{x} \rvert \rvert _p = \left( \sum_{i=1}^{n} |x_i|^p \right)^{1/p}
 $$
+
 >General Lp Norm
 
 For instance, let $x = (-3, 0, 4):$
@@ -255,5 +256,4 @@ Meanwhile, there are only two variables $a$ and $b$. Therefore, it implies that 
 
 Solving linear system with L2 norm is relatively easy. We know that by finding the gradient using calculus, we can compute the critical point on the error surface that represents the minimal residual. As for L1 norm, however, we can not compute the gradient since the function with absolute value might not be differentiable everywhere. 
 
-## Weighted Least Squares (WLS)
 
