@@ -86,10 +86,10 @@ $$
 As mentioned earlier, norms are mathematical functions that measure the size or length of a vector in a vector space. Commonly used norms in the context of loss functions include:
 
 - L2 Norm (Euclidean Norm)
-    - Loss Function: Mean Squared Error (MSE): $\frac{1}{n} \sum_{i=1}^{n} (y_i - \^{y_i})^2$
+    - Loss Function: Mean Squared Error (MSE): $\frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y_i})^2$
 
 - L1 Norm (manhattan Norm)
-    - Loss function: Mean Absolute Error (MAE): $\frac{1}{n} \sum_{i=1}^{n} |y_i - \^{y_i}|$
+    - Loss function: Mean Absolute Error (MAE): $\frac{1}{n} \sum_{i=1}^{n} |y_i - \hat{y_i}|$
 
 There are also loss functions used in machine learning and optimization that do not directly correspond to any specific norm. These loss functions are designed to handle particular scenarios or requirements and provide flexibility beyond what norms can offer. 
 
