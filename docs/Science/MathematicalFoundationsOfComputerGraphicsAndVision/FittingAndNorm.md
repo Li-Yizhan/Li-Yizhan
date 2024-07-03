@@ -38,7 +38,7 @@ style="width:50%; height:auto;">
 In mathematical terms, a **norm** is a function that assigns a non-negative length or size to vectors in a vector space. In the context of fitting, the choice of norm determines how the fitting cost is measured, leading to different optimization obectives and thus different fitting results. 
 
 $$
-\|\mathbf{x}\|_p = \left( \sum_{i=1}^{n} |x_i|^p \right)^{1/p}
+||\mathbf{x}||_p = \left( \sum_{i=1}^{n} |x_i|^p \right)^{1/p}
 $$
 >General Lp Norm
 
@@ -172,8 +172,8 @@ Let $A$ be a symmetric matrix $(A = A^T)$ in $\mathbb{R}^{n \times n}$. We say t
 3. If neither $A$ nor $-A$ is positive semidefinite, we say that $A$ is **indefinite**.
 
 Let $A$ be a symmetric matrix in $\mathbb{R}^{n \times n}$. 
-1. A is **positive definite** iff all its eigenvalues are positive;
-2. A is **positive semidefinite** iff all its eigenvalues are non-negative.
+1. $A$ is **positive definite** iff all its eigenvalues are positive;
+2. $A$ is **positive semidefinite** iff all its eigenvalues are non-negative.
 
 For a symmetric $2 \times 2$ matrix, this condition can be efficiently checked by examining the leading principal minors of the matrix. The leading principal minors are determinants of the top-left submatrices of increasing size. 
 
