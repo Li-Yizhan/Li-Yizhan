@@ -39,12 +39,14 @@ IRLS is a method used to solve optimization problems, particularly those involvi
 
 2. Compute Weights
     - For each iteration $t$:
+    
     $$
     w_i(\Theta^{(t)}) = \left( |y_i - f(\Theta^{(t)}, x_i)| \right)^{p-2}
     $$
 
 3. Solve Weighted Least Squares: 
     - Update the parater estimates by minimizing the weighted sum of squared residuals:
+
     $$
     \Theta^{(t+1)} = \arg \min_{\Theta} \sum_{i=1}^{n} w_i(\Theta^{(t)}) (y_i - f(\Theta, x_i))^2
     $$
@@ -58,25 +60,30 @@ MLS is a method used to construct smooth surfaces or curves from a set of points
 
 1. Define Weight Function
     - Choose an appropriate weight function $w(x)$ that decays with distance. For example, a Gaussian weight function:
+
     $$
     w_i(x) = \exp\left(-\left(\frac{x_i - x}{h}\right)^2\right)
     $$
+
     Where $h$ is a smoothing parameter controlling the width of the neighborhood
 
 2. Formulate Local Polynomial
     - Construct a local polynomial approximation around the point of interest $x$. A common choice is a linear polynomial:
+
     $$
     f(x_i) = a + b(x_i - x)
     $$
 
 3. Minimize Weighted Least Squares:
     - Solve for the coefficients $a$ and $b$ by minimizing the weighted sum of squared residuals:
+
     $$
     \arg \min_{a, b} \sum_{i=1}^{n} w_i(x) (y_i - (a + b(x_i - x)))^2
     $$
 
 4. Compute Approximation
     - Evaluate the local polynomial at the point of interest to obtain the MLS approximation:
+
     $$
     f(x) = a
     $$
