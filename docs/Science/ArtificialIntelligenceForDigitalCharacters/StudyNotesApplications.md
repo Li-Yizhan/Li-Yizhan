@@ -1,9 +1,10 @@
 ---
 layout: default
-title: Study Notes  - Deep Learning
+title: Study Notes - Applications
 parent: Artificial Intelligence for Digital Characters
 grand_parent: Science
-nav_order: 
+nav_order: 8
 ---
 
-## Study Notes - Deep Learning
+## Study Notes - Applications
+

@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Study Notes - Affective Computing
+title: Study Notes - Chatbot
 parent: Artificial Intelligence for Digital Characters
 grand_parent: Science
-nav_order: 1
+nav_order: 4
 ---
 
-## Study Notes - Affective Computing
+## Study Notes - Chatbot
 
