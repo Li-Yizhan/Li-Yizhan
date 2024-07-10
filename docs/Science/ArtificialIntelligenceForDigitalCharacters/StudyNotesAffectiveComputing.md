@@ -227,10 +227,10 @@ Method Overview:
     - Head Movement
     - Fidgeting
         - Captures all movement in the video (body, face, ...)
-            1. $f_temp = f_gray - b_gray$ ($f_temp$ measures the difference between new frame and past frame)
+            1. $f_{temp} = f_{gray} - b_{gray}$ ($f_{temp}$ measures the difference between new frame and past frame)
             2. Binarizing $f_temp$ (thresholding)
             3. Energy $E =$ Percentage of surviving pixels
-            4. $b_gray = (1-a) * b_gray + a * f_gray$ (update past frame)
+            4. $b_{gray} = (1-a) * b_{gray} + a * f_{gray}$ (update past frame)
 - Classification
     - Random Forest
 
