@@ -357,14 +357,14 @@ style="width:50%; height:auto;">
     - Inputs $(e_1, e_2, \ldots, e_T)$, each $e_t$ is now a vector
     - Outputs $(c_1, c_2, \ldots, c_T)$ each $c_t \in R^d$
 
-**Skip Connections (Encoder)**
+**Skip Connections (Encoder and Decoder)**
     - Mitigate Vanishing Gradients
     - Improving Gradient Flow
     - Training Deeper Networks
     - Combining Features
     - Stabilizing Training
 
-**Layer Normalization (Encoder)**
+**Layer Normalization (Encoder and Decoder)**
 - The mean and variance are over the sequence of size $T$
 - Not like batch norm (which is over a batch of examples). This is only on 1 example. 
 
@@ -379,3 +379,18 @@ style="width:50%; height:auto;">
 - <ins>Note:</ins> no bleeding problem here. 
 
 **Stacked Transformers**
+Stack decoder $N$ times. Each layer takes inputs from the encoder and the layers before it.
+
+### Summary
+**Neural Networks**
+- Weighted sum of inputs plus non-linear activation function
+- Input layer, hidden layers, output layer
+- Training through backpropagation
+**Recurrent Neural Networks**
+- Map input sequence to output sequence
+- Recurrent connections to keep a notion of time
+- LSTMs can memorize longer context windows
+**Transformers**
+- Encoder-decoder model capturing long-term dependencies
+- Through attention mechanism model can attend to different parts of input (and generated output)
+- Decoded output can be sampled using different strategies (greedy search, beam search, ...)
