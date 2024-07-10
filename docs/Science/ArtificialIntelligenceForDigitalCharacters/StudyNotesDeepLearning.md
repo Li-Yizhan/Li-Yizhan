@@ -233,7 +233,149 @@ style="width:50%; height:auto;">
 - Transformers are not based on recurrent connections (like RNNs)
     - Vanilla transformer does not have any notion of the positions of tokens in input
 - Two types of attention
-    - Attention of input in decoder to inputs in encoder
-    - Self-attention: Attention of input in encoder (decoder) to other inputs in encoder (decoder)
+    - Attention:
+        - Used in encoder-decoder models to dynamically focus on relevant parts of the input sequence during decoding
+        - Involves computing alignment scores, attention weights, and context vectors for each decoding step
+        - Helps the decoder generate contextually appropriate outputs by focusing on specific parts of the input sequence
+    - Self-attention: 
+        - Used within the same sequence to compute dependencies between different positions
+        - Involves projecting input tokens into queries, keys, and values and computing attention scores within the sequence
+        - Fundamental to Transformer models, enabling efficient parallel processing and capturing long-range dependencies
+
+<div style="text-align:center;">
+<img src="/Images/SelfAttentionLayer.png" alt="Self Attentioin Layer" 
+style="width:50%; height:auto;">
+</div>
+
+>Self Attention Layer for Transformer (There is no recurrent connection)
+
+**Attention Mechanism**
+Split the input $x_i \in R^d$ in encoder (or decoder) into query, keys, and values vectors using three different matrices $W^Q, W^K, W^V$:
+- Query $Q$: represents the current token or word for which we are calculating the attention. It is used to determine how much focus or attention should be placed on other tokens in the sequence. 
+$q_i = W^Q x_i$
+- Key $K$: represents the tokens in the sequence that the query will compare itself against to determine relevance. Each token in the sequence has an associated key that helps the model compute similarity scores with the query.
+$k_i = W^K x_i$
+- Value $V$: represents the actual information or content of the tokens. They are used to generate the weighted sum that becomes the new representation of the query token after attention is applied. 
+$v_i = W^V x_i$
+- $W^Q, W^K, W^V \in R^{d \times d}$ are learned through training.
+
+To calculate attention:
+1. Step 1: Define a similarity function $\text{sim}(q,k)$
+    - Dot Product with a Weight Matrix
+        - Equation: $\text{sim}(q,k) = q^TWk_t$
+        - Here, $W$ is a learned weight matrix that projects the query and key into a different space before computing their dot product. This allows the model to learn an appropriate space for comparing the query and key vectors
+    - Dot Product
+        - Equation: $\text{sim}(q,k) = q^Tk_t$
+        - The dot product measures the cosine similarity between the query and the key, assuming they are normalized. It captures the idea of how aligned or similar the two vectors are in the vector space. This is a simple yet effective way to measure similarity
+    - Scaled Dot Product
+        - Equation: $\text{sim}(q,k) = \frac{q^Tk_t}{\sqrt{d}}$
+        - The scaled dot product includes a scaling factor $\sqrt{d}$, where $d$ is the dimensionality of the query and key vectors. The scaling factor prevents the dot product values from growing too large, which can happen when $d$ is large. This scaling helps maintain stable gradients during training
+2. Step 2: Compute attention weights $a_t$
+    $a_t = \frac{e^{\text{sim}(q,k_t)}}{\sum_{s=1}^T e^{\text{sim}(q,k_s)}}$ (Softmax)
+    Where $k_t$ is the key vector at position $t$, while $k_s$ represents the key vectors for all positions in the input sequence, where $s$ ranges from 1 to $T$.
+3. Step 3: Attend to value vectors
+    $c = \sum_{t=1}^T a_t v_t$ (weighted linear combo of values)
+
+<div style="text-align:center;">
+<img src="/Images/Transformer.png" alt="Transformer" 
+style="width:50%; height:auto;">
+</div>
+
+>Transformer High-level Model Illustration
+
+Computation of queries $Q$, keys $K$, and values $V$ from the input embeddings $X$ with $N$ rows (each row is one token) and $d$ dimensionality using <ins>matrix multiplication</ins>:
+$$
+\begin{align*}
+X &\in R ^{N \times d} \\
+Q &= XW^Q \in R ^{N \times d} \\
+K &= XW^K \in R ^{N \times d} \\
+V &= XW^V \in R ^{N \times d}
+\end{align*}
+$$
+
+<div style="text-align:center;">
+<img src="/Images/AttentionMatrix.png" alt="Transformer" 
+style="width:50%; height:auto;">
+</div>
+
+>Calculation of Self-Attention Matrix
+
+- We use $-\infty$ because after applying softmax, these values will become 0.
+- If the matrix is a diagonal matrix, it implies that all words are independent of each other. 
+- If the matrix only has non-zero values for the first column, it implies that the first word is the most important for all other words.
+
+**Multi-Headed Attention**
+- Content-based
+    - This is my big red <span style="color:red">dog, Clifford</span>
+- Description-based
+    - This is my <span style="color:red">big red</span> dog, Clifford
+- Reference-based
+    - This is <span style="color:red">my</span> big red dog, Clifford
+
+<div style="text-align:center;">
+<img src="/Images/MultiheadAttention.png" alt="Multi-Headed Attention" 
+style="width:50%; height:auto;">
+</div>
+
+>Multi-Headed Attention Illustration
 
 ### Transformers
+
+- A transformer layer is composed of an <ins>encoder</ins> and a <ins>decoder</ins>
+- Both use the same building blocks
+
+<div style="text-align:center;">
+<img src="/Images/TransformerModel.png" alt="Transformer Model" 
+style="width:50%; height:auto;">
+</div>
+
+>Transformer Model
+
+**Input Embedding (Encoder)**
+- Mel Spectrogram
+- Waveform
+
+**Positional Encoding (Encoder)**
+- Unlike RNNs, transformers have no order
+- But speech and text is left-to-right so it might be useful to tell the model that
+- Positional Encoding Methods:
+    - Learn position embedding during training
+        - Assign position embedding vector
+        - Problem: fewer training samples for later positions
+    - Positional Encoding
+        - Integration with Input Embedding: 
+            - $e_t = e_t + PE(t,d)$
+            - $e^t$ is the original input embedding at position $t$, and $PE(t)$ is the positional encoding for position $t$
+        - General Form of Positional Encoding: $PE(t) = [PE(t,0), PE(t,1), \ldots, PE(t,d)]$ ($d$ is the dimensionality of the embeddings)
+        - Specific Equations for Positional Encoding: 
+            - $PE(t, 2i) = \sin{(t/10000^{2i/d})}$
+            - $PE(t, 2i+1) = \cos{(t/10000^{2i/d})}$
+            ($t$ is the position of the token in the sequence, and $i$ is the dimension index)
+            - The term $10000^{2i/d}$ scales the position $t$ differently for each dimension. This ensures that each dimension $i$ has a unique positionla encoding, creating a unique pattern that the model can learn to interpret as positional information
+    
+**Multi-Head Attention (Encoder)**
+    - Inputs $(e_1, e_2, \ldots, e_T)$, each $e_t$ is now a vector
+    - Outputs $(c_1, c_2, \ldots, c_T)$ each $c_t \in R^d$
+
+**Skip Connections (Encoder)**
+    - Mitigate Vanishing Gradients
+    - Improving Gradient Flow
+    - Training Deeper Networks
+    - Combining Features
+    - Stabilizing Training
+
+**Layer Normalization (Encoder)**
+- The mean and variance are over the sequence of size $T$
+- Not like batch norm (which is over a batch of examples). This is only on 1 example. 
+
+**Masked Multi-Head Attention (Decoder)**
+- The purpose of masking in the decoder's self-attention mechanism is to prevent the model from looking ahead at future tokens during training. 
+
+**Multi-Head Attention (Decoder)**
+- Output of encoder: $(h^{enc}, h^{enc}, \ldots, h^{enc})$
+- Use this for keys and values in attention
+- Query vectors come from decoder
+- This blends information from encoder into the decoder
+- <ins>Note:</ins> no bleeding problem here. 
+
+**Stacked Transformers**
