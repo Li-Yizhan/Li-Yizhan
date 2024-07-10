@@ -6,12 +6,22 @@ grand_parent: Science
 nav_order: 2
 ---
 
-## Study Notes - Deep Learning
+# Study Notes - Deep Learning
 
-**Table of Content**
+### Neural Network Review
 
-- Neural Network Review
-- Recurrent Neural Networks
-- Encoder-Decoder Models
-- Attention
-- Transformers
+**Neural Unit**
+
+**Feedforward Neural Networks**
+
+**Training**
+
+**Application**
+
+### Recurrent Neural Networks
+
+### Encoder-Decoder Models
+
+### Attention
+
+### Transformers

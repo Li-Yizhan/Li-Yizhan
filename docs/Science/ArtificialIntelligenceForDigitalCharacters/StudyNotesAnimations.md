@@ -6,5 +6,5 @@ grand_parent: Science
 nav_order: 7
 ---
 
-## Study Notes - Animations
+# Study Notes - Animations
 
