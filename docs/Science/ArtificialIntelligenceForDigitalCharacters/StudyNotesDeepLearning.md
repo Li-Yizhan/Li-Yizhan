@@ -127,9 +127,9 @@ style="width:50%; height:auto;">
 
 - Generation
     - Autoregressive Generation: Repeatedly sampling next word conditioned on previous words
-    - Start with $<s>$ and sample word from output distribution
+    - Start with $\text{<s>}$ and sample word from output distribution
     - Generate more words
-    - Stop when $</s>$ or length limit is reached
+    - Stop when $\text{</s>}$ or length limit is reached
     - Provide appropriate context
 
 >RNN Application for Sequence Classification
