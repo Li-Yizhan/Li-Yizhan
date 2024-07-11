@@ -175,6 +175,7 @@ style="width:50%; height:auto;">
     - $P(k) = \frac{|X(k)|^2}{N}$
 
 **Mel Filter Bank**
+- Roughly uniformly spaced before 1 kHz, and logarithmic scale after 1kHz 
 - The Mel filter bank effectively reduces the dimensionality of the spectral data while retaining the most important perceptual information
 - We have values $P(k), k: 1, \ldots, K$
 - Apply triangular filters on a Mel-scale (closer together at lower frequencies and further apart at higher frequencies) to extract frequency bands
