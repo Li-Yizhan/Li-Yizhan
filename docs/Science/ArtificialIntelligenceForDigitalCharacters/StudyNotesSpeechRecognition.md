@@ -107,7 +107,88 @@ style="width:50%; height:auto;">
     - Frequencies (y-axis)
     - Color Coding (amplitude)
 
+**Praat**
+- Software for analysis of speech
+    - Spectral Analysis
+    - Formant Analysis
+    - Pitch Tracking
+
 ### Feature Extraction
+
+**Pre-Empasis Filter**
+- High-pass filter: 
+    - Amplifies the high-frequency components of the signal while reducing the low-frequency components
+    - Effects of filter:
+        - Balancing the frequency spectrum
+        - Avoiding numerical problems during Fourier transform
+        - Improving Signal-to-Noise Ratio (SNR)
+    - Equation: $y(t) = x(t) - \alpha x(t-1) \quad \alpha \in [0.9, 1.0]$
+
+**Windowing**
+- Frequency in a signal change over time
+- Frequencies in a signal stationary over short period of time
+- Frame: Speech in a window
+- Parameters:
+    - Window size: typically between 20 ms to 40 ms
+    - Stride of window: typically 50% (+/- 10%)
+    - Shape of window
+        - Rectangular Window
+        - Hamming Window
+            - Formula: $w(n) = 0.54 - 0.46 \cos{(\frac{2 \pi n}{N - 1})} \quad 0 \leq n \leq N-1$ ($n$ is the index of sample, and $N$ is the total number of samples)
+            - Minimizes discontinuities
+            - Reduces amplitude of the side lobes in the frequency spectrum. This helps in minimizing spectral leakage, which occurs when the signal's energy spreads into adjacent frequency bins.
+
+<div style="text-align:center;">
+<img src="/Images/Window.png" alt="Window" 
+style="width:50%; height:auto;">
+</div>
+
+>Rectangular Window vs. Hamming Window
+
+**Discrete Fourier Transform**
+- Extract spectral information for each window
+- Discrete Fourier transform (DFT): 
+    - $X_k = \sum_{n=0}^{N-1} x_n e^{-j \frac{2\pi}{N} kn} \quad \text{for } k = 0, 1, \ldots, N-1$
+    - $x(n)$: signal with $N$ frames
+    - $k$: Frequency bin, typically $k = 256$ or $512$
+    - $X(k)$: Complex number representing magnitude and phase of frequency $k$. 
+- Fast Fourier Transform (FFT)
+    - Very efficient calculation of DFT
+    - Works only for values of $N$ that are powers of 2
+
+<div style="text-align:center;">
+<img src="/Images/SignaltoSpectrum.png" alt="Signal to Spectrum" 
+style="width:50%; height:auto;">
+</div>
+
+>Signal to Spectrum
+
+- Frequency Resolution:
+    - $Δf = \frac{f_{sample}}{N}$
+- Mapping to Frequency:
+    - $f_k = kΔf = k \frac{f_{sample}}{N}$ 
+        - $k$: The index that represents the specific frequency bin in the DFT output
+        - $f_k$: Frequency corresponding to $X(k)$
+        - $f_{sample}$: Sampling rate of the signal$
+- Power spectrum: 
+    - Represents the power at the k-th frequency bin
+    - $P(k) = \frac{|X(k)|^2}{N}$
+
+**Mel Filter Bank**
+- The Mel filter bank effectively reduces the dimensionality of the spectral data while retaining the most important perceptual information
+- We have values $P(k), k: 1, \ldots, K$
+- Apply triangular filters on a Mel-scale (closer together at lower frequencies and further apart at higher frequencies) to extract frequency bands
+- Take the log of each of the mel spectrum values
+- The purpose is to extract perceptually relevant features from audio signals
+
+<div style="text-align:center;">
+<img src="/Images/MelFilterBank.png" alt="Mel Filter Bank" 
+style="width:50%; height:auto;">
+</div>
+
+**MFCC**
+
+**Augmentation**
 
 ### Architectures
 
