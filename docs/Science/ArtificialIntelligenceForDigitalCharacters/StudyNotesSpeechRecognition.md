@@ -297,18 +297,29 @@ style="width:50%; height:auto;">
 style="width:50%; height:auto;">
 </div>
 
-- Output a single character for every frame $x_i$ (alignment)
-- Special symbol for a blank (e.g., slience)
-- Collapsing function collapses consecutive duplicate letters
-- Collapsing function is many-to-one: Different alignments map to same output string
-- Assumption: Output at time $t$ is independent of the output labels at any other time
+>CTC Process Illustration
 
-$$
-\begin{align*}
-P_{CTC}(A \lvert C) &= \Pi_{t=1}^T p(a_t \lvert C) \\
-a_t &= \argmax_{c \in C}(c \lvert X) \quad A = {a_1, \ldots, a_T}
-\end{align*}
-$$
+What is CTC? 
+- A method used for sequence-to-sequence problems where <ins>the input and output sequences can have different lengths and where the alignment between the input and output sequence is unknown.</ins> It is commonly used in speech recognition and handwriting recognition. 
+    - Output a single character for every frame $x_i$ (alignment)
+    - Special symbol for a blank (e.g., slience)
+    - Collapsing function collapses consecutive duplicate letters
+    - Collapsing function is many-to-one: Different alignments map to same output string
+    - Assumption: Output at time $t$ is independent of the output labels at any other time
+
+    $$
+    \begin{align*}
+    P_{CTC}(A \lvert C) &= \Pi_{t=1}^T p(a_t \lvert C) \\
+    a_t &= \argmax_{c \in C}(c \lvert X) \quad A = {a_1, \ldots, a_T}
+    \end{align*}
+    $$
+
+    - $X$: Input sequence
+    - $A$: A specific alignment sequence
+    - $a_t$: The predicted label at time step $t$
+    - $C$: The set of all possible labels (including the blank symbol)
+    - $P$: Probability of a sequence
+    - $p$: probability of individual elements within a sequence
 
 - Problem: Most likely alignment $A$ may not correspond to the most likely final collapsed output string $Y$
 - Pick output string $Y$ that has highest sum over the probability of all its possible alignments
@@ -325,13 +336,46 @@ P_{CTC}(Y \lvert X) &= \sum_{A \in B^{-1}(Y)} P(A \lvert X) \\
 \end{align*} 
 $$
 
->CTC Model
-
 Combining CTC and Encoder-Decoder
+- CTC Loss: Used for alignment-free training of sequence models
+- Encoder-Decoder Loss: Standard sequence-to-sequence training loss
+- Combined Approach: Leverage the strengths of both approaches
+
+<div style="text-align:center;">
+<img src="/Images/EncDecCTC.png" alt="CTC-EncDec" 
+style="width:50%; height:auto;">
+</div>
+
+>CTC Combined with Encoder-decoder Model
+
+- Training:
+$L = -\lambda \log P_{\text{encdec}}(Y \mid X) - (1 - \lambda) \log P_{\text{CTC}}(Y \mid X)$
+
+- Inference: 
+$\hat{Y} = \max_Y [\lambda \log P_{\text{encdec}}(Y \mid X) - (1 - \lambda) \log P_{\text{CTC}}(Y \mid X) + \gamma \log P_{\text{LM}}(Y)]$
 
 **RNN-Transducer**
+- Works for online decoding (streaming)
+- Predictor inputs are only non-blank tokens $y$
+- Do not increment $t$ when non-blank token is output
 
-**Whisper**
+Three Components:
+- CTC acoustic model
+- Predictor (language model)
+    -Conditions on sequence output so far
+    - Has access to $y$ and not $x$ (unlike attention model)
+    - Pre-train on text-only data
+- Joiner
+    - Feedforward network
+
+<div style="text-align:center;">
+<img src="/Images/RNNTransducer.png" alt="RNN Trans" 
+style="width:50%; height:auto;">
+</div>
+
+>RNN-Transduer Model
+
+**Open AI Whisper**
 
 **Microsoft Azure**
 
