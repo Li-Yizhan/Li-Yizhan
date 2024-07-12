@@ -187,10 +187,154 @@ style="width:50%; height:auto;">
 style="width:50%; height:auto;">
 </div>
 
-**MFCC**
+>Mel Filter Bank and Illustration of Signal Filtering
 
-**Augmentation**
+How to Construct Mel Filter Bank:
+1. Convert lower and upper frequency to Mels (Mels = $1127 \ln{(1 + f/700)}$)
+2. Space points linearly between lower and upper frequency (e.g., for 10 filterbanks, add 10 additional points)
+3. Convert points back to Hertz: $f = 7-(10^\frac{Mel}{1127}-1)$
+4. Round frequencies to nearest FFT bin
+5. Create filterbanks (First filterbank starts at first point, peaks at second point and returns to zero at third point etc.)
+$$
+H_m(k) = \begin{cases} 
+      0 & \text{if } k < f(m-1) \\
+      \frac{k - f(m-1)}{f(m) - f(m-1)} & \text{if } f(m-1) \leq k \leq f(m) \\
+      \frac{f(m+1) - k}{f(m+1) - f(m)} & \text{if } f(m) \leq k \leq f(m+1) \\
+      0 & \text{if } k > f(m+1) 
+   \end{cases}
+$$
+
+**Spectrogram**
+
+<div style="text-align:center;">
+<img src="/Images/Spectrogram40D.png" alt="Spectrogram" 
+style="width:50%; height:auto;">
+</div>
+
+>Spectrogram with 40 Dimensional Vector
+
+**Training Augmentation**
+- Time Warping
+    - Distorting the time axis
+    - e.g., make the model more robust to various speaking rate
+- Frequency Masking
+    - Masking certain frequency bands
+    - e.g., make the model more robust to background noise
+- Time Masking
+    - Masking certain time frames
+    - e.g., make the model more robust to background noise
+
+<div style="text-align:center;">
+<img src="/Images/TrainingAugmentation.png" alt="Spectrogram" 
+style="width:50%; height:auto;">
+</div>
+
+>Original Spectrogram with 3 Training Augmentation Methods
 
 ### Architectures
+
+**Encoder-Decoder**
+
+<div style="text-align:center;">
+<img src="/Images/EncoderDecoderArchitecture.png" alt="Encoder Decoder Architecture" 
+style="width:50%; height:auto;">
+</div>
+
+>Encoder-decoder Speech Recognizer
+
+**Subsampling**
+- Size input >> size output
+- Compression to shorten acoustic feature sequence
+- Algorithm:
+    - Low frame rate: $f_i = \text{concat}(f_i, f_{i-1}, f_{i-2}),$ delete $f_{i-1}$ and $f_{i-2}$
+    - Convolutional network (downsamples with max pooling)
+    - Pyramidal RNNs (each successive layer has half the number of time steps)
+
+**Hypothesis Rescoring**
+- Decoder outputs n-best sentences ([beam search](https://en.wikipedia.org/wiki/Beam_search))
+- Rescore each sentence $Y$ given input $X$
+    - Score sentence using a language model (likelihood, fluency)
+    - $Score(Y|X) = \frac{1}{\lvert Y \rvert}_c \log{P(Y \vert X)} +  \lambda \log{P_{LM}(Y)}$
+        - $\frac{1}{\lvert Y \rvert}_c \log{P(Y \vert X)}$: The mormalized log-probability of the sentence $Y$ given the input $X$. This term accounts for the likelihood of the sentence as predicted by the model
+        - $\lambda \log{P_{LM}(Y)}$: The log-probability of the sentence $Y$ according to an external language model (LM), weighted by a parameter $\lambda$. This term accounts for the fluency and naturalness of the sentence
+    - $\lambda$ tuned on held-out set
+        - The held-out set is a subset of data not used in training but reserved for tuning and evaluating model parameters. 
+        - Tuning $\lambda$ ensures that the balance between the likelihood term and the language model term is optimized for better performance.
+- Select sentence with highest score
+
+<details>
+  <summary>Why we use log-likelihood?</summary>
+  
+  In many machine learning and statistical models, log-likelihood is used instead of the raw probability (likelihood) for several important reasons:
+  
+  1. **Numerical Stability**:
+     Raw probabilities can be extremely small, especially when dealing with sequences of probabilities (e.g., in language models where each word's probability multiplies with the others). Using the log transformation:
+
+     \[
+    P(Y) = P(y_1) \times P(y_2) \times \ldots \times P(y_n)
+    \]
+
+     \[
+     \log P(Y) = \log P(y_1) + \log P(y_2) + \ldots + \log P(y_n)
+     \]
+     transforms multiplication into addition, which helps avoid numerical underflow.
+  
+  2. **Simplification of Calculations**:
+     Logarithms simplify the product of probabilities into a sum of log-probabilities, making computations more straightforward and stable.
+  
+  3. **Ease of Differentiation**:
+     Many optimization algorithms require the differentiation of the objective function with respect to model parameters. Logarithmic functions are easier to differentiate, and their derivatives are more stable.
+  
+  4. **Additivity of Log-Likelihoods**:
+     Log-likelihoods are additive, making it easier to accumulate and interpret the combined score of a sequence.
+  
+</details>
+
+**Connectionist Temporal Classification (CTC)**
+
+<div style="text-align:center;">
+<img src="/Images/CTC.png" alt="CTC" 
+style="width:50%; height:auto;">
+</div>
+
+- Output a single character for every frame $x_i$ (alignment)
+- Special symbol for a blank (e.g., slience)
+- Collapsing function collapses consecutive duplicate letters
+- Collapsing function is many-to-one: Different alignments map to same output string
+- Assumption: Output at time $t$ is independent of the output labels at any other time
+
+$$
+\begin{align*}
+P_{CTC}(A \lvert C) &= \Pi_{t=1}^T p(a_t \lvert C) \\
+a_t &= \argmax_{c \in C}(c \lvert X) \quad A = {a_1, \ldots, a_T}
+\end{align*}
+$$
+
+- Problem: Most likely alignment $A$ may not correspond to the most likely final collapsed output string $Y$
+- Pick output string $Y$ that has highest sum over the probability of all its possible alignments
+- Approximation of sum of probabilities
+    - Training: Dynamic programming
+    Inference: Keep in beam high-probability algnments that map to same output string
+- Rescoring with language model important
+
+$$
+\begin{align*}
+P_{CTC}(Y \lvert X) &= \sum_{A \in B^{-1}(Y)} P(A \lvert X) \\
+&= \sum_{A \in B^{-1}(Y)} \Pi_{t=1}^T p(a_t \lvert h_t) \\
+\hat{y} &= \argmax_Y P_{CTC}(Y \lvert X)
+\end{align*} 
+$$
+
+>CTC Model
+
+Combining CTC and Encoder-Decoder
+
+**RNN-Transducer**
+
+**Whisper**
+
+**Microsoft Azure**
+
+**Foundation Models**
 
 ### Word Error Rate
