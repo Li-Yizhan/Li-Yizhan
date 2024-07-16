@@ -297,11 +297,115 @@ A very frequent problem in science: find $\vec{x^∗}$ such that $f (\vec{x^∗}
 
 >**Definition: Root of a function**
 A point $\vec{x^∗}$ where $f (\vec{x^∗}) = 0$ is called a root of $f$.
- 
+
 - A root of a function f is also called a zero of $f$.
 - How to find roots numerically?
 - How to compare the suitability and efficiency of different methods?
 - What if there are multiple solutions?
+
+**Method 1: Bisection Method**
+
+The simplest method to find the root of $f$.
+
+Start with $a < b$ such that $f (a)$ and $f (b)$ have opposite sign. If f is continuous, there must
+be at least one root in $[a, b]$
+
+One also needs to define a small error tolerance $tol_x . 0$
+
+<figure>
+    <div style="text-align:center;">
+    <img src="/Images/BisectionRule.png" alt="Newton-Cotes Example">
+    </div>
+    <figcaption>Fig.7: Bisection Rule</figcaption>
+</figure>
+
+Properties of the bisection method:
+
+Pros:
+- Very simple
+- Very robust
+- Derivative-free (does not require $f'(x)$ to be known)
+- Tunable precision ($tol_x$)
+
+Cons:
+- Finding $a$ and $b$ that fulfill the initial requirements is not always easy
+- Relatively slow compared to more advanced methods
+- If there are multiple roots in $[a, b]$, it is unclear which one is found
+- Difficult to generalize to multi-dimensional problems
+
+**Method 2: Regula falsi**
+
+Regula falsi is very similar to the bisection method. The main difference is that $c$ is not the
+interval midpoint, but the x-intercept of the line connecting $(a, f (a))$ with $(b, f (b))$.
+
+Start with $a < b$ such that $f (a)$ and $f (b)$ have opposite sign. If $f$ is continuous, there must
+be at least one root in $[a, b]$.
+
+<figure>
+    <div style="text-align:center;">
+    <img src="/Images/RegulaFalsi.png" alt="Newton-Cotes Example">
+    </div>
+    <figcaption>Fig.8: Regula Falsi Rule</figcaption>
+</figure>
+
+Properties of the Regula Falsi:
+
+Regula Falsi has essentially the same advantages and disadvantages as the bisection method, but it is often faster.
+- The interval $[a, b]$ does not always shrink to zero
+- If $sign(f ′′(x)) ≡ const$. in $[a, b]$, one of the end
+points $a$ or $b$ remains stationary
+- Therefore, the termination criterion is two-sided:
+If $c − a < tol_x$ or $b − c < tol_x$ , return $x^* = c$
+- If $f (x)$ is almost linear near $x^∗$, the convergence can be faster than with bisection
+- If $f$ is exactly linear $(f (x) = mx + n)$, the root is found in one step
+
+There are several advanced methods that extend the regula falsi to improve its convergence further.
+
+**Method 3: Secant Method**
+
+What if finding $a$ and $b$ with sign$(f (a)) \neq sign(f (b))$ is too difficult?
+
+The secant method also starts with two initial points $x_0$ and $x_1$, but does not require that $sign(f (x_0)) \neq sign(f (x_1))$.
+
+<figure>
+    <div style="text-align:center;">
+    <img src="/Images/SecantMethod.png" alt="Newton-Cotes Example">
+    </div>
+    <figcaption>Fig.9: Secant Method</figcaption>
+</figure>
+
+In the computation of $x_{i+1}$, isn't there numerical cancellation?
+- Yes, but it is no problem here because $x_{i+1} = x_u + ∆x$ with an ever smaller $∆x$. 
+
+Properties of the secant method
+
+Pros:
+- Quite simple
+- Easier-to-find starting points compared to bisection or regula falsi
+- Derivative-free (does not require $f'(x)$ to be known)
+- Tunable precision ($tol_X$)
+- Faster convergence than bisection or regula falsi
+
+Cons:
+- No guaranteed convergence (only local convergence)
+- Algorithm can jump around extremely and can get trapped in finite looks
+- For multiple roots, it is unclear which one is found. 
+
+Generalization to multi-dimensional problems: Broyden's method
+
+**Method 4: Newton-Raphson method**
+
+There is a famous method that converges even faster locally, and requires only one initial guess $x_0$: The Newton–Raphson method (or just Newton’s method).
+The next point $x_{i+1}$ is the x-intercept of the tangent of $f$ at $x_i$:
+
+<figure>
+    <div style="text-align:center;">
+    <img src="/Images/NewtonRaphson.png" alt="Newton-Cotes Example">
+    </div>
+    <figcaption>Fig.10: Newton-Raphson Method</figcaption>
+</figure>
+
+Newton's method requires the derivative of $f$ to be known: $f'(x_i) = \frac{df}{dx}(x_i)$
 
 ### How to solve nonlinear equations, i.e., find $x$ for which $f(x) = 0$
 
