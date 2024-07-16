@@ -2,6 +2,6 @@
 layout: default
 title: Scientific Computing
 parent: Science
-nav_order: 6
+nav_order: 
 has_children: true
 ---

@@ -314,7 +314,7 @@ One also needs to define a small error tolerance $tol_x . 0$
 
 <figure>
     <div style="text-align:center;">
-    <img src="/Images/BisectionRule.png" alt="Newton-Cotes Example">
+    <img src="/Images/BisectionRule.png" alt="Newton-Cotes Example" style="width:100%; height:auto;">
     </div>
     <figcaption>Fig.7: Bisection Rule</figcaption>
 </figure>
@@ -343,7 +343,7 @@ be at least one root in $[a, b]$.
 
 <figure>
     <div style="text-align:center;">
-    <img src="/Images/RegulaFalsi.png" alt="Newton-Cotes Example">
+    <img src="/Images/RegulaFalsi.png" alt="Newton-Cotes Example" style="width:100%; height:auto;">
     </div>
     <figcaption>Fig.8: Regula Falsi Rule</figcaption>
 </figure>
@@ -369,7 +369,7 @@ The secant method also starts with two initial points $x_0$ and $x_1$, but does 
 
 <figure>
     <div style="text-align:center;">
-    <img src="/Images/SecantMethod.png" alt="Newton-Cotes Example">
+    <img src="/Images/SecantMethod.png" alt="Newton-Cotes Example" style="width:100%; height:auto;">
     </div>
     <figcaption>Fig.9: Secant Method</figcaption>
 </figure>
@@ -400,7 +400,7 @@ The next point $x_{i+1}$ is the x-intercept of the tangent of $f$ at $x_i$:
 
 <figure>
     <div style="text-align:center;">
-    <img src="/Images/NewtonRaphson.png" alt="Newton-Cotes Example">
+    <img src="/Images/NewtonRaphson.png" alt="Newton-Cotes Example" style="width:100%; height:auto;">
     </div>
     <figcaption>Fig.10: Newton-Raphson Method</figcaption>
 </figure>
@@ -453,7 +453,7 @@ Newton’s method naturally extends to the multi-dimensional case, to solve syst
 
 <figure>
     <div style="text-align:center;">
-    <img src="/Images/MultiDNewton.png" alt="Newton-Cotes Example">
+    <img src="/Images/MultiDNewton.png" alt="Newton-Cotes Example" style="width:100%; height:auto;">
     </div>
     <figcaption>Fig.11: Multidimensional Newton's Method</figcaption>
 </figure>
