@@ -6,7 +6,7 @@ grand_parent: Science
 nav_order: 1
 ---
 
-# Algorithmic Complexity and Floating-point Arithmetic
+# Algorithmic Complexity and Floating-Point Arithmetic
 
 ### Background and Introduction
 
