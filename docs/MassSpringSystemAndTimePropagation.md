@@ -9,7 +9,6 @@ nav_order: 3
 # Mass-spring System and Time Propagation
 
 **Simulation Techniques**
-
 - Grid-based Methods
     - Numerical quadrature, fluid dynamics, partial differential equations
 - Rigid Body Simulations
