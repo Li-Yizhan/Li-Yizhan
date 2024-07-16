@@ -407,8 +407,106 @@ The next point $x_{i+1}$ is the x-intercept of the tangent of $f$ at $x_i$:
 
 Newton's method requires the derivative of $f$ to be known: $f'(x_i) = \frac{df}{dx}(x_i)$
 
-### How to solve nonlinear equations, i.e., find $x$ for which $f(x) = 0$
+Like for the regula falsi and the secant method, if f is linear, the exact solution is found
+after one step.
 
-### Bisection method, regula falsi, secant method, Newton’s method
+Properties of the Newton–Raphson method
+
+Pros:
+- Only one starting point needed
+- Tunable precision ($tol_x$)
+- Faster convergence than all previous methods
+- Easy to generalize to multi-dimensional problems
+
+Cons:
+- Requires $f '(x)$ to be known (can get quite messy
+for complicated $f$ )
+− Cannot be used if the function values $f (x_i )$ are
+coming from experiments or simulation output
+− No guaranteed convergence (only local
+convergence)
+− Can get trapped in infinite loops
 
 ### Theory: Convergence order
+
+>**Definition: Convergence order of a root finding method**
+If $\vert e_{i+1}\rvert∼ \lvert e_i\rvert^α$ asymptotically, the exponent $α$ is called the convergence order
+
+$α = 1$ is called linear convergence, $α > 1$ superlinear convergence
+
+- Bisection method: Linear convergence, $α = 1$
+- Regula falsi: Linear convergence, $α = 1$ (with improvements: superlinear)
+- Secant method: $α = (1 + √5)/2 ≈ 1.618$ (golden ratio)
+- Newton–Raphson method: Quadratic convergence, $α = 2$
+
+**Convergence Plot**
+- The convergence order specifies how fast the error decreases with each step
+- Higher convergence order is generally better
+
+Regular Falsi: Number of significant digit grows linearly with each step
+Newton's method: Number of significant digits doubles in each step
+
+**Multidimensional Root Finding**
+
+Newton’s method naturally extends to the multi-dimensional case, to solve systems of $n$ coupled nonlinear equations with $n$ unknowns:
+
+
+<figure>
+    <div style="text-align:center;">
+    <img src="/Images/MultiDNewton.png" alt="Newton-Cotes Example">
+    </div>
+    <figcaption>Fig.11: Multidimensional Newton's Method</figcaption>
+</figure>
+
+$J(\vec{x})$ is called the Jacobian matrix of $\vec{f}$ which contains all partial derivatives
+
+$$
+\mathbf{J}(\vec{x}) = \begin{bmatrix}
+\frac{\partial f_1}{\partial x_1} & \frac{\partial f_1}{\partial x_2} & \cdots & \frac{\partial f_1}{\partial x_n} \\
+\frac{\partial f_2}{\partial x_1} & \frac{\partial f_2}{\partial x_2} & \cdots & \frac{\partial f_2}{\partial x_n} \\
+\vdots & \vdots & \ddots & \vdots \\
+\frac{\partial f_n}{\partial x_1} & \frac{\partial f_n}{\partial x_2} & \cdots & \frac{\partial f_n}{\partial x_n}
+\end{bmatrix}
+$$
+
+$$
+\mathbf{J}(\vec{x}_i) \Delta \vec{x}_i = -\vec{f}(\vec{x}_i)
+$$
+
+Derivation:
+- Taylor Series Expansion:$\vec{f}(\vec{x}_i + \Delta \vec{x}_i) \approx \vec{f}(\vec{x}_i) + \mathbf{J}(\vec{x}_i) \Delta \vec{x}_i
+$
+- Newton-Raphson Iteration: The goal is to find a coorection $\Delta \vec{x}_i$ such that $\vec{f}(\vec{x}_i + \Delta \vec{x}_i) = 0$
+- Solving for $\Delta \vec{x}_i$: $\mathbf{J}(\vec{x}_i) \Delta \vec{x}_i = -\vec{f}(\vec{x}_i)$
+
+**Where to start**
+- All nonlinear root finding methods require one or more starting points
+- Many methods converge only locally, i.e., they require good starting points
+- If multiple roots exist, multiple different starting points need to be found
+- The number and rough location of roots can be difficult to estimate
+
+There are three very simple and effective methods to find (almost) all roots:
+1. Plot the function $f (x)$ over the range of interest and read off rough locations visually
+2. Generate many starting points randomly in the range of interest (Monte Carlo)
+3. Do a grid search over the range of interest
+
+**Grid Searching**
+
+- Divide the domain into a regular grid of $m \times n$ points
+- Run the root finder $m \times n$ times with each grid point as initial giess $x_0$
+- Some will converge to the same root, others will not converge at all
+- Refine the grid and repeat, storing all roots in a list
+- Keep refining until the set of found roots no longer changes. 
+
+There are also advanced (hierarchical, adaptive) grid searching methods that refine the grid only where needed.
+
+### Summary
+
+1. h-refinement is the process of increasing the resolution of a numerical method. Higher resolution (smaller $h$) leads to more accurate results, but also more computational cost.
+2. p-refinement is the process of increasing the polynomial degree of shape functions. Higher degree $p$ leads to higher accuracy, but also more complexity and higher cost.
+3. The convergence order quantifies the relative change of accuracy of an integration method when h is reduced or $N$ increased.
+4. Monte Carlo integration is based on random sampling. It is more efficient that tensor-product quadrature methods in high dimensions.
+5. Root-finding algorithms are methods to solve $f (x) = 0$. All common ones are iterative.
+6. The convergence order of a root-finding algorithm is the exponent with which the error decreases from step to step.
+7. Newton’s method has locally quadratic convergence. It requires $f ′(x)$ and a good initial guess x0.
+8. Bisection and regula falsi are derivative-free and more robust methods, but they converge only linearly and need two initial values with opposite sign of $f$.
