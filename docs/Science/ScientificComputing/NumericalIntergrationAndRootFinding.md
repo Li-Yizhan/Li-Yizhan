@@ -189,6 +189,7 @@ needed at minimum?
 **Method 3: Gaussian Quadrature**
 
 It can be proven that Gaussian quadrature has the largest possible precision order: $2N-1$ for $N$ function evaluations in $1D$.
+- It means that Gaussian quadrature can exactly integrate any polynomial of degree up to $2N - 1$. 
 
 $$
 ∫_{-1}^1 f(x) dx ≈ \sum_{i=1}^N w_i f(x_i)
@@ -212,9 +213,95 @@ Gauss points and corresponding weights for integration with maximal order can be
 
 ### Multidimensional integrals: $∫_{a_N}^{b_N} \ldots ∫_{a_2}^{b_2} ∫_{a_1}^{b_1} f(x_1, x_2, \ldots, x_N) \mathrm{d}x_1, \mathrm{d}x_2 \ldots \mathrm{d}x_N$
 
-### Monte Carlo integration & the curse of dimensionality**
+How to integrate multidimensional integrals?
+- As long as the integration bounds are constant (independent from each other), i.e., the integration domain is a box, one can use the tensor product rule:
+
+Curse of dimensionality: Number of quadrature points $N ~ n^d$ explodes exponentially with the dimension $d$. 
+
+**Method 4: Monte Carlo Sampling**
+
+Monte Carlo (MC) methods are generally all computational methods that use random numbers (not just for integration)
+
+Draw random quadrature points $x_i$ from a uniform distribution in [a, b] and calculate the mean function value:
+
+$$
+\int_{a}^{b} f(x) \, dx = (b - a) \langle f(x) \rangle \approx \frac{b - a}{N} \sum_{i=1}^{N} f(x_i)
+$$
+
+**Method 5: Shooting Method (Acceptance-Rejection Method)**
+
+Another Monte Carlo method:
+1. Choose $y_{min}, y_{max}$ such that $y_{min} \leq f(x) \leq y_{max}$ for all $x \in [a, b]$. This might be hard to do if $f$ is unknown
+2. Draw random coordinates uniformly in the box: $(x_i, y_i) \in [a,b] \times [y_{min}, y_{max}]$
+3. Count the fraction of coordinates $\rho \in [0, 1]$ for which $y_i < f(x_i)$
+4. Evaluate the integral as follows: 
+
+$$
+\int_{a}^{b} f(x) \, dx \approx (b - a) \left( \rho y_{\text{max}} + (1 - \rho) y_{\text{min}} \right)
+$$
+
+This also works with points $(x_i, y_i)$ on a regular rectangular grid. It is then not a Monte Carlo method anymore. 
+- Monte Carlo methods rely on randomness to sample points. The randomness helps in approximating the integral, especially in higher dimensions or for complex functions
+- The points $(x_i, y_i)$ are randomly distributed within the integration domain, which allows for statistical techniques to estimate the integral. 
+- If the points are placed on a regular rectangular grid, the randomness is removed. The method then becomes a deterministic numerical integration method, similar to Trapezoidal Rule or Simpson's Rule. 
+
+The shooting method can be generalized to high-dimensional, non-regular domains:
+1. Choose a box $B$ that fully contains the integration domain $Ω (Ω ⊂ B)$
+2. Calculate the box volume $\lvert B \rvert$ 
+3. Draw $N$ random coordinates $\bar{x_i} \in B$
+4. Count the number $M$ of coordinates for which $\bar{x_i} \in Ω$
+5. Evalulate the integral as follows:
+
+$$
+\int_{\Omega} f(\vec{x}) \, d\vec{x} \approx \frac{|B|}{N} \sum_{i=1}^{M} f(\vec{x}_i)
+$$
+
+For $f(\vec{x}) ≡ 1$, this yields the volume of the domain: 
+
+$$
+|\Omega| = \int_{\Omega} d\vec{x} \approx |B| \frac{M}{N}
+$$
+
+**Curse of Dimensionality**
+- For classical quadrature methods with h-convergence order $α$: Error is $O(h^α)$
+- Using the tensor product rule, one can solve d-dimensional integrals with $N ∼ 1/h^d$ integration points
+- Total error in d dimensions: $O(N^{−α/d})$
+    - $E ∼ h^α$
+    - $N ∼ 1/h^d$
+    - $h ∼ N^{−1/d}$
+    - $E ∼ N^{−α/d}$
+- Number of function evaluations $N$ needed to achieve a certain precision $P$: $N = O(P^{d/α})$ (Exponential complexity!)
+    - To achieve desired precision $P$, we need to set the error $E$ to $P$: $E∼P∼N^{-α/d}$
+    - $N∼P^{-d/α}$
+
+- For high-dimensional domains, this is getting very slow
+- The dimensions can be space $(x,y,z)$, time $(t)$, or any number of other parameters
+
+Central limit theorem ⇒ for MC integration the error is $O(N^{-1/2})$
+- With MC integration, the scaling of the error is independent of $d$
+- Trapezoidal rule: $α = 2$, so MC is more efficient in $d > 4$ dimensions
+- Simpson’s rule: $α = 4$, so MC is more efficient in $d > 8$ dimensions
+
+**Advantages and disadvantages of Monte Carlo integration**
+Advantgaes:
+- No curse of dimensionality; very efficient for high-dimensional problems
+- Easy to implement
+- Can handle very complex integration domains
+Disadvantages:
+- Slow convergence for small $d$: error is $O(1/\sqrt{N})$
+- Random nature of results
 
 ## Numerical Root Finding
+
+A very frequent problem in science: find $\vec{x^∗}$ such that $f (\vec{x^∗}) = 0$ for a nonlinear function $f$.
+
+>**Definition: Root of a function**
+A point $\vec{x^∗}$ where $f (\vec{x^∗}) = 0$ is called a root of $f$.
+ 
+- A root of a function f is also called a zero of $f$.
+- How to find roots numerically?
+- How to compare the suitability and efficiency of different methods?
+- What if there are multiple solutions?
 
 ### How to solve nonlinear equations, i.e., find $x$ for which $f(x) = 0$
 
