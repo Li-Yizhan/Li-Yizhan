@@ -290,8 +290,7 @@ Weaknesses
 
 A very dangerous problem: Substracting nearly equal numbers can cause extreme loss of accuracy!
 
-$123.456\textcolor{red}{\mathbf{89}} - 123.456\textcolor{red}{\mathbf{22}} = 0.0001\textcolor{red}{\mathbf{67}} = 1.67 \times 10^{-4}
-$
+$123.456\textcolor{red}{\mathbf{89}} - 123.456\textcolor{red}{\mathbf{22}} = 0.0001\textcolor{red}{\mathbf{67}} = 1.67 \times 10^{-4}$
 
 (red numbers are noises)
 
