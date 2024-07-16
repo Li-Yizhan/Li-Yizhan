@@ -270,3 +270,52 @@ Example: 0.001234567890
 $x$ again).
 - Round-off errors add up if you’re unlucky. They can easily grow to the 6th, 5th etc. significant digit after continued computation.
 - Everything below double precision is typically useless for scientific computing
+
+**Strengths and Weaknesses of floating-point numbers**
+Strengths:
+- They can represent values between integers
+- They cover a much larger range than integers (maximum in double precision: $≈ 1.8 × 10^{308}$)
+- The absolute scale is not relevant. Example: $8.5 × 10^{−6}, 8.5, 8.5 × 10^3$ are equally
+representable. (Whether you calculate in μm, km or inches does not matter!)
+- There are special values to indicate that something went wrong (NaN, Inf)
+
+Weaknesses
+− Not all numbers are representable, even simple ones (e.g., 0.2)
+− Round-off errors almost always occur
+− Errors can add up and result in substantial loss of significance
+− Floating-point addition is not generally associative: $(a + b) + c \neq a + (b + c)$
+− Testing for equality is problematic
+
+**Numerical Cancellation**
+
+A very dangerous problem: Substracting nearly equal numbers can cause extreme loss of accuracy!
+
+$123.456\textcolor{red}{\mathbf{89}} - 123.456\textcolor{red}{\mathbf{22}} = 0.0001\textcolor{red}{\mathbf{67}} = 1.67 \times 10^{-4}
+$
+
+(red numbers are noises)
+
+If the computation continues with the value 1.67 instead of 1 (actual difference), the rounding error would be 67 percent in this case. 
+
+Example: Approximation of the derivative via the difference quotient:
+
+$$
+f'(x) ≈ \frac{f(x + h) - f(x)}{h}
+$$
+
+The approximation should improve as $h$ shrinks, but the opposite happens for very small $$h$ due to numerical cancellation
+
+How to avoid cancellation?
+- Use high precision (at least double precision, 64-bit)
+- Sometimes subtractions can be replaced by clever manipulation of formulas
+- Whenever you subtract two numbers, think beforehand whether they could be nearly equal at some point in your computation
+- Add a check to your program to test for (near) equality of the subtracted numbers, and print warnings when they are
+
+### Summary
+
+1.  An algorithm is a finite sequence of instructions to solve a problem (input → output).
+2. Landau notation specifies the scaling of an algorithm with the size of its input or output, but not its runtime. For large problems, avoid poorly scaling algorithms.
+3. Computers store numbers in floating-point format with finite precision. This is inevitable, and leads to round-off errors.
+4. The machine epsilon quantifies this finite precision. It is the smallest positive representable number for which $1 + \epsilon \neq 1$.
+5. For scientific computing, always use at least 64-bit precision (a.k.a. IEEE 754 double precision).
+6. Numerical cancellation occurs if two similar numbers with finite precision are subtracted from each other. Avoid it whenever possible.
